@@ -11,6 +11,7 @@ function somme($a,$b) {
 }
 
 // Permet d'avoir la description de la fonction somme
-somme(42,12);
+echo somme(42,12);
+
 
 ?>

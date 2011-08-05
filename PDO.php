@@ -18,15 +18,4 @@ while($d = $req->fetch()) {
     echo '</pre>';
 }
 
-function connexionBDD() {
-    try {
-        mysql_connect("localhost", "root","");
-        mysql_selectdb("tutos");
-    }
-    catch (mysql_error $p) {
-        echo 'Nous sommes désolés, mais le site est actuellement en maintenance'
-        }
-}
-
-ouep !
 ?>
