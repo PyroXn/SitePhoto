@@ -4,7 +4,7 @@
  * Permet de faire une somme de deux chiffres
  * @param int $a Premier chiffre
  * @param int $b Second chiffre
- * @return Somme des deux chiffres
+ * @return int des deux chiffres
 **/
 function somme($a,$b) {
     return $a + $b;
