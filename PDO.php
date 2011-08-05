@@ -27,4 +27,6 @@ function connexionBDD() {
         echo 'Nous sommes désolés, mais le site est actuellement en maintenance'
         }
 }
+
+ouep !
 ?>
