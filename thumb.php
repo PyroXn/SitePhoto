@@ -30,7 +30,7 @@
 // Below are default values (if parameter is not passed)
 
 // save to file (true) or output to browser (false)
-$save_to_file = trues;
+$save_to_file = true;
 
 // Quality for JPEG and PNG.
 // 0 (worst quality, smaller file) to 100 (best quality, bigger file)
