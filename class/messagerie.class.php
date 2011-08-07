@@ -1,16 +1,13 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of messagerie
  *
  * @author MyDevHouse
  */
+
 class Messagerie {
+    
     private $expediteur;
     private $destinataire;
     private $sujet;
@@ -25,50 +22,50 @@ class Messagerie {
         $this->timestamp = $timestamp;
     }
     
-    public function getExpediteur() {
+    function getExpediteur() {
         return $this->expediteur;
     }
 
-    public function setExpediteur($expediteur) {
+    function setExpediteur($expediteur) {
         $this->expediteur = $expediteur;
     }
 
-    public function getDestinataire() {
+    function getDestinataire() {
         return $this->destinataire;
     }
 
-    public function setDestinataire($destinataire) {
+    function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;
     }
 
-    public function getSujet() {
+    function getSujet() {
         return $this->sujet;
     }
 
-    public function setSujet($sujet) {
+    function setSujet($sujet) {
         $this->sujet = $sujet;
     }
 
-    public function getMessage() {
+    function getMessage() {
         return $this->message;
     }
 
-    public function setMessage($message) {
+    function setMessage($message) {
         $this->message = $message;
     }
     
-    public function getTimestamp() {
+    function getTimestamp() {
         return $this->timestamp;
     }
 
-    public function setTimestamp($timestamp) {
+    function setTimestamp($timestamp) {
         $this->timestamp = $timestamp;
     }
     
     /**
      * Permet de sécuriser le message
      */
-    public function isSecurise() {
+    function isSecurise() {
         if (get_magic_quotes_gpc()) {
             $this->message = stripslashes($this->message);
         }
