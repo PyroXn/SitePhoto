@@ -82,8 +82,8 @@ class Membre {
         $this->pseudo = mysql_real_escape_string($this->pseudo);
         $sql = "SELECT pseudo FROM membres WHERE pseudo = '".$this->pseudo."'";
         $req = mysql_query($sql);
-        if (mysql_num_rows($req) != 0) { return true; }
-        else { return false; }
+        return mysql_num_rows($req) != 0 ? true : false;
+
     }
     
     /**
@@ -97,8 +97,7 @@ class Membre {
         $this->mail = mysql_real_escape_string($this->mail);
         $sql = "SELECT mail FROM membres WHERE mail = '".$this->mail."'";
         $req = mysql_query($sql);
-        if (mysql_num_rows($req) != 0) { return true; }
-        else { return false; }
+        return mysql_num_rows($req) != 0 ? true : false;
     }
         
     /**
@@ -114,8 +113,7 @@ class Membre {
         $this->password = md5($this->password);
         $sql = "SELECT mail,password FROM membres WHERE mail='".$this->mail."' AND password='".$this->password."'";
         $req = mysql_query($sql);
-        if (mysql_num_rows($req) != 0) { return true; }
-        else { return false; }
+        return mysql_num_rows($req) != 0 ? true : false;
     }
     
     /**
