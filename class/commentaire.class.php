@@ -2,15 +2,15 @@
 
 class Commentaire {
 
-    private $pseudo;
+    private $idMembre;
     private $message;
     private $timestamp;
     private $idPhoto;
 
     /*   CONSTRUCTOR    */
 
-    function __construct($pseudo, $message, $timestamp, $idPhoto) {
-        $this->pseudo = $pseudo;
+    function __construct($idMembre, $message, $timestamp, $idPhoto) {
+        $this->idMembre = $idMembre;
         $this->message = $message;
         $this->timestamp = $timestamp;
         $this->idPhoto = $idPhoto;
@@ -18,8 +18,8 @@ class Commentaire {
 
     /*   GETTER    */
 
-    function getPseudo() {
-        return $this->pseudo;
+    function getIdMembre() {
+        return $this->idMembre;
     }
 
     function getMessage() {
@@ -36,8 +36,8 @@ class Commentaire {
 
     /*   SETTER    */
 
-    function setPseudo($pseudo) {
-        $this->pseudo = $pseudo;
+    function setIdMembre($idMembre) {
+        $this->idMembre = $idMembre;
     }
 
     function setMessage($message) {
@@ -68,7 +68,7 @@ class Commentaire {
      * Permet d'insérer un nouveau commentaire
      */
     function isSubmit() {
-        $sql = "INSERT INTO commentaires(pseudo,message,timestamp,idPhoto) VALUES ('" . $this->pseudo . "','" . $this->message . "','" . $this->timestamp . "','" . $this->idPhoto . "')";
+        $sql = "INSERT INTO commentaires(idMembre,message,timestamp,idPhoto) VALUES ('" . $this->idMembre . "','" . $this->message . "','" . $this->timestamp . "','" . $this->idPhoto . "')";
         $req = mysql_query($sql);
     }
 

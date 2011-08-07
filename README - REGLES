@@ -17,7 +17,9 @@ Upload de photo :
 Commentaire :
 
 - Un commentaire est forcément lié à une photo.
-- Quand on charge une photo, on charge les commentaires liées
+- Ne peut-on faire de commentaire que sur les photos?
+- Un commentaire ne peut pas se faire anonymement (il faut donc être loguer, je rajoute un id_membre dans sa classe et retire pseudo qui se recupere via la table membre)
+- Quand on charge une photo, on charge les commentaires liées (quand cela est necessaire)
 
 Thumb :
 
