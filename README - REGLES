@@ -7,6 +7,11 @@ Photo :
 - membre gold = galerie complète avec lien pour partager la photo
     - Galerie visible pour les invités mais impossible de faire commentaire ou autre
 
+Upload de photo :
+
+- On a une taille max, si photo > taille alors on redimensionne au max
+- On garde uniquement la photo redimensionné et on redimensionne lors de l'affichage si besoin
+
 Commentaire :
 
 - Un commentaire est forcément lié à une photo.
