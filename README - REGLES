@@ -7,6 +7,8 @@ Photo :
 - membre gold = galerie complète avec lien pour partager la photo
     - Galerie visible pour les invités mais impossible de faire commentaire ou autre
 
+- Ne JAMAIS oublier l'attribut "Alt" sur les images ! Très important pour notre referencement
+
 Upload de photo :
 
 - On a une taille max, si photo > taille alors on redimensionne au max
