@@ -11,4 +11,5 @@
     if(!$membre->ifMailExist() && $membre->ifPseudoExist()) {
         // Ici on pourra mettre notre methodes d'insertion de l'objet
     }
+
 ?>

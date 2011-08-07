@@ -16,3 +16,9 @@ Commentaire :
 
 - Un commentaire est forcément lié à une photo.
 - Quand on charge une photo, on charge les commentaires liées
+
+Thumb :
+
+- Permet de redimensionner une image lors de son affichage
+- Exemple d'utilisation :
+- <img src="thumb.php?src=image.jpg&x=50&y=50&f=0
