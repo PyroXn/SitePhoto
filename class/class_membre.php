@@ -1,5 +1,9 @@
 <?php
-
+/*
+ * TODO : Methodes d'insertion de l'objet dans la base de données
+ * TODO : Ajouter l'attribut lastvisite de type timestamp
+ * TODO : Créer un premier jet de la table membres
+ */
 class membre {
     private $pseudo;
     private $password;
@@ -127,8 +131,6 @@ class membre {
         $this->sexe = $data['sexe'];
         $this->birthday = $data['birthday'];
         $this->avatar = $data['avatar'];
-        
-        // Ensuite on insere dans une Session l'objet
     }
     
     
