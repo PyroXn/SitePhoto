@@ -1,7 +1,5 @@
 <?php
 /*
- * TODO : Methodes d'insertion de l'objet dans la base de données
- * TODO : Ajouter l'attribut lastvisite de type timestamp
  * TODO : Créer un premier jet de la table membres
  */
 class membre {
@@ -133,8 +131,13 @@ class membre {
         $this->avatar = $data['avatar'];
     }
     
-    
-    
+    /**
+     * Permet d'insérer un nouveau membre si controle ok
+     */
+    function isRegister() {
+        $sql = "INSERT INTO membres(mail,password,pseudo,sexe,birthday,avatar) VALUES ('".$this->mail."','".$this->password."','".$this->pseudo."','".$this->sexe."','".$this->birthday."','".$this->avatar."')";
+        $req = mysql_query($sql);
+    }  
     
 }
 ?>
