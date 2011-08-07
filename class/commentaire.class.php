@@ -1,6 +1,6 @@
 <?php
 
-class commentaire {
+class Commentaire {
     private $pseudo;
     private $message;
     private $timestamp;

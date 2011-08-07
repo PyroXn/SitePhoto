@@ -2,7 +2,7 @@
 /*
  * TODO : Créer un premier jet de la table membres
  */
-class membre {
+class Membre {
     private $pseudo;
     private $password;
     private $mail;
