@@ -4,13 +4,15 @@ class commentaire {
     private $pseudo;
     private $message;
     private $timestamp;
+    private $idPhoto;
     
 /*   CONSTRUCTOR    */
     
-    function __construct($pseudo,$message,$timestamp) {
+    function __construct($pseudo,$message,$timestamp,$idPhoto) {
         $this->pseudo = $pseudo;
         $this->message = $message;
         $this->timestamp = $timestamp;
+        $this->idPhoto = $idPhoto;
     }
     
 /*   GETTER    */
@@ -24,6 +26,9 @@ class commentaire {
     function getTimeStamp() {
         return $this->timestamp;
     }
+    function getIdPhoto() {
+        return $this->idPhoto;
+    }
     
 /*   SETTER    */
     
@@ -35,6 +40,9 @@ class commentaire {
     }
     function setTimestamp($timestamp) {
         $this->timestamp = $timestamp;
+    }
+    function setIdPhoto($idPhoto) {
+        $this->idPhoto = $idPhoto;
     }
     
 /*   METHODES    */
@@ -53,7 +61,7 @@ class commentaire {
      * Permet d'insérer un nouveau commentaire
      */
     function isSubmit() {
-        $sql = "INSERT INTO commentaires(pseudo,message,timestamp) VALUES ('".$this->pseudo."','".$this->message."','".$this->timestamp."')";
+        $sql = "INSERT INTO commentaires(pseudo,message,timestamp,idPhoto) VALUES ('".$this->pseudo."','".$this->message."','".$this->timestamp."','".$this->idPhoto."')";
         $req = mysql_query($sql);
     }
     
