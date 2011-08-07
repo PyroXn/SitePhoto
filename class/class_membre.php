@@ -49,7 +49,7 @@ class membre {
     
     /**
      * Permet hasher le password via MD5
-     * @param String $p Mot de passe en clair
+     * @param String $password Mot de passe en clair
      */
     function setPassword($password) {
         $this->password = md5($password);
@@ -71,7 +71,6 @@ class membre {
     
     /**
      * Verifie que le pseudo n'est pas utilisé
-     * @param String $pseudo
      * @return booléen Retourne true si le pseudo existe
      */
     function ifPseudoExist() {
@@ -87,7 +86,6 @@ class membre {
     
     /**
      * Verifie que le mail n'est pas utilisé
-     * @param String $mail
      * @return booléen Retourne true si le mail existe
      */
     function ifMailExist() {
@@ -104,8 +102,6 @@ class membre {
     /**
      * Permet de tester les identifiants lors du log
      * Securite : stripslashes, mysql_real_escape_string
-     * @param String $mailBrut
-     * @param Password $passwordBrut
      * @return Booléen Retourne vrai si l'utilisateur existe. 
      */
     function ifExist() {
@@ -121,9 +117,7 @@ class membre {
     }
     
     /**
-     * Charge les données de l'utilisateur si utilisateur confirmé
-     * @param String $mail mail identifiant de l'utilisateur
-     * @param String $password mot de passe de l'utilisateur 
+     * Charge les données de l'utilisateur si utilisateur confirmé 
      */
     function isCo() {
         $sql = "SELECT * FROM membres WHERE mail='".$this->mail."' AND password='".$this->password."'";
