@@ -64,14 +64,6 @@ class Commentaire {
         $this->message = mysql_real_escape_string($this->message);
     }
 
-    /**
-     * Permet d'insérer un nouveau commentaire
-     */
-    function isSubmit() {
-        $sql = "INSERT INTO commentaires(idMembre,message,timestamp,idPhoto) VALUES ('" . $this->idMembre . "','" . $this->message . "','" . $this->timestamp . "','" . $this->idPhoto . "')";
-        $req = mysql_query($sql);
-    }
-
 }
 
 ?>
