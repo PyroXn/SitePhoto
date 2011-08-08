@@ -62,7 +62,7 @@ function getMembre(Membre $membre) {
 /**
  * Permet d'insérer un nouveau membre si controle ok
  */
-function Register(Membre $membre) {
+function register(Membre $membre) {
     $sql = "INSERT INTO membres(mail,password,pseudo,sexe,birthday,avatar) VALUES ('" . $membre->getMail() . "','" . $membre->getPassword() . "','" . $membre->getPseudo() . "','" . $membre->getSexe() . "','" . $membre->getBirthday() . "','" . $membre->getAvatar() . "')";
     $req = mysql_query($sql);
 }
@@ -70,7 +70,7 @@ function Register(Membre $membre) {
 /**
  * Permet de modifier l'users
  */
-function Update(Membre $membre) {
+function update(Membre $membre) {
     $sql = "UPDATE membres SET mail='" . $membre->getMail() . "', password='" . $membre->getPassword() . "', pseudo='" . $membre->getPseudo() . "',sexe='" . $membre->getSexe() . "', avatar='" . $membre->getAvatar() . "'";
     $req = mysql_query($sql);
 }
