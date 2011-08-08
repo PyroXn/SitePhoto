@@ -6,6 +6,7 @@ class Image {
     private $titre;
     private $description;
     private $idMembre;
+    private $idAlbum;
     
     /*   CONSTRUCTOR    */
     
@@ -31,6 +32,9 @@ class Image {
         return $this->idMembre;
     }
     
+    function getIdAlbum() {
+        return $this->idAlbum;
+    }
     function getHeight() {
         $height = getimagesize($this->url);
         return $height[1];
@@ -62,6 +66,10 @@ class Image {
     
     function setIdMembre($idMembre) {
         $this->idMembre = $idMembre;
+    }
+    
+    function setIdAlbum($idAlbum) {
+        $this->idAlbum = $idAlbum;
     }
     
     /*    METHODES    */

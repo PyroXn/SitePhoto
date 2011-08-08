@@ -1,8 +1,5 @@
 <?php
 
-/*
- * TODO : Créer un premier jet de la table membres
- */
 
 class Membre {
 
@@ -36,7 +33,7 @@ class Membre {
     }
 
     function getMail() {
-        return $this > mail;
+        return $this-> mail;
     }
 
     function getSexe() {
