@@ -148,6 +148,14 @@ class Membre {
         $req = mysql_query($sql);
     }
 
+    /**
+     * Permet de modifier l'users
+     */
+    function isUpdate() {
+        $sql = "UPDATE membres SET mail='" . $this->mail . "', password='" . $this->password . "', pseudo='" . $this->pseudo . "',sexe='" . $this->sexe . "', avatar='" . $this->avatar . "'";
+        $req = mysql_query($sql);
+    }
+
 }
 
 ?>
