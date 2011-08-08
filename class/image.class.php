@@ -7,6 +7,7 @@ class Image {
     private $description;
     private $idMembre;
     private $idAlbum;
+    private $idConcour;
     
     /*   CONSTRUCTOR    */
     
@@ -35,6 +36,11 @@ class Image {
     function getIdAlbum() {
         return $this->idAlbum;
     }
+    
+    function getIdConcour() {
+        return $this->idConcour;
+    }
+    
     function getHeight() {
         $height = getimagesize($this->url);
         return $height[1];
@@ -52,8 +58,9 @@ class Image {
     
     /*    SETTER    */
     
-    function setUrl($url) {
-        $this->url = $url;
+    function setUrl($file) {
+        
+        $this->url = $file;
     }
     
     function setTitre($titre) {
@@ -70,6 +77,10 @@ class Image {
     
     function setIdAlbum($idAlbum) {
         $this->idAlbum = $idAlbum;
+    }
+    
+    function setIdConcour($idConcour) {
+        $this->idConcour = $idConcour;
     }
     
     /*    METHODES    */
