@@ -55,13 +55,20 @@ class Image {
         $type = getimagesize($this->url);
         return $type[2];
     }
+    
+    function getName() {
+        return basename($this->Url);
+    }
 
     /*    SETTER    */
 
     function setTitre($titre) {
         $this->titre = $titre;
     }
-
+    
+    function setUrl($url) {
+        $this->url = $url;
+    }
     function setDescription($description) {
         $this->description = $description;
     }

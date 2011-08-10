@@ -77,7 +77,7 @@ class resizeImage {
         return true;
     }
     
-    function deleteImage($url) {
+    public static function deleteImage($url) {
         unlink($url);
     }
 }
