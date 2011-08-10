@@ -76,6 +76,9 @@ class resizeImage {
         }
         return true;
     }
-
+    
+    function deleteImage($url) {
+        unlink($url);
+    }
 }
 ?>
