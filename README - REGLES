@@ -13,6 +13,11 @@ Upload de photo :
 
 - On a une taille max, si photo > taille alors on redimensionne au max
 - On garde uniquement la photo redimensionné et on redimensionne lors de l'affichage si besoin
+- Etape lors de l'upload d'une photo :
+    1: On upload via la classe image
+    2: On redimensionne via resizeImage (/!\ Ne s'utilise pas comme les autres classes)
+    3: On supprime le fichier initial via resizeImage >> deleteImage($url)
+
 
 Commentaire :
 
