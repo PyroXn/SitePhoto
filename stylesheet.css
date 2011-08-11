@@ -7,6 +7,8 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='blue', endColorstr='white');
 }
 
+/* MENU */
+
 #menu { margin-right: auto; margin-left: auto; width: 960px; }
 #menu ul { list-style: none;
            text-align: center;
@@ -19,18 +21,46 @@ body {
 #menu li a { background: url(templates/images/cadreSelectionTitre.png)  no-repeat scroll 0 0 transparent; 
 }
 
+* HEADER */
+
+#header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    height: 333px;
+    background: url(templates/images/header.jpg);
+    display: block;
+}
+/* HEADER */
+
+#header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+    height: 333px;
+    background: url(templates/images/header.jpg);
+    display: block;
+}
+
+/* CONTENT */
+
 #content {
     margin-right: auto;
     margin-left: auto;
+    text-align:justify;
     width: 960px;
-    height: 400px;
     background: url(templates/images/content.jpg);
+}
+.imgContent {
+    
 }
 #content h1 {
     font-size: 24pt;
+    padding-left: 10px;
     color: #000000;   
 }
 #content p {
+    padding: 15px;
     font-size: 14pt;
     color: #818181;
     line-height: 18pt;
