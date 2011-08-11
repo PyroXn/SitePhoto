@@ -1,9 +1,9 @@
 body {
     font-family:arial, sans-serif;
     font-size:100%;
+    background: -moz-linear-gradient(top, #aedae5, #FFFFFF); /* pour Firefox 3.6+ */  
+    background: -webkit-gradient(linear, left top, left bottom, from(#aedae5), to(#FFFFFF)); /* pour webkit */ 
     background-repeat: no-repeat; 
-    background: -moz-linear-gradient(top, blue, white); /* pour Firefox 3.6+ */  
-    background: -webkit-gradient(linear, left top, left bottom, from(blue), to(white)); /* pour webkit */ 
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='blue', endColorstr='white');
 }
 
@@ -18,19 +18,9 @@ body {
            word-spacing: 80px; 
 }
 #menu li a { color: #818181; font-size: 1.5em; text-align: center; text-decoration: none; }
-#menu li a { background: url(templates/images/cadreSelectionTitre.png)  no-repeat scroll 0 0 transparent; 
+#menu li a { background: url(images/cadreSelectionTitre.png)  no-repeat scroll 0 0 transparent; 
 }
 
-* HEADER */
-
-#header {
-    margin-left: auto;
-    margin-right: auto;
-    width: 960px;
-    height: 333px;
-    background: url(templates/images/header.jpg);
-    display: block;
-}
 /* HEADER */
 
 #header {
@@ -38,7 +28,7 @@ body {
     margin-right: auto;
     width: 960px;
     height: 333px;
-    background: url(templates/images/header.jpg);
+    background: url(images/header.jpg);
     display: block;
 }
 
@@ -47,21 +37,42 @@ body {
 #content {
     margin-right: auto;
     margin-left: auto;
-    text-align:justify;
     width: 960px;
-    background: url(templates/images/content.jpg);
+    background: url(images/content.jpg);
+    text-align:justify;
 }
+
 .imgContent {
-    
+    float:left;
+    width: 158px;
+    margin: 20px 10px 10px 0;;
 }
+
 #content h1 {
     font-size: 24pt;
+    color: #000000; 
     padding-left: 10px;
-    color: #000000;   
+    padding-top: 20px;
 }
 #content p {
-    padding: 15px;
+    padding: 0 5px 0 5px;
     font-size: 14pt;
     color: #818181;
     line-height: 18pt;
+}
+
+#cadre {
+    margin-right: auto;
+    margin-left: auto;
+    width: 920px;
+}
+
+/* FOOTER */
+
+#footer { 
+	margin-right: auto;
+	margin-left: auto;
+	width: 960px;
+	height: 254px;
+	background: url(images/footer.jpg);
 }
