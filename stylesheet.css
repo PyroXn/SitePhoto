@@ -1,0 +1,16 @@
+body {
+ font-family:arial, sans-serif;
+ font-size:100%;
+ }
+
+#menu { margin-right: auto; margin-left: auto; width: 960px; }
+#menu ul { list-style: none;
+    text-align: center;
+    position: relative;
+}
+#menu li { display: inline;
+    word-spacing: 80px; 
+}
+#menu li a { color: #818181; font-size: 1.5em; text-align: center; text-decoration: none; }
+#menu li a { background: url(cadreSelectionTitre.png)  no-repeat scroll 0 0 transparent; 
+}
