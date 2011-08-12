@@ -45,7 +45,7 @@ p {
     font-family: arial, sans-serif;
     font-size: 24px;
 }
-li.mnu {display: inline;}
+li.mnu { display: inline; }
 
 
 /* CONTENT */
@@ -67,7 +67,7 @@ li.mnu {display: inline;}
 }
 
 #watermark .imgcontent {
-    float: left
+    float: left;
 }
 
 /* FOOTER */
