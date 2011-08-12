@@ -1,5 +1,5 @@
 /*pour supprimer l''es espace du haut et du bas*/
-* {margin:0; padding:0;}
+* { margin:0; padding:0; }
 
 body {
     margin: 0; padding: 0;
@@ -74,7 +74,7 @@ li.mnu {display: inline;}
 #footer {
     margin-right: auto;
     margin-left: auto;
-    background: url(images/footer_1.jpg) no-repeat center;
+    background: url(images/footer.jpg) no-repeat center;
     clear:both;
     height:250px;
 }
