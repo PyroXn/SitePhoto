@@ -97,13 +97,13 @@ body {
     font-size: 11pt;
 }
 #lastWinner {
-    width: 250px;
+    width: 20%;
     color: #FFFFFF;
     font-weight: bold;
     float: left;
-    margin-left: 140px;
     line-height: 28pt;
     text-align: center;
+    margin-left: 6%;
 }
 
 #lastWinner img {
@@ -111,7 +111,7 @@ body {
 }
 
 #lastPics {
-    width: 250px;
+    width: 20%;
     color: #FFFFFF;
     font-weight: bold;
     float: left;
@@ -120,7 +120,7 @@ body {
 }
 
 #lastComments {
-    width: 285px;
+    width: 25%;
     color: #FFFFFF;
     font-weight: bold;
     float: left;
@@ -129,7 +129,7 @@ body {
 }
 
 #lastMembres {
-    width: 250px;
+    width: 20%;
     color: #FFFFFF;
     font-weight: bold;
     float: left;
