@@ -26,7 +26,7 @@ body {
 
 #header {
     margin: 0 auto;
-    min-width: 980px;
+    min-width: 960px;
     height: 230px;
     background: url(images/header4.jpg) no-repeat top center;
     display: block;
@@ -136,6 +136,10 @@ body {
 
 }
 
+#copyright {
+    padding-top: 200px;
+    color: #818181;
+}
 .hrFooter {
     color: #D2E5F6;
     width: 60%;
