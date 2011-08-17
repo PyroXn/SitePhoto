@@ -1,10 +1,11 @@
 <?php
 
 // Fichier regroupant les pages inscription, connexion, oublie mot de passe...
+// TODO : Terminer l'inscription. action=index.php?p= ???
 
 function inscription() {
 $title = "Devenez photographe !";
-$content .= "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
+$content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
 $content .= "<hr class='hrTitle'></hr>";
 $content .= "<form method='post' action='index.php?p='>";
 $content .= "<table border='0'>";
