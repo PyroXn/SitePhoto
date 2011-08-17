@@ -28,7 +28,7 @@
                         <a href="index.php?p=inscription">Inscription</a>
                     </li>
                     <li>
-                        <a href="#">Connexion</a>
+                        <a href="index.php?p=connexion">Connexion</a>
                     </li>
                 </ul>
             </div>

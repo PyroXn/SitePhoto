@@ -68,7 +68,30 @@ $content .= "<tr>
                 <td><input type='submit' value='Inscription'></td>";
 $content .= "</tr>";
 $content .= "</table>";
-display($title,$content);
-    
+$content .= "</form>";
+display($title,$content);   
+}
+
+function connexion() {
+    $title = "Connectez-vous à votre espace perso !";
+    $content = "<h2>Connexion</h2>";
+    $content .= "<hr class='hrTitle'></hr>";
+    $content .= "<form method='POST'>
+                 <table border='0'>
+                    <tr>
+                        <td>E-mail</td>
+                        <td><input type='text' name='mail'></td>
+                    </tr>
+                    <tr>
+                        <td>Mot de passe</td>
+                        <td><input type='password name='password'></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type='submit' value='Connexion'></td>
+                    </tr>
+                 </table>
+                 </form>";
+    display($title,$content);
 }
 ?>
