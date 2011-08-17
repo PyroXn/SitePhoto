@@ -95,6 +95,7 @@ body {
     padding-top: 30px;
     font-size: 11pt;
 }
+
 #lastWinner {
     width: 230px;
     color: #FFFFFF;
@@ -107,6 +108,7 @@ body {
 
 #lastWinner img {
     padding-right: 10px;
+    vertical-align: middle;
 }
 
 #lastPics {
@@ -116,6 +118,13 @@ body {
     float: left;
     line-height: 32pt;
 
+}
+
+#lastPics img { 
+    padding-right: 5px;
+    height: 25px;
+    width: 50px;
+    vertical-align: middle;
 }
 
 #lastComments {
@@ -136,10 +145,17 @@ body {
 
 }
 
+#lastMembres img {
+    padding-right: 10px;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
 #copyright {
-    padding-top: 200px;
+    padding-top: 190px;
     color: #818181;
 }
+
 .hrFooter {
     color: #D2E5F6;
     width: 60%;

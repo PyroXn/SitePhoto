@@ -1,0 +1,80 @@
+/*pour supprimer l''es espace du haut et du bas*/
+* { margin:0; padding:0; }
+
+body {
+    margin: 0; padding: 0;
+    background: #8bbfed url(imgages/degrade.jpg) repeat-x; 
+    text-align: center;
+    font-family:arial, sans-serif;
+    font-size:100%;
+}
+
+div {
+    display: block;
+}
+
+p {
+    display: block;
+}
+
+#bkgd { 
+    background: url(images/header2.jpg) no-repeat top center;
+}
+#bkgd2 {
+    margin:0 auto;
+    background: url(images/header.jpg) no-repeat top center;
+    
+    min-width: 980px;
+}
+
+#header {
+ margin: 0;
+}
+
+/* =Navigation
+----------------------------------------------- */
+#nav {
+    margin-right: auto;
+    margin-left: auto;
+    width: 980px;
+    height: 244px;
+    position: relative;
+    top: 15px;
+    left: 0px;
+    z-index: 100;
+    font-family: arial, sans-serif;
+    font-size: 24px;
+}
+li.mnu { display: inline; }
+
+
+/* CONTENT */
+#content {
+    margin-right: auto;
+    margin-left: auto;
+    background: url(images/fond_content.jpg) repeat-y center;
+}
+
+#watermark {
+    margin-right: auto;
+    margin-left: auto;
+    width: 980px;
+    padding: 0 5px 0 5px;
+    font-size: 14pt;
+    color: #818181;
+    line-height: 18pt;
+    vertical-align: baseline
+}
+
+#watermark .imgcontent {
+    float: left;
+}
+
+/* FOOTER */
+#footer {
+    margin-right: auto;
+    margin-left: auto;
+    background: url(images/footer.jpg) no-repeat center;
+    clear:both;
+    height:250px;
+}
