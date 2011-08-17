@@ -32,21 +32,30 @@ $content .= "<tr>
                     <td>Date de naissance</td>
                     <td><select name='birthday'>
                         <option value=''>Jour</option>";
-for ($i = 1; $i<=31; $i++) {
-$content .= "<option value=$i>$i";
+for ($i = 01; $i<=31; $i++) {
+$content .= "<option value=$i>$i</option>";
 }
 
-$content .= "</select>";
+$content .= "</select> ";
 $content .= "<select name='birthmonth'>
-             <option value=''>Mois</option>";
-for ($i = 1; $i<=12; $i++) {
-$content .= "<option value=$i>$i";
-}
-$content .= "</select>";
+             <option value=''>Mois</option>
+             <option value='01'>Janvier</option>
+             <option value='02'>Fevrier</option>
+             <option value='03'>Mars</option>
+             <option value='04'>Avril</option>
+             <option value='05'>Mai</option>
+             <option value='06'>Juin</option>
+             <option value='07'>Juillet</option>
+             <option value='08'>Aout</option>
+             <option value='09'>Septembre</option>
+             <option value='10'>Octobre</option>
+             <option value='11'>Novembre</option>
+             <option value='12'>Decembre</option>";
+$content .= "</select> ";
 $content .= "<select name='birthyear'>
              <option value=''>Année</option>";
 for ($i = 1900; $i<=Date("Y"); $i++) {
-$content .= "<option value=$i>$i";
+$content .= "<option value=$i>$i</option>";
 }
 $content .= "</select>";
 $content .= "</td><tr>";
