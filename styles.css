@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p {
+ul, li, p, div, h1  {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -55,11 +55,37 @@ div {
     display: block;
 }
 
-#contenu {
+#global {
     background: url(./templates/images/fond_content.jpg) top center repeat-y;
 }
 
-#contenu p {
+#contenu {
     width: 980px;
     margin: 0 auto;
+    background: none;
+}
+
+
+
+#contenu img {
+    float: left;
+    margin: 10px;
+    border: 2px solid black;
+}
+
+#contenu h1 {
+    padding-top: 5px;
+    margin-left: 130px; /*par rapport a la largeur de la photo*/
+    color: #000;
+    font-size: 18pt; 
+    border-bottom: 1px solid #000;
+}
+
+#contenu p {
+    text-align: justify;
+    margin-left: 130px;
+    color: #818181;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 10px
 }
