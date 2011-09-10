@@ -1,0 +1,65 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #8bbfed;
+    color: black;
+    font-size: 80%;
+    font-family: arial, helvetica, sans-serif;
+}
+
+ul, li, p {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    height: 230px; /*hauteur de notre image header*/
+    background: url(./templates/images/header4.jpg) top center no-repeat;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+#header img {
+    float: left;
+    margin: 5px 5px 0 0;
+}
+
+#header li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#header li a {
+    display: inline-block;
+    margin: 1px;
+    padding: 4px 0; /*centre le texte dans le hover*/
+    text-decoration: none;
+    height: 34px;
+    width: 113px;
+    
+    color: #818181;
+    font-size: 24px;
+}
+
+#header li a:hover {
+    background: url(./design/Pyro/templates/images/cadreSelectionTitre.png) no-repeat 0 0;
+    color: #360;
+    text-align: center;
+}
+
+div {
+    display: block;
+}
+
+#contenu {
+    background: url(./templates/images/fond_content.jpg) top center repeat-y;
+}
+
+#contenu p {
+    width: 980px;
+    margin: 0 auto;
+}
