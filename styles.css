@@ -89,6 +89,15 @@ div {
     margin-top: 10px
 }
 
+
+#contenu h2 {
+    text-align: left;
+    color: #000;
+    font-size: 18pt; 
+    font-weight: normal;
+    text-decoration: underline;
+}
+
 #footer {
     height: 265px; /*hauteur de notre image footer*/
     background: url(./templates/images/footer.jpg) top center no-repeat;
@@ -136,11 +145,14 @@ div {
     text-decoration: none;
     color: white;
     font-size: 14px;
-    line-height: 38px;
+    line-height: 42px;
 }
 
 #colonne2 img {
-    margin-right: 15px;
+    float: left;
+    margin-left: -15px;
+    margin-right: 25px;
+    border: 1px solid white;
 }
 
 #colonne3 {
@@ -173,11 +185,6 @@ div {
     width: 245px;
 }
 
-#colonne4 ol {
-    /*list-style-image: url(./templates/images/cadreAvatarFooter.png);*/
-    list-style-position: inside;
-}
-
 #colonne4 a {
     margin-left: -15px;
     text-decoration: none;
@@ -188,7 +195,9 @@ div {
 }
 
 #colonne4 img {
-    margin-right: 15px;
+    float: left;
+    margin-right: 25px;
+    border: 1px solid white;
 }
 
 #copyright {
