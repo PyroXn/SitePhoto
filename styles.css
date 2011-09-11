@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1  {
+ul, li, p, div, h1, h2  {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -17,8 +17,6 @@ ul, li, p, div, h1  {
 #header {
     height: 230px; /*hauteur de notre image header*/
     background: url(./templates/images/header4.jpg) top center no-repeat;
-    padding: 0;
-    margin: 0;
     text-align: center;
 }
 
@@ -75,17 +73,127 @@ div {
 
 #contenu h1 {
     padding-top: 5px;
-    margin-left: 130px; /*par rapport a la largeur de la photo*/
+    margin-left: 160px; /*par rapport a la largeur de la photo*/
     color: #000;
     font-size: 18pt; 
+    font-weight: normal;
     border-bottom: 1px solid #000;
 }
 
 #contenu p {
     text-align: justify;
-    margin-left: 130px;
+    margin-left: 160px; /*par rapport a la largeur de la photo*/
     color: #818181;
     font-size: 14px;
     line-height: 18px;
     margin-top: 10px
+}
+
+#footer {
+    height: 265px; /*hauteur de notre image footer*/
+    background: url(./templates/images/footer.jpg) top center no-repeat;
+}
+
+#raccourci {
+    clear: both; /*clear les float precedement utilisé*/
+    width: 980px;
+    margin: 0 auto;
+    background: none;   
+}
+
+#raccourci h2 {
+    margin-top: 45px;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+#colonne1 {
+    float: left;
+    width: 245px;
+}
+
+#colonne1 a {
+    margin-left: -15px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+#colonne1 img {
+    margin-right: 15px;
+}
+
+#colonne2 {
+    float: left;
+    width: 245px;
+}
+
+#colonne2 a {
+    margin-left: -15px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    line-height: 38px;
+}
+
+#colonne2 img {
+    margin-right: 15px;
+}
+
+#colonne3 {
+    float: left;
+    width: 245px;
+}
+
+#colonne3 h3 {
+    color: white;
+    font-size: 14px;
+    line-height: 1px;
+    font-weight: bold;
+}
+
+#colonne3 li {
+    color: #e5f3ff;
+    font-size: 14px;
+    line-height: 1px;
+    margin-top: 25px;
+}
+#colonne3 img {
+    float: left;
+    margin-top: -10px;
+    margin-left: -15px;
+    margin-right: 10px;
+}
+
+#colonne4 {   
+    float: left;
+    width: 245px;
+}
+
+#colonne4 ol {
+    /*list-style-image: url(./templates/images/cadreAvatarFooter.png);*/
+    list-style-position: inside;
+}
+
+#colonne4 a {
+    margin-left: -15px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    line-height: 42px;
+    
+}
+
+#colonne4 img {
+    margin-right: 15px;
+}
+
+#copyright {
+    padding-top: 235px;
+    text-align: center;
+    color: #818181;
+    font-size: 10px;
 }
