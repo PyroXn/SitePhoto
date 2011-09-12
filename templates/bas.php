@@ -1,34 +1,61 @@
-</div>
-        <div id="footer">
-            <div id="footerInfos">
-                <div id="lastWinner">
-                    Derniers gagnants<br></br>
-                    <hr class="hrFooter"></hr>
-                    <img src="templates/images/1312873921_trophy.png"></img> Zoz <br></br>
-                    <img src="templates/images/1312873916_trophy_silver.png"></img> Pyro <br></br>
-                    <img src="templates/images/1312873919_trophy_bronze.png"></img> Bad
+<div id ="colonnegauche">
+                    <h2>
+                        Les mieux notées
+                    </h2>
+                       
                 </div>
-                <div id="lastPics">
-                    Dernières photos<br></br>
-                    <hr class="hrFooter"></hr>
-                    <img src=""></img> Titre de la photo <br></br>
-                    <img src=""></img> Titre de la photo <br></br>
-                    <img src=""></img> Titre de la photo
-                </div>
-                <div id="lastComments">
-                    Derniers commentaires<br></br>
-                    <hr class="hrFooter"></hr>
-                </div>
-                <div id="lastMembres">
-                    Derniers membres<br></br>
-                    <hr class="hrFooter"></hr>
-                    <img src=""></img> Zoz<br></br>
-                    <img src=""></img> Pyro<br></br>
-                    <img src=""></img> Bad
+                <div id ="colonnedroite">
+                    <h2>
+                        Les dernières photos de nos gold
+                    </h2>
                 </div>
             </div>
-            <div id="copyright">
-                Copyright - Tous droits réservés.
+        </div>
+        <div id="footer">
+            <div id="raccourci">
+                <div id="colonne1">
+                    <h2>
+                        Derniers gagnants
+                    </h2>
+                    <ol>
+                        <li><a title="PyrO" href="#"><img src="./templates/images/1312873921_trophy.png" alt="trophÃ© en or"></img>PyrO</a></li>
+                        <li><a title="FloW" href="#"><img src="./templates/images/1312873916_trophy_silver.png" alt="trophÃ© en argent"></img>FloW</a></li>
+                        <li><a title="Bad" href="#"><img src="./templates/images/1312873919_trophy_bronze.png" alt="trophÃ© en bronze"></img>Bad</a></li>
+                    </ol>
+                </div>
+                <div id="colonne2">
+                    <h2>
+                        Dernières photos
+                    </h2>
+                    <ol>
+                        <li><a title="image1" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image1"></img>Nom de l'image1</a></li>
+                        <li><a title="image2" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image2"></img>Nom de l'image2</a></li>
+                        <li><a title="image3" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image3"></img>Nom de l'image3</a></li>
+                    </ol>
+                </div>
+                <div id="colonne3">
+                    <h2>
+                        Derniers commentaires
+                    </h2>
+                    <ol>
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Cucu Lapraline</h3>Trop mignon ton chat !</li>
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Herbert Lepivert</h3>J'aime les chenilles</li>
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Sarah Fraichis</h3>Trop beau ton effet flou</li>    
+                    </ol>
+                </div>
+                <div id="colonne4">
+                    <h2>
+                        Derniers membres
+                    </h2>
+                    <ol>
+                        <li><a title="PyrO" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="PyrO"></img>PyrO</a></li>
+                        <li><a title="FloW" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="FloW"></img>FloW</a></li>
+                        <li><a title="Bad" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="Bad"></img>Bad</a></li>
+                    </ol>
+                </div>
+                <div id="copyright">
+                    Copyright - Tous droits réservés.
+                </div>
             </div>
         </div>
     </body>

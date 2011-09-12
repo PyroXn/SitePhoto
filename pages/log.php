@@ -1,25 +1,28 @@
 <?php
 
 // Fichier regroupant les pages inscription, connexion, oublie mot de passe...
-// TODO : Terminer l'inscription. action=index.php?p= ???
 
 function inscription() {
-$title = "Devenez photographe !";
-$content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
-$content .= "<hr class='hrTitle'></hr>";
-$content .= "<form method='post' action='index.php?p='>";
-$content .= "<table border='0'>";
-$content .= "<tr>
+    $title = "Devenez photographe !";
+    $content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
+    $content .= "<hr class='hrTitle'></hr>";
+    $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
+    $content .= "<table border='0'>";
+    $content .= "<tr>
                     <td>E-mail </td>
-                    <td><input type='text' name='mail'></td>
+                    <td><input type='text' name='mail' onBlur='checkMailInscription()'><span id='checkMail'></span></td>
                  </tr>
                  <tr>
                     <td>Confirmer e-mail </td>
-                    <td><input type='text' name='mail2'></td>
+                    <td><input type='text' name='mail2' onBlur='checkMail2Inscription()'><span id='checkMail2'></span></td>
                  </tr>
                  <tr>
                     <td>Mot de passe </td>
-                    <td><input type='password' name='password'>'</td>
+                    <td><input type='password' name='password' onBlur='checkPasswordInscription()'><span id='checkPassword'></span></td>
+                 </tr>
+                 <tr>
+                    <td>Confirmer mot de passe </td>
+                    <td><input type='password' name='password2' onBlur='checkPassword2Inscription()'><span id='checkPassword2'></span></td>
                  </tr>
                  <tr>
                     <td>Je suis </td>
@@ -32,12 +35,12 @@ $content .= "<tr>
                     <td>Date de naissance</td>
                     <td><select name='birthday'>
                         <option value=''>Jour</option>";
-for ($i = 01; $i<=31; $i++) {
-$content .= "<option value=$i>$i</option>";
-}
+    for ($i = 01; $i <= 31; $i++) {
+        $content .= "<option value=$i>$i</option>";
+    }
 
-$content .= "</select> ";
-$content .= "<select name='birthmonth'>
+    $content .= "</select> ";
+    $content .= "<select name='birthmonth'>
              <option value=''>Mois</option>
              <option value='01'>Janvier</option>
              <option value='02'>Fevrier</option>
@@ -51,32 +54,98 @@ $content .= "<select name='birthmonth'>
              <option value='10'>Octobre</option>
              <option value='11'>Novembre</option>
              <option value='12'>Decembre</option>";
-$content .= "</select> ";
-$content .= "<select name='birthyear'>
+    $content .= "</select> ";
+    $content .= "<select name='birthyear' onBlur='checkBirthday()'>
              <option value=''>Année</option>";
-for ($i = 1900; $i<=Date("Y"); $i++) {
-$content .= "<option value=$i>$i</option>";
-}
-$content .= "</select>";
-$content .= "</td><tr>";
-$content .= "<tr>
+    for ($i = 1900; $i <= Date("Y"); $i++) {
+        $content .= "<option value=$i>$i</option>";
+    }
+    $content .= "</select><span id='checkBirthday'></span>";
+    $content .= "</td><tr>";
+    $content .= "<tr>
                 <td>Pseudo</td>
-                <td><input type='text' name='pseudo'></td>";
-$content .= "</tr>";
-$content .= "<tr>
+                <td><input type='text' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span></td>";
+    $content .= "</tr>";
+    $content .= "<tr>
                 <td></td>
-                <td><input type='submit' value='Inscription'></td>";
-$content .= "</tr>";
-$content .= "</table>";
-$content .= "</form>";
-display($title,$content);   
+                <td><input type='button' name='Submit' value='Inscription' onClick='checkInscription()'></td>";
+    $content .= "</tr>";
+    $content .= "</table>";
+    $content .= "</form>";
+    display($title, $content);
+}
+
+function inscriptionSuccess() {
+    include('class/membre.class.php');
+    include('sql/membre.sql.php');
+    include('class/connexion.class.php');
+    $connexion = new Connexion(); // Initialisation de la connexion à la BDD
+    $users = new Membre($_POST['mail'], $_POST['password']);
+    $users->setPseudo($_POST['pseudo']);
+    $users->setSexe($_POST['sexe']);
+    $birthday = $_POST['birthyear'] . '-' . $_POST['birthmonth'] . '-' . $_POST['birthday'];
+    $users->setBirthday($birthday);
+    if (!isPseudoExist($users) && !isMailExist($users)) {
+        $title = 'Inscription terminée';
+        $contenu = 'Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.';
+        $cle = md5(microtime(TRUE) * 100000);
+        $users->setCle($cle);
+        //sendMail($users);
+        register($users);
+    } elseif (isPseudoExist($users)) {
+        $title = 'Inscription impossible';
+        $contenu = 'Le pseudo choisit existe déjà. Merci de bien vouloir en choisir un autre. <a href="javascript:history.back()">Retour</a>';
+    } elseif (isMailExist($users)) {
+        $title = 'Inscription impossible';
+        $contenu = 'L\'adresse e-mail choisit existe déjà. Merci de bien vouloir en choisir une autre. <a href="javascript:history.back()">Retour</a>';
+    }
+    display($title, $contenu);
+}
+
+function sendMail(Membre $membre) {
+    // TODO : Modifier les données liés au mail
+    $headers = 'From: "nom"<adresse@fai.fr>' . "\n";
+    $headers .='Reply-To: adresse_de_reponse@fai.fr' . "\n";
+    $headers .='Content-Type: text/html; charset="iso-8859-1"' . "\n";
+    $headers .='Content-Transfer-Encoding: 8bit';
+    $destinataire = $membre->getMail();
+    $objet = "Confirmation de l'inscription sur XXX";
+    $message = "Bonjour $membre->getPseudo(),<br /><br />
+            Vous venez de vous inscrire sur XXX et nous vous en remercions.<br /><br />
+            Vous devez valider votre incription afin de pouvoir utiliser votre compte.<br /><br />
+            Cliquez sur le lien suivant : <a href='http://www.test.com?p=checkcle&code=$membre->getCle()'>http://www.test.com?p=xxx&code=$membre->getCle()</a><br /><br />
+            (si le lien n'est pas cliquable, copier le et coller le dans la barre d'adresse de votre navigateur)<br /><br />
+            Merci de votre confiance envers XXX.<br /><br />
+            Cordialement, l'équipe de XXX";
+    mail($destinataire, $objet, $message, $headers);
+}
+
+function checkCle() {
+    // TODO : Verifier la mise en page
+    include('class/connexion.class.php');
+    $connexion = new Connexion(); // Initialisation de la connexion à la BDD
+    $cle = @$_GET['code'];
+    $sql = "SELECT id FROM membres WHERE cle = '" . $cle . "'";
+    $req = mysql_query($sql);
+    if (mysql_num_rows($req) == 1) {
+        $data = mysql_fetch_assoc($req);
+        $sqlUpdate = "UPDATE membres SET cle = 0 WHERE id = '" . $data['id'] . "'";
+        $reqUpdate = mysql_query($sqlUpdate);
+        $title = "Compte validé !";
+        $contenu = "Votre compte a été validé avec succès. Vous pouvez maintenant vous connecter à votre espace personnel.";
+        display($title, $contenu);
+    } else {
+        $title = "Erreur !";
+        $contenu = "Erreur ! Merci de bien vouloir revenir  l'accueil.";
+        display($title, $contenu);
+    }
 }
 
 function connexion() {
     $title = "Connectez-vous à votre espace perso !";
     $content = "<h2>Connexion</h2>";
     $content .= "<hr class='hrTitle'></hr>";
-    $content .= "<form method='POST'>
+    $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
                  <table border='0'>
                     <tr>
                         <td>E-mail</td>
@@ -84,7 +153,7 @@ function connexion() {
                     </tr>
                     <tr>
                         <td>Mot de passe</td>
-                        <td><input type='password name='password'></td>
+                        <td><input type='password' name='password'></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -92,6 +161,32 @@ function connexion() {
                     </tr>
                  </table>
                  </form>";
-    display($title,$content);
+    display($title, $content);
 }
+
+function connexionSuccess() {
+    include('class/connexion.class.php');
+    include('class/membre.class.php');
+    include('sql/membre.sql.php');
+    
+    $connexion = new Connexion();
+    
+    $user = new Membre($_POST['mail'],$_POST['password']);
+    if(isExist($user)) {
+        $user = getMembre($user);
+        $_SESSION['user'] = $user;
+        header('Location: index.php');
+    }
+    else {
+        $title = "Connexion impossible !";
+        $contenu = "Adresse e-mail et/ou Mot de passe érroné.";
+        display($title,$contenu);
+    } 
+}
+
+function deconnexion() {
+    session_destroy();
+    header("Location: index.php");
+}
+
 ?>

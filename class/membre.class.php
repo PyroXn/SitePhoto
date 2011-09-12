@@ -3,12 +3,14 @@
 
 class Membre {
 
+    private $id;
     private $pseudo;
     private $password;
     private $mail;
     private $sexe;
     private $avatar; // Uniquement l'url de l'avatar
     private $birthday;
+    private $cle;
 
     /*   CONSTRUCTOR    */
 
@@ -18,12 +20,16 @@ class Membre {
      * @param Password $password
      */
     function __construct($mail, $password) {
-        $this->mail = $mail;
-        $this->password = $password;
+        $this->mail = strip_tags(mysql_real_escape_string ($mail));
+        $this->password = md5(strip_tags(mysql_real_escape_string ($password)));
     }
 
     /*   GETTER    */
-
+    
+    function getId() {
+        return $this->id;
+    }
+    
     function getPseudo() {
         return $this->pseudo;
     }
@@ -47,11 +53,15 @@ class Membre {
     function getBirthday() {
         return $this->birthday;
     }
+    
+    function getCle() {
+        return $this->cle;
+    }
 
     /*   SETTER    */
 
     function setPseudo($pseudo) {
-        $this->pseudo = $pseudo;
+        $this->pseudo = strip_tags(mysql_real_escape_string ($pseudo));
     }
 
     /**
@@ -59,15 +69,15 @@ class Membre {
      * @param String $password Mot de passe en clair
      */
     function setPassword($password) {
-        $this->password = md5($password);
+        $this->password = md5(strip_tags(mysql_real_escape_string ($password)));
     }
 
     function setMail($mail) {
-        $this->mail = $mail;
+        $this->mail = strip_tags(mysql_real_escape_string ($mail));
     }
 
     function setSexe($sexe) {
-        $this->sexe = $sexe;
+        $this->sexe = strip_tags(mysql_real_escape_string ($sexe));
     }
 
     function setAvatar($url) {
@@ -77,7 +87,15 @@ class Membre {
     function setBirthday($birthday) {
         $this->birthday = $birthday;
     }
-
+    
+    function setCle($cle) {
+        $this->cle = $cle;
+    }
+    
+    function setId($id) {
+        $this->id = $id;
+    }
+    
     /*   METHODES    */
 
 }

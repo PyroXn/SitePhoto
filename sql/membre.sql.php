@@ -5,10 +5,6 @@
  * @return booléen Retourne true si le pseudo existe
  */
 function isPseudoExist(Membre $membre) {
-    if (get_magic_quotes_gpc()) {
-        $membre->setPseudo(stripslashes($membre->getPseudo()));
-    }
-    $membre->setPseudo(mysql_real_escape_string($membre->getPseudo()));
     $sql = "SELECT pseudo FROM membres WHERE pseudo = '" . $membre->getPseudo() . "'";
     $req = mysql_query($sql);
     return mysql_num_rows($req) != 0 ? true : false;
@@ -19,10 +15,6 @@ function isPseudoExist(Membre $membre) {
  * @return booléen Retourne true si le mail existe
  */
 function isMailExist(Membre $membre) {
-    if (get_magic_quotes_gpc()) {
-        $membre->setMail(stripslashes($membre->getMail()));
-    }
-    $membre->setMail(mysql_real_escape_string($membre->getMail()));
     $sql = "SELECT mail FROM membres WHERE mail = '" . $membre->getMail() . "'";
     $req = mysql_query($sql);
     return mysql_num_rows($req) != 0 ? true : false;
@@ -34,11 +26,6 @@ function isMailExist(Membre $membre) {
  * @return Booléen Retourne vrai si l'utilisateur existe. 
  */
 function isExist(Membre $membre) {
-    if (get_magic_quotes_gpc()) {
-        $membre->setMail(stripslashes($membre->getMail()));
-    }
-    $membre->setMail(mysql_real_escape_string($membre->getMail()));
-    $membre->setPassword($membre->getPassword());
     $sql = "SELECT mail,password FROM membres WHERE mail='" . $membre->getMail() . "' AND password='" . $membre->getPassword() . "'";
     $req = mysql_query($sql);
     return mysql_num_rows($req) != 0 ? true : false;
@@ -56,6 +43,8 @@ function getMembre(Membre $membre) {
     $membre->setSexe($data['sexe']);
     $membre->setBirthday($data['birthday']);
     $membre->setAvatar($data['avatar']);
+    $membre->setCle($data['cle']);
+    $membre->setId($data['id']);
     return $membre;
 }
 
@@ -63,7 +52,7 @@ function getMembre(Membre $membre) {
  * Permet d'insérer un nouveau membre si controle ok
  */
 function register(Membre $membre) {
-    $sql = "INSERT INTO membres(mail,password,pseudo,sexe,birthday,avatar) VALUES ('" . $membre->getMail() . "','" . $membre->getPassword() . "','" . $membre->getPseudo() . "','" . $membre->getSexe() . "','" . $membre->getBirthday() . "','" . $membre->getAvatar() . "')";
+    $sql = "INSERT INTO membres(mail,password,pseudo,sexe,birthday,avatar,cle) VALUES ('" . $membre->getMail() . "','" . $membre->getPassword() . "','" . $membre->getPseudo() . "','" . $membre->getSexe() . "','" . $membre->getBirthday() . "','" . $membre->getAvatar() . "','" . $membre->getCle() . "')";
     $req = mysql_query($sql);
 }
 

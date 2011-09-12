@@ -2,6 +2,7 @@
 
 class Commentaire {
 
+    private $id; 
     private $idMembre;
     private $message;
     private $timestamp;
@@ -18,6 +19,10 @@ class Commentaire {
 
     /*   GETTER    */
 
+    function getId() {
+        return $this->id;
+    }
+    
     function getIdMembre() {
         return $this->idMembre;
     }
@@ -36,6 +41,10 @@ class Commentaire {
 
     /*   SETTER    */
 
+    function setId($id) {
+        $this->id = $id;
+    }
+    
     function setIdMembre($idMembre) {
         $this->idMembre = $idMembre;
     }
