@@ -10,7 +10,7 @@
         <div id="header">
             <img src="logo.png" alt="logo du site" />
             <?php
-            if ($_SESSION['user']) {
+            if (@$_SESSION['user']) {
                 ?>
                 <ul>
                     <li><a title="accueil" accesskey="1" href="#">Accueil</a></li>
