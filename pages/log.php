@@ -5,9 +5,8 @@
 function inscription() {
     $title = "Devenez photographe !";
     $content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
-    $content .= "<hr class='hrTitle'></hr>";
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
-    $content .= "<table border='0'>";
+    $content .= "<table border='0' align='center'>";
     $content .= "<tr>
                     <td>E-mail </td>
                     <td><input type='text' name='mail' onBlur='checkMailInscription()'><span id='checkMail'></span></td>

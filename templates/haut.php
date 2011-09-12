@@ -2,9 +2,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns ="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
     <head>
-        <title> Site photo</title>
+        <title><?php echo $title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="./templates/stylesheet.css" media="screen" />
+        <script language="javascript" type="text/javascript" src="js/javascript.js"></script>
     </head>
     <body>
         <div id="header">
@@ -18,8 +19,8 @@
                     <li><a title="concours" accesskey="3" href="#">Concours</a></li>
                     <li><a title="forum" accesskey="4" href="#">Forum</a></li>
                     <li><a title="contact" accesskey="5" href="#">Contact</a></li>
-                    <li><a title="inscription" accesskey="6" href="#">Inscription</a></li>
-                    <li><a title="connexion" accesskey="7" href="#">Connexion</a></li>
+                    <li><a title="mon profil" accesskey="6" href="#">Mon profil</a></li>
+                    <li><a title="connexion" accesskey="7" href="index.php?p=deconnexion">Deconnexion</a></li>
                 </ul>
                 <?php
             } else {
@@ -30,8 +31,8 @@
                     <li><a title="concours" accesskey="3" href="#">Concours</a></li>
                     <li><a title="forum" accesskey="4" href="#">Forum</a></li>
                     <li><a title="contact" accesskey="5" href="#">Contact</a></li>
-                    <li><a title="inscription" accesskey="6" href="#">Inscription</a></li>
-                    <li><a title="connexion" accesskey="7" href="#">Connexion</a></li>
+                    <li><a title="inscription" accesskey="6" href="index.php?p=inscription">Inscription</a></li>
+                    <li><a title="connexion" accesskey="7" href="index.php?p=connexion">Connexion</a></li>
                 </ul>    
                 <?php
             }

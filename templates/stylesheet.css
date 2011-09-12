@@ -70,6 +70,9 @@ div {
     margin: 10px;
     border: 2px solid black;
 }
+.noBorder {
+    border: none;
+}
 
 #contenu h1 {
     padding-top: 5px;

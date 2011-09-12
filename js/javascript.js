@@ -1,7 +1,7 @@
 function checkMailInscription() {
     var reg = new RegExp('^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$', 'i');
     if (document.formInscription.mail.value == "" || !reg.test(document.formInscription.mail.value)) {
-        document.getElementById("checkMail").innerHTML = "<img src='templates/images/check-rouge.png'>";
+        document.getElementById("checkMail").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
     }
     else {
         document.getElementById("checkMail").innerHTML = "<img src='templates/images/check-vert.png'>";
