@@ -3,37 +3,26 @@
 // Fichier regroupant les pages inscription, connexion, oublie mot de passe...
 
 function inscription() {
-    $title = "Devenez photographe !";
+    $title = "Inscrivez-vous et devenez photographe !";
     $content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
-    $content .= "<table border='0' align='center'>";
-    $content .= "<tr>
-                    <td>E-mail </td>
-                    <td><input type='text' name='mail' onBlur='checkMailInscription()'><span id='checkMail'></span></td>
-                 </tr>
-                 <tr>
-                    <td>Confirmer e-mail </td>
-                    <td><input type='text' name='mail2' onBlur='checkMail2Inscription()'><span id='checkMail2'></span></td>
-                 </tr>
-                 <tr>
-                    <td>Mot de passe </td>
-                    <td><input type='password' name='password' onBlur='checkPasswordInscription()'><span id='checkPassword'></span></td>
-                 </tr>
-                 <tr>
-                    <td>Confirmer mot de passe </td>
-                    <td><input type='password' name='password2' onBlur='checkPassword2Inscription()'><span id='checkPassword2'></span></td>
-                 </tr>
-                 <tr>
-                    <td>Je suis </td>
-                    <td><select name='sexe' size='1'>
-                        <option value='2'>Femme</option>
-                        <option value='1'>Homme</option>
-                        </select></td>
-                 </tr>
-                 <tr>
-                    <td>Date de naissance</td>
-                    <td><select name='birthday'>
-                        <option value=''>Jour</option>";
+    $content .= "<p>
+        <label for='mail'>E-mail </label>
+        <input type='text' id='mail' name='mail' onBlur='checkMailInscription()'><span id='checkMail'></span>
+        <label for='mail2'> Confirmer e-mail </label>
+        <input type='text' id='mail2' name='mail2' onBlur='checkMail2Inscription()'><span id='checkMail2'></span>
+        <label for='password'>Mot de passe </label>
+        <input type='password' id='password' name='password' onBlur='checkPasswordInscription()'><span id='checkPassword'></span>
+        <label for='password2'>Confirmer mot de passe </label>
+        <input type='password' id='password2' name='password2' onBlur='checkPassword2Inscription()'><span id='checkPassword2'></span>
+        <label for='sexe'>Je suis </label>
+        <select id='sexe' name='sexe' size='1'>
+        <option value='2'>Femme</option>
+        <option value='1'>Homme</option>
+        </select>
+        <label for='birthday'>Date de naissance </label> 
+        <select id='birthday' name='birthday'>
+        <option value=''>Jour</option>";
     for ($i = 01; $i <= 31; $i++) {
         $content .= "<option value=$i>$i</option>";
     }
@@ -60,16 +49,10 @@ function inscription() {
         $content .= "<option value=$i>$i</option>";
     }
     $content .= "</select><span id='checkBirthday'></span>";
-    $content .= "</td><tr>";
-    $content .= "<tr>
-                <td>Pseudo</td>
-                <td><input type='text' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span></td>";
-    $content .= "</tr>";
-    $content .= "<tr>
-                <td></td>
-                <td><input type='button' name='Submit' value='Inscription' onClick='checkInscription()'></td>";
-    $content .= "</tr>";
-    $content .= "</table>";
+    $content .= "
+        <label for='pseudo'>Pseudo </label>
+        <input type='text' id='pseudo' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span>
+        <input class='submit' type='button' name='Submit' value='Inscription' onClick='checkInscription()'>";
     $content .= "</form>";
     display($title, $content);
 }
@@ -167,20 +150,19 @@ function connexionSuccess() {
     include('class/connexion.class.php');
     include('class/membre.class.php');
     include('sql/membre.sql.php');
-    
+
     $connexion = new Connexion();
-    
-    $user = new Membre($_POST['mail'],$_POST['password']);
-    if(isExist($user)) {
+
+    $user = new Membre($_POST['mail'], $_POST['password']);
+    if (isExist($user)) {
         $user = getMembre($user);
         $_SESSION['user'] = $user;
         header('Location: index.php');
-    }
-    else {
+    } else {
         $title = "Connexion impossible !";
         $contenu = "Adresse e-mail et/ou Mot de passe érroné.";
-        display($title,$contenu);
-    } 
+        display($title, $contenu);
+    }
 }
 
 function deconnexion() {

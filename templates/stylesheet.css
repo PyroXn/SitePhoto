@@ -63,15 +63,17 @@ div {
     background: none;
 }
 
-
-
 #contenu img {
     float: left;
     margin: 10px;
     border: 2px solid black;
 }
-.noBorder {
+
+#contenu .noBorder {
     border: none;
+    float: none;
+    padding: 0;
+    margin: 0;
 }
 
 #contenu h1 {
@@ -92,13 +94,43 @@ div {
     margin-top: 10px
 }
 
-
 #contenu h2 {
     text-align: left;
     color: #000;
     font-size: 18pt; 
     font-weight: normal;
     text-decoration: underline;
+}
+
+#contenu label {
+    display: block;
+    padding-bottom: 1px;
+    vertical-align: 3px;
+    width: 260px;
+}
+
+#contenu input {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 240px;
+}
+
+#contenu select {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 100px;
+}
+
+#contenu .submit {
+    display: block;
+    margin-top: 18px;
+    width: 250px;
 }
 
 #footer {
