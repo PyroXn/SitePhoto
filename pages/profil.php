@@ -43,17 +43,23 @@ function profil() {
     $image = imageConcour($concours->getId());
     $membre = loadMembre($_GET['id']);
     $title = "Bienvenue sur la page de ".$membre->getPseudo()."";
-    $contenu = "test";
+    $contenu = '<img src="'.$concours->getUrl().'" alt="'.$concours->getTitre().'"></img>
+                <h1>'.$concours->getTitre().'</h1>
+                <p>'.$concours->getDescription().'
+                    '.$concours->getDescription().'
+                <img src="#" alt="" class="imgProfil"></img>
+                
+                </p>';
+    
+    
+    
+    
+    
+    
+    
+    
+    
     display($title,$contenu);
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

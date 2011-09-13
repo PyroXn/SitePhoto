@@ -13,6 +13,7 @@ function lastConcour() {
     $concours = new Concours($data['titre'],$data['description']);
     $concours->setId($data['id']);
     $concours->setNbParticipant($data['nbParticipant']);
+    $concours->setUrl($data['url']);
     return $concours;
 }
 

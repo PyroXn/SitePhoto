@@ -4,6 +4,7 @@ class Concours {
     private $titre;
     private $description;
     private $nbParticipant;
+    private $url;
     
     function __construct($titre,$description) {
         $this->titre = strip_tags(mysql_real_escape_string ($titre));
@@ -19,15 +20,19 @@ class Concours {
     }
 
     function getTitre() {
-        return $this->titre;
+        return utf8_encode(stripslashes($this->titre));
     }
 
+    function getUrl() {
+        return $this->url;
+    }
+    
     function setTitre($titre) {
         $this->titre = $titre;
     }
 
     function getDescription() {
-        return $this->description;
+        return utf8_encode(stripslashes($this->description));
     }
 
     function setDescription($description) {
@@ -41,7 +46,10 @@ class Concours {
     function setNbParticipant($nbParticipant) {
         $this->nbParticipant = $nbParticipant;
     }
-
+    
+    function setUrl($url) {
+        $this->url = $url;
+    }
 
     
 }
