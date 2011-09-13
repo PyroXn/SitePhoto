@@ -1,5 +1,15 @@
 <?php
+// INCLUDES CLASS
+include('class/membre.class.php');
+include('class/connexion.class.php');
+include('class/concours.class.php');
+include('class/commentaire.class.php');
+include('class/image.class.php');
+
 session_start();
+
+// BDD
+$connexion = new Connexion();
 
 /*
  * TODO : Mettre en place la verification de la cle
@@ -12,6 +22,8 @@ elseif ($_GET['p'] == "connexion") { include('pages/log.php'); connexion(); }
 elseif ($_GET['p'] == "connexionSuccess") { include('pages/log.php'); connexionSuccess(); }
 elseif ($_GET['p'] == "deconnexion") { include('pages/log.php'); deconnexion(); }
 
+elseif ($_GET['p'] == "profil") { include('pages/profil.php'); profil(); }
+
 /**
  * Sert à afficher la page
  * @param String $titre Titre de la page
@@ -21,6 +33,16 @@ function display($title,$contenu) {
     include("templates/haut.php");
     echo $contenu;
     include("templates/bas.php");
+}
+
+/**
+ * Permet d'afficher une page interdisant  l'utilisateur de continuer
+ */
+function accessForbidden() {
+    $title = "Vous n'avez rien à faire ici !";
+    $contenu = "Il semblerait que vous vous soyez égarés ! Vous pouvez retourner à <a href='index.php'>l'accueil</a>.";
+    display($title,$contenu);
+    exit();
 }
 
 function home() {

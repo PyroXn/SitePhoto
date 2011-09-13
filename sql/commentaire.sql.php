@@ -5,9 +5,6 @@
      * @return Commentaire Retourne l'objet commentaire
      */
     function getComments($idImage) {
-        include('class/connexion.class.php');
-        include('class/commentaire.class.php');
-        $connexion = new Connexion();
         $sql = "SELECT * FROM commentaires WHERE idImage='".$idImage."' ORDER BY id DESC";
         $req = mysql_query($sql);
         $i = 0;

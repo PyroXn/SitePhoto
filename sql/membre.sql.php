@@ -63,4 +63,22 @@ function update(Membre $membre) {
     $sql = "UPDATE membres SET mail='" . $membre->getMail() . "', password='" . $membre->getPassword() . "', pseudo='" . $membre->getPseudo() . "',sexe='" . $membre->getSexe() . "', avatar='" . $membre->getAvatar() . "'";
     $req = mysql_query($sql);
 }
+
+/**
+ *
+ * @param int $id id du membre à charger
+ * @return Membre Retourne objet membre
+ */
+function loadMembre($id) {
+    $sql = "SELECT * FROM membres WHERE id=$id";
+    $req = mysql_query($sql) or die("Erreur : loadMembre");
+    $data = mysql_fetch_array($req) or die("Erreur : loadMembre N°2");
+    $membre = new Membre($data['mail'],null);
+    $membre->setPseudo($data['pseudo']);
+    $membre->setAvatar($data['avatar']);
+    $membre->setBirthday($data['birthday']);
+    $membre->setCle($data['cle']);
+    $membre->setId($data['id']);
+    return $membre;
+}
 ?>

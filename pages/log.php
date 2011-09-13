@@ -53,15 +53,12 @@ function inscription() {
         <label for='pseudo'>Pseudo </label>
         <input type='text' id='pseudo' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span>
         <input class='submit' type='button' name='Submit' value='Inscription' onClick='checkInscription()'>";
-    $content .= "</form>";
+    $content .= "</p></form>";
     display($title, $content);
 }
 
 function inscriptionSuccess() {
-    include('class/membre.class.php');
     include('sql/membre.sql.php');
-    include('class/connexion.class.php');
-    $connexion = new Connexion(); // Initialisation de la connexion à la BDD
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
     $users->setSexe($_POST['sexe']);
@@ -104,8 +101,6 @@ function sendMail(Membre $membre) {
 
 function checkCle() {
     // TODO : Verifier la mise en page
-    include('class/connexion.class.php');
-    $connexion = new Connexion(); // Initialisation de la connexion à la BDD
     $cle = @$_GET['code'];
     $sql = "SELECT id FROM membres WHERE cle = '" . $cle . "'";
     $req = mysql_query($sql);
@@ -126,41 +121,29 @@ function checkCle() {
 function connexion() {
     $title = "Connectez-vous à votre espace perso !";
     $content = "<h2>Connexion</h2>";
-    $content .= "<hr class='hrTitle'></hr>";
     $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
-                 <table border='0'>
-                    <tr>
-                        <td>E-mail</td>
-                        <td><input type='text' name='mail'></td>
-                    </tr>
-                    <tr>
-                        <td>Mot de passe</td>
-                        <td><input type='password' name='password'></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type='submit' value='Connexion'></td>
-                    </tr>
-                 </table>
-                 </form>";
+                <p>
+                <label for='mail'>E-mail</label>
+                <input type='text' name='mail' />
+                <label for='password'>Mot de passe</label>
+                <input type='password' name='password' />
+                <input class='submit' type='submit' name='Submit' value='Connexion'>
+                </p>
+                </form>";
     display($title, $content);
 }
 
 function connexionSuccess() {
-    include('class/connexion.class.php');
-    include('class/membre.class.php');
     include('sql/membre.sql.php');
-
-    $connexion = new Connexion();
 
     $user = new Membre($_POST['mail'], $_POST['password']);
     if (isExist($user)) {
         $user = getMembre($user);
         $_SESSION['user'] = $user;
-        header('Location: index.php');
+        header('Location: index.php?p=profil&id='.$user->getId().'');
     } else {
         $title = "Connexion impossible !";
-        $contenu = "Adresse e-mail et/ou Mot de passe érroné.";
+        $contenu = "<p>Adresse e-mail et/ou Mot de passe érroné.</p>";
         display($title, $contenu);
     }
 }

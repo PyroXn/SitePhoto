@@ -5,9 +5,6 @@
  * @return Concours Retourne objet concours: last concours
  */
 function lastConcour() {
-    include('class/connexion.class.php');
-    include('class/concours.class.php');
-    $connexion = new Connexion();
     
     // On recherche l'id du dernier concour
     $sql = "SELECT * FROM concours ORDER BY id DESC LIMIT 1";
@@ -25,9 +22,8 @@ function lastConcour() {
  * @return Image Retourne un objet image
  */
 function imageConcour($idConcours) {
-    include('class/connexion.class.php');
-    include('class/membre.class.php');
-    include('class/images.class.php');
+    // TODO : Mettre en place un système si l'utilisateur n'a pas d'image pour le concours en cour
+    
     
     $sql = "SELECT * FROM images WHERE idMembres = '".$_SESSION['user']->getId()."' AND idConcours = '".$idConcours."'";
     $req = mysql_query($sql);

@@ -14,7 +14,7 @@
             if (@$_SESSION['user']) {
                 ?>
                 <ul>
-                    <li><a title="accueil" accesskey="1" href="#">Accueil</a></li>
+                    <li><a title="accueil" accesskey="1" href="index.php">Accueil</a></li>
                     <li><a title="photos" accesskey="2" href="#">Photos</a></li>
                     <li><a title="concours" accesskey="3" href="#">Concours</a></li>
                     <li><a title="forum" accesskey="4" href="#">Forum</a></li>
@@ -26,7 +26,7 @@
             } else {
                 ?>
                 <ul>
-                    <li><a title="accueil" accesskey="1" href="#">Accueil</a></li>
+                    <li><a title="accueil" accesskey="1" href="index.php">Accueil</a></li>
                     <li><a title="photos" accesskey="2" href="#">Photos</a></li>
                     <li><a title="concours" accesskey="3" href="#">Concours</a></li>
                     <li><a title="forum" accesskey="4" href="#">Forum</a></li>

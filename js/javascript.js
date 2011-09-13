@@ -67,6 +67,9 @@ function checkInscription() {
     if (mail == rouge || mail2 == rouge || password == rouge || password2 == rouge || birthday == rouge || pseudo == rouge) {
         alert("Merci de bien vouloir corriger le formulaire.");
     }
+    else if (mail == "" || mail2 == "" || password == "" || password2 == "" || birthday == "" || pseudo == "") {
+        alert("Merci de bien vouloir remplir tous les champs.");
+    }
     else {
         document.formInscription.submit();
         
