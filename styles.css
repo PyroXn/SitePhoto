@@ -17,21 +17,24 @@ ul, li, p, div, h1, h2  {
 #header {
     height: 230px; /*hauteur de notre image header*/
     background: url(./templates/images/header4.jpg) top center no-repeat;
-    text-align: center;
+}
+
+#header ul {
+   width: 980px; 
+   margin: auto;
 }
 
 #header img {
     float: left;
-    margin: 5px 5px 0 0;
 }
 
 #header li {
-    display: inline;
-    margin: 0;
-    padding: 0;
+    display: inline-block;
+    vertical-align: top;
 }
 
 #header li a {
+    text-align: center;
     display: inline-block;
     margin: 1px;
     padding: 4px 0; /*centre le texte dans le hover*/
@@ -62,8 +65,6 @@ div {
     margin: 0 auto;
     background: none;
 }
-
-
 
 #contenu img {
     float: left;
