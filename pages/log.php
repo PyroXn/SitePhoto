@@ -54,6 +54,7 @@ function inscription() {
         <input type='text' id='pseudo' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span>
         <input class='submit' type='button' name='Submit' value='Inscription' onClick='checkInscription()'>";
     $content .= "</p></form>";
+    $content .= mosaique();
     display($title, $content);
 }
 
@@ -130,6 +131,7 @@ function connexion() {
                 <input class='submit' type='submit' name='Submit' value='Connexion'>
                 </p>
                 </form>";
+    $content .= mosaique();
     display($title, $content);
 }
 

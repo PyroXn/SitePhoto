@@ -1,15 +1,4 @@
-<div id ="colonnegauche">
-                    <h2>
-                        Les mieux notées
-                    </h2>
-                       
-                </div>
-                <div id ="colonnedroite">
-                    <h2>
-                        Les dernières photos de nos gold
-                    </h2>
-                </div>
-            </div>
+</div>
         </div>
         <div id="footer">
             <div id="raccourci">
