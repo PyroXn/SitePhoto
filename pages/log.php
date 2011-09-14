@@ -8,13 +8,13 @@ function inscription() {
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
     $content .= "<p>
         <label for='mail'>E-mail </label>
-        <input type='text' id='mail' name='mail' onBlur='checkMailInscription()'><span id='checkMail'></span>
+        <input type='text' id='mail' name='mail' onBlur='checkMail()'><span id='checkMail'></span>
         <label for='mail2'> Confirmer e-mail </label>
-        <input type='text' id='mail2' name='mail2' onBlur='checkMail2Inscription()'><span id='checkMail2'></span>
+        <input type='text' id='mail2' name='mail2' onBlur='checkMail2()'><span id='checkMail2'></span>
         <label for='password'>Mot de passe </label>
-        <input type='password' id='password' name='password' onBlur='checkPasswordInscription()'><span id='checkPassword'></span>
+        <input type='password' id='password' name='password' onBlur='checkPassword()'><span id='checkPassword'></span>
         <label for='password2'>Confirmer mot de passe </label>
-        <input type='password' id='password2' name='password2' onBlur='checkPassword2Inscription()'><span id='checkPassword2'></span>
+        <input type='password' id='password2' name='password2' onBlur='checkPassword2()'><span id='checkPassword2'></span>
         <label for='sexe'>Je suis </label>
         <select id='sexe' name='sexe' size='1'>
         <option value='2'>Femme</option>

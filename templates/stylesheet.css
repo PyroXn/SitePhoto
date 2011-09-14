@@ -91,6 +91,38 @@ ul, li, p, div, h1, h2  {
     border-bottom: 1px solid #000;
 }
 
+#contenu label {
+    display: block;
+    padding-bottom: 1px;
+    vertical-align: 3px;
+    width: 260px;
+}
+
+#contenu input {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 240px;
+}
+
+#contenu select {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 100px;
+}
+
+#contenu .submit {
+    display: block;
+    margin-top: 18px;
+    width: 250px;
+}
+
+
 /*----COLONNE PAGE SANS PROFIL----*/
 .colonne {
     display: inline-block;

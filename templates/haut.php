@@ -6,7 +6,7 @@
         <title> Site photo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="./templates/stylesheet.css" media="screen" />
-        <script language="javascript" type="text/javascript" src="js/javascript.js"></script>
+        <script language="javascript" type="text/javascript" src="./js/javascript.js"></script>
         <!--[if lte IE 8]>
             <style type="text/css">
                 .colonne img {

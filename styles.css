@@ -17,7 +17,7 @@ ul, li, p, div, h1, h2  {
 /*----HEADER----*/
 #header {
     height: 230px; /*hauteur de notre image header*/
-    background: url(./templates/images/header4.jpg) top center no-repeat;
+    background: url(./images/header4.jpg) top center no-repeat;
 }
 
 #header ul {
@@ -50,14 +50,14 @@ ul, li, p, div, h1, h2  {
 
 
 #header li a:hover {
-    background: url(./design/Pyro/templates/images/cadreSelectionTitre.png) no-repeat 0 0;
+    background: url(./images/cadreSelectionTitre.png) no-repeat 0 0;
     color: #360;
     text-align: center;
 }
 
 /*----CONTENU----*/
 #global {
-    background: url(./templates/images/fond_content.jpg) top center repeat-y;
+    background: url(./images/fond_content.jpg) top center repeat-y;
 }
 
 #contenu {
@@ -90,6 +90,38 @@ ul, li, p, div, h1, h2  {
     font-weight: normal;
     border-bottom: 1px solid #000;
 }
+
+#contenu label {
+    display: block;
+    padding-bottom: 1px;
+    vertical-align: 3px;
+    width: 260px;
+}
+
+#contenu input {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 240px;
+}
+
+#contenu select {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #C6C0AC;
+    color: #333333;
+    padding: 4px;
+    vertical-align: 3px;
+    width: 100px;
+}
+
+#contenu .submit {
+    display: block;
+    margin-top: 18px;
+    width: 250px;
+}
+
 
 /*----COLONNE PAGE SANS PROFIL----*/
 .colonne {
@@ -170,7 +202,7 @@ ul, li, p, div, h1, h2  {
 /*----FOOTER----*/
 #footer {
     height: 265px; /*hauteur de notre image footer*/
-    background: url(./templates/images/footer.jpg) top center no-repeat;
+    background: url(./images/footer.jpg) top center no-repeat;
 }
 
 #raccourci {
@@ -220,7 +252,7 @@ ul, li, p, div, h1, h2  {
 
 #colonne2 img {
     float: left;
-    margin-left: -15px;
+    margin-left: -35px;
     margin-right: 25px;
     border: 1px solid white;
 }
@@ -246,7 +278,7 @@ ul, li, p, div, h1, h2  {
 #colonne3 img {
     float: left;
     margin-top: -10px;
-    margin-left: -15px;
+    margin-left: -35px;
     margin-right: 10px;
 }
 
