@@ -83,3 +83,66 @@ function checkInscription() {
     }
     
 }
+
+function ouvrirPopup(page,nom,option) {
+    window.open(page,nom,option);
+}
+
+function checkTitre() {
+    if(document.formAjoutPhoto.titre.value.length < 3) {
+        document.getElementById("titre").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
+    }
+    else {
+        document.getElementById("titre").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
+    }
+}
+
+function checkDescription() {
+    if(document.formAjoutPhoto.description.value.length < 15) {
+        document.getElementById("description").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
+    }
+    else {
+        document.getElementById("description").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
+    }
+}
+
+function checkAlbum() {
+    if(document.formAjoutPhoto.album.value == "") {
+        document.getElementById("album").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
+    }
+    else {
+        document.getElementById("album").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
+    }
+}
+
+function checkPhoto() {
+    if(document.formAjoutPhoto.photo.value == "") {
+        document.getElementById("photo").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
+    }
+    else {
+        document.getElementById("photo").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
+    }
+}
+function checkUpload() {
+    
+    checkTitre();
+    checkDescription();
+    checkAlbum();
+    checkPhoto();
+    
+    var titre = document.getElementById("titre").innerHTML;
+    var description = document.getElementById("description").innerHTML;
+    var album = document.getElementById("album").innerHTML;
+    var photo = document.getElementById("photo").innerHTML;
+    
+    var rouge = "<img src=\"templates/images/check-rouge.png\" class=\"noBorder\">";
+    
+    if(titre == rouge || description == rouge || album == rouge || photo == rouge) {
+        alert("Merci de bien vouloir corriger le formulaire.");
+    }
+    else {
+        document.formAjoutPhoto.submit();
+        document.getElementsByName(formAjoutPhoto)[0].submit();
+    }
+}
+

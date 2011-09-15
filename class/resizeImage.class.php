@@ -9,11 +9,17 @@ class resizeImage {
      * Permet de redimensionner/cropper une image
      * @param $img String Chemin absolu de l'image d'origine
      * @param $dest String Chemin absolu de l'image générée (.jpg)
+     * @param $nomFichier String Nom du fichier
      * @param $largeur Int Largeur de l'image générée, si 0 cette valeur sera calculé en fonction de la hauteur
      * @param $hauteur Int Hauteur de l'image générée, si 0 cette valeur sera calculé en fonction de la largeur
      * Si largeur et hauteur = 0 l'image gardera son format d'origine mais sera convertie en JPG
      * */
-    public static function resize($img, $dest, $largeur=0, $hauteur=0) {
+    public static function resize($img, $dest, $nomFichier, $largeur=0, $hauteur=0) {
+        // Si le nom est déjà utilisé
+        while (file_exists($dest . $nomFichier)) {
+            $nomFichier = rand() . $nomFichier;
+        }
+        $dest = $dest . $nomFichier;
         // On récupère les dimensions de l'image
         $dimension = getimagesize($img);
         $ratio = $dimension[0] / $dimension[1]; // Et son ratio
@@ -60,11 +66,9 @@ class resizeImage {
             if (substr($img, -4) == ".gif" || substr($img, -4) == ".GIF") {
                 $image = imagecreatefromgif($img);
             }
-
             imagecopyresampled($miniature, $image, -$decalX, -$decalY, 0, 0, $dimX, $dimY, $dimension[0], $dimension[1]);
             imagejpeg($miniature, $dest, self::$quality);
 
-            return true;
 
             // Ou on utilise imagemagick
         } else {
@@ -74,7 +78,7 @@ class resizeImage {
             $cmd = '/usr/bin/convert -gravity Center -quality ' . self::$quality . ' -crop ' . $largeur . 'x' . $hauteur . '+0+0 -page ' . $largeur . 'x' . $hauteur . ' "' . $dest . '" "' . $dest . '"';
             shell_exec($cmd);
         }
-        return true;
+        return $dest;
     }
     
     public static function deleteImage($url) {

@@ -59,18 +59,31 @@ class Image {
     function getName() {
         return basename($this->Url);
     }
+    
+    /**
+     *
+     * @return int Retourne 0 si photo paysage
+     */
+    function getRatio() {
+        if($this->getWidth() > $this->getHeight()) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
 
     /*    SETTER    */
 
     function setTitre($titre) {
-        $this->titre = $titre;
+        $this->titre = strip_tags(mysql_real_escape_string ($titre));
     }
     
     function setUrl($url) {
         $this->url = $url;
     }
     function setDescription($description) {
-        $this->description = $description;
+        $this->description = strip_tags(mysql_real_escape_string ($description));
     }
 
     function setIdMembre($idMembre) {
@@ -98,8 +111,8 @@ class Image {
     
     function upload($file) {
         // Extensions images autorisés (pour le moment, que du jpeg)
-        $extensions_ok = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
-        $typeimages_ok = array(5);
+        $extensions_ok = array('jpg', 'jpeg', 'gif', 'png');
+        $typeimages_ok = array(4);
         $taille_ko = 5120; // Taille en kilo octect (ko)
         $taille_max = $taille_ko * 1024; // En octects
         $dest_dossier = 'pics/'; // Creez ce dossier et chmoodez le !

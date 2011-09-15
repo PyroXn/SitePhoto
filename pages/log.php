@@ -59,6 +59,7 @@ function inscription() {
 }
 
 function inscriptionSuccess() {
+    // TODO : Verifier l'affichage des erreurs
     include('sql/membre.sql.php');
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
@@ -72,6 +73,8 @@ function inscriptionSuccess() {
         $users->setCle($cle);
         //sendMail($users);
         register($users);
+        @mkdir ("./pics/".$users->getPseudo()."",0777);
+
     } elseif (isPseudoExist($users)) {
         $title = 'Inscription impossible';
         $contenu = 'Le pseudo choisit existe déjà. Merci de bien vouloir en choisir un autre. <a href="javascript:history.back()">Retour</a>';

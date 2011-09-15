@@ -5,6 +5,8 @@ include('class/connexion.class.php');
 include('class/concours.class.php');
 include('class/commentaire.class.php');
 include('class/image.class.php');
+include("class/resizeImage.class.php");
+include('class/albums.class.php');
 
 session_start();
 
@@ -15,6 +17,7 @@ $connexion = new Connexion();
  * TODO : Mettre en place la verification de la cle
  */
 if(!isset($_GET['p'])) { $_GET['p'] = "home"; home(); }
+elseif ($_GET['p'] == "home") { home(); }
 elseif ($_GET['p'] == "inscription") { include('pages/log.php'); inscription(); }
 elseif ($_GET['p'] == "inscriptionSuccess") { include('pages/log.php'); inscriptionSuccess(); }
 elseif ($_GET['p'] == "checkCle") { include('pages/log.php'); checkCle(); }
@@ -23,6 +26,8 @@ elseif ($_GET['p'] == "connexionSuccess") { include('pages/log.php'); connexionS
 elseif ($_GET['p'] == "deconnexion") { include('pages/log.php'); deconnexion(); }
 
 elseif ($_GET['p'] == "profil") { include('pages/profil.php'); profil(); }
+elseif ($_GET['p'] == "newPhoto") { include('pages/profil.php'); newPhoto(); }
+elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhotoSuccess(); }
 
 /**
  * Sert à afficher la page

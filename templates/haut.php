@@ -29,7 +29,7 @@
                     <li><a title="concours" accesskey="3" href="#">Concours</a></li>
                     <li><a title="forum" accesskey="4" href="#">Forum</a></li>
                     <li><a title="contact" accesskey="5" href="#">Contact</a></li>
-                    <li><a title="mon profil" accesskey="6" href="#">Mon profil</a></li>
+                    <li><a title="mon profil" accesskey="6" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>">Mon profil</a></li>
                     <li><a title="connexion" accesskey="7" href="index.php?p=deconnexion">Deconnexion</a></li>
                 </ul>
                 <?php
