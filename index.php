@@ -50,6 +50,14 @@ function accessForbidden() {
     exit();
 }
 
+/**
+ *
+ * @return Bool True si user connecté
+ */
+function isOk() {
+    return isset($_SESSION['user']);
+}
+
 function home() {
     $title = "Bienvenue !";
     $contenu = '<div id="menu_gauche">

@@ -3,8 +3,7 @@
  *
  * @return Bool Retourne vrai si utilisateur est sur son profil
  */
-function isMyPage() {
-    $id = @$_GET['id'];
+function isMyPage($id) {
     return $_SESSION['user']->getId() == $id;
 }
 
@@ -98,6 +97,10 @@ function profil() {
 }
 
 function newPhoto() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    
     include('sql/albums.sql.php');
 
     $tabAlbums = array();
@@ -132,7 +135,7 @@ function newPhoto() {
 }
 
 function newPhotoSuccess() {
-    if(!isset($_FILES['photo'])) {
+    if(!isset($_FILES['photo']) || !isOk()) {
         accessForbidden();
     }
     
