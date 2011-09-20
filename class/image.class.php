@@ -108,13 +108,13 @@ class Image {
     }
     
     function setView($view) {
-        $this->view($view);
+        $this->view = view;
     }
 
     function setScore($score) {
-        $this->score($score);
+        $this->score = $score;
     }
-    
+   
     /*    METHODES    */
 
     /**
