@@ -46,8 +46,9 @@ function profil() {
                     <img class="photo_article" src="'.$_SESSION['user']->getAvatar().'" alt="'.$_SESSION['user']->getPseudo().'"></img>
                     <ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
+                        <li><a title="ajouter un album" href="index.php?p=newAlbum">Ajouter un album</a></li>
                         <li><a title="galerie" href="index.php?p=getGalerie">Galerie</a></li>
+                        <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>
@@ -68,7 +69,7 @@ function profil() {
     $contenu .= '</div>
                 <div id="colonne_gauche" class="colonne_profil">
                     <h2>
-                        Dernières photos galeries
+                        <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
@@ -79,7 +80,7 @@ function profil() {
                 </div>
                 <div class="colonne_profil">
                     <h2>
-                        dernières actions
+                        <a href="#" alt="Dernières actions">Dernières actions</a>
                     </h2>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
