@@ -108,7 +108,7 @@ class Image {
     }
     
     function setView($view) {
-        $this->view = view;
+        $this->view = $view;
     }
 
     function setScore($score) {
