@@ -146,3 +146,68 @@ function checkUpload() {
     }
 }
 
+function formAlbum() {
+    form = '<form method="POST" name="ajoutAlbum">';
+    form = form + '<label for="titre">Titre de l\'album</label>\n\
+                   <input type="text" name="titreAl" id="titreAlbum">\n\
+                   <input type="button" value="Ajouter l\'album" onclick="req_xhr(\'index.php?p=newAlbumSuccess\',\'titre=\'+titreAlbum.value+\'\')">\n\
+                   </form>';
+    <!--  -->
+    document.getElementById("formAlbum").innerHTML = form;
+}
+
+function getXHR()
+{
+	var xhr = null;
+	
+	try
+	{
+		xhr = new XMLHttpRequest();
+	}
+	catch(e)
+	{
+		try
+		{
+			xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+				return null;
+			}
+		}
+	}
+	
+	return xhr;
+}
+
+function req_xhr( page, params)
+{
+	var xhr = getXHR();
+
+	xhr.onreadystatechange = function()
+	{	
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+		{
+			// callback(xhr.responseText);
+			return 0;
+		}
+		if (xhr.readyState == 4 && (xhr.status == 404))
+		{
+			alert('Erreur 404 : Page non trouvee');
+		}		
+	};
+	
+	xhr.open("POST", page, true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send(params);
+	document.getElementById("formAlbum").innerHTML = "Album ajouté. Actualisation...";
+        setTimeout("location.reload(true);","1000");
+}
+

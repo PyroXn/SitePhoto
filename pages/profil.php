@@ -46,7 +46,6 @@ function profil() {
                     <img class="photo_article" src="' . $_SESSION['user']->getAvatar() . '" alt="' . $_SESSION['user']->getPseudo() . '"></img>
                     <ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="ajouter un album" href="index.php?p=newAlbum">Ajouter un album</a></li>
                         <li><a title="galerie" href="index.php?p=getGalerie">Galerie</a></li>
                         <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
@@ -127,7 +126,7 @@ function newPhoto() {
     for ($i = 0; $i < getNbAlbums($_SESSION['user']->getId()); $i++) {
         $contenu .= '<option value="' . $tabAlbums[$i]->getId() . '">' . $tabAlbums[$i]->getTitre() . '</option>';
     }
-    $contenu .= '</select><span id="album"></span>';
+    $contenu .= '</select><span id="album"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     if (havePhotoConcours() == 0) {
         $contenu .= '<select name="concours">
@@ -223,12 +222,7 @@ function newAlbumSuccess() {
     
     $album = new Album(null,$_POST['titre'],$_SESSION['user']->getId());
     addAlbum($album);
-    @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');
-    $title = 'Album ajouté avec succès.';
-    $contenu .= '<h2>Ajouter un album</h2>
-                <p>Album ajouté avec succès.</p>';
-    display($title,$contenu);
-    
+    @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');    
 }
 
 ?>

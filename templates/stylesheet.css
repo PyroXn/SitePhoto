@@ -148,6 +148,10 @@ ul, li, p, div, h1, h2  {
     width: 250px;
 }
 
+#contenu .createAlbum {
+    font-size: 8pt;
+    color: darkblue;
+}
 
 /*----COLONNE PAGE SANS PROFIL----*/
 .colonne {
