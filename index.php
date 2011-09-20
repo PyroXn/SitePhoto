@@ -79,7 +79,7 @@ function home() {
 function mosaique() {
     $contenu = '<div class="colonne">
                     <h2>
-                        Les mieux notées
+                        <a href="#" alt="Les mieux notées">Les mieux notées</a>
                     </h2>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
@@ -90,7 +90,7 @@ function mosaique() {
                 </div>
                 <div class="colonne">
                     <h2>
-                        Les dernières photos de nos gold
+                        <a href="#" alt="Les dernières photos de nos gold">Les dernières photos de nos gold</a>
                     </h2>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>

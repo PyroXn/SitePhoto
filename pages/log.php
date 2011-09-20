@@ -3,6 +3,7 @@
 // Fichier regroupant les pages inscription, connexion, oublie mot de passe...
 
 function inscription() {
+    // TODO : Améliorer mise en page
     $title = "Inscrivez-vous et devenez photographe !";
     $content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
@@ -59,7 +60,7 @@ function inscription() {
 }
 
 function inscriptionSuccess() {
-    // TODO : Verifier l'affichage des erreurs
+    // TODO : Améliorer mise en page
     include('sql/membre.sql.php');
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
@@ -74,6 +75,7 @@ function inscriptionSuccess() {
         //sendMail($users);
         register($users);
         @mkdir ("./pics/".$users->getPseudo()."",0777);
+        @mkdir ("./pics/".$users->getPseudo()."/defaut", 0777);
 
     } elseif (isPseudoExist($users)) {
         $title = 'Inscription impossible';
@@ -123,6 +125,7 @@ function checkCle() {
 }
 
 function connexion() {
+    // TODO : Améliorer mise en page
     $title = "Connectez-vous à votre espace perso !";
     $content = "<h2>Connexion</h2>";
     $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
@@ -139,6 +142,7 @@ function connexion() {
 }
 
 function connexionSuccess() {
+    // TODO : Améliorer mise en page
     include('sql/membre.sql.php');
 
     $user = new Membre($_POST['mail'], $_POST['password']);

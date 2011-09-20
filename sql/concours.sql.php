@@ -47,4 +47,8 @@ function havePhotoConcours() {
     return mysql_num_rows($req);
 }
 
+function membreParticipe($idConcours) {
+    $sql = "UPDATE concours SET nbParticipant=nbParticipant + 1 WHERE id='".$idConcours."'";
+    $req = mysql_query($sql);
+}
 ?>

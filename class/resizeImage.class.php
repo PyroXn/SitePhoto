@@ -19,6 +19,8 @@ class resizeImage {
         while (file_exists($dest . $nomFichier)) {
             $nomFichier = rand() . $nomFichier;
         }
+        $largeurMax = 820;
+        $hauteurMax = 500;
         $dest = $dest . $nomFichier;
         // On récupère les dimensions de l'image
         $dimension = getimagesize($img);
@@ -30,8 +32,10 @@ class resizeImage {
             $hauteur = $dimension[1];
         } else if ($hauteur == 0) {
             $hauteur = round($largeur / $ratio);
+            if($hauteur > $hauteurMax) { $hauteur = $hauteurMax; }
         } else if ($largeur == 0) {
             $largeur = round($hauteur * $ratio);
+            if($largeur > $largeurMax) { $largeur = $largeurMax; }
         }
 
         // Si on doit "cropper" l'image on cherche de cb de px on doit décaler l'image miniatures pour la centrer
