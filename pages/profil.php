@@ -21,7 +21,7 @@ function isRealId($id) {
 
 function profil() {
     // On vérifie qu'un id est bien utilisé pour choisir le profile à afficher
-    if (!isset($_GET['id']) || !isRealId($_GET['id'])) {
+    if (!isset($_GET['id']) || !isRealId($_GET['id']) || !isOk()) {
         accessForbidden();
     }
 
@@ -100,7 +100,8 @@ function profil() {
 }
 
 function newPhoto() {
-    // Mettre en place les contrôles (javascript + PhP) pour verifier que le formulaire est bien remplie
+    // TODO : Mettre en place les contrôles (javascript + PhP) pour verifier que le formulaire est bien remplie
+    // TODO : Améliorer mise en page
     if (!isOk()) {
         accessForbidden();
     }
