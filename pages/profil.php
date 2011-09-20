@@ -168,8 +168,7 @@ function newPhotoSuccess() {
         $contenu = '<h2>Erreur lors de l\'upload</h2>';
         $contenu .= '<p>Merci de bien vouloir vérifier que la photo répond aux différentes contraintes,à savoir :
                     <ul><li>- 3Mo</li><li>image</li></ul></p>';
-        //display($title, $contenu);
-        print_r($error);
+        display($title, $contenu);
         exit();
     }
     if (is_dir($dest)) {
