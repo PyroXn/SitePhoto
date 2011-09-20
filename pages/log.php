@@ -59,9 +59,6 @@ function inscription() {
 }
 
 function inscriptionSuccess() {
-    if(!isset($_POST['Submit'])) {
-        accessForbidden();
-    }
     // TODO : Verifier l'affichage des erreurs
     include('sql/membre.sql.php');
     $users = new Membre($_POST['mail'], $_POST['password']);

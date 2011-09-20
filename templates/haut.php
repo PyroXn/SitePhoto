@@ -23,28 +23,28 @@
             if (@$_SESSION['user']) {
                 ?>
                 <ul>
-                    <li><img src="./templates/images/logo6.png" alt="logo du site" /></li>
-                    <li><a title="accueil" accesskey="1" href="index.php">Accueil</a></li>
-                    <li><a title="photos" accesskey="2" href="#">Photos</a></li>
-                    <li><a title="concours" accesskey="3" href="#">Concours</a></li>
-                    <li><a title="forum" accesskey="4" href="#">Forum</a></li>
-                    <li><a title="contact" accesskey="5" href="#">Contact</a></li>
-                    <li><a title="mon profil" accesskey="6" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>">Mon profil</a></li>
-                    <li><a title="connexion" accesskey="7" href="index.php?p=deconnexion">Deconnexion</a></li>
+                    <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
+                    <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
+                    <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                    <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                    <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                    <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                    <li><a title="inscription" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
+                    <li><a title="connexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
                 </ul>
                 <?php
             } else {
                 ?>
                 <ul>
-                    <li><img src="./templates/images/logo6.png" alt="logo du site" /></li>
-                    <li><a title="accueil" accesskey="1" href="index.php">Accueil</a></li>
-                    <li><a title="photos" accesskey="2" href="#">Photos</a></li>
-                    <li><a title="concours" accesskey="3" href="#">Concours</a></li>
-                    <li><a title="forum" accesskey="4" href="#">Forum</a></li>
-                    <li><a title="contact" accesskey="5" href="#">Contact</a></li>
-                    <li><a title="inscription" accesskey="6" href="index.php?p=inscription">Inscription</a></li>
-                    <li><a title="connexion" accesskey="7" href="index.php?p=connexion">Connexion</a></li>
-                </ul>    
+                    <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
+                    <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
+                    <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                    <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                    <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                    <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                    <li><a title="inscription" accesskey="3" href="index.php?p=inscription"><span>Inscription</span></a></li>
+                    <li><a title="connexion" accesskey="4" href="index.php?p=connexion"><span>Connexion</span></a></li>
+                </ul>  
                 <?php
             }
             ?>

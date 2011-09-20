@@ -29,6 +29,8 @@ elseif ($_GET['p'] == "profil") { include('pages/profil.php'); profil(); }
 elseif ($_GET['p'] == "newPhoto") { include('pages/profil.php'); newPhoto(); }
 elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhotoSuccess(); }
 
+elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
+
 /**
  * Sert à afficher la page
  * @param String $titre Titre de la page

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Serveur: localhost
--- Généré le : Jeudi 15 Septembre 2011 à 21:06
+-- Généré le : Mardi 20 Septembre 2011 à 14:40
 -- Version du serveur: 5.0.27
 -- Version de PHP: 5.2.1
 -- 
@@ -92,6 +92,17 @@ CREATE TABLE `images` (
   KEY `fk_images_membres` (`idMembres`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+-- 
+-- Contenu de la table `images`
+-- 
+
+INSERT INTO `images` (`id`, `url`, `titre`, `description`, `idMembres`, `idConcours`, `idAlbum`) VALUES 
+(1, NULL, 'test kikou', 'test de kilou lol ++', 11, 0, 1),
+(2, NULL, 'test kikou', 'test de kilou lol ++', 11, 0, 1),
+(3, NULL, 'test kikou', 'test de kilou lol ++', 11, 0, 1),
+(4, NULL, 'test kikou', 'test de kilou lol ++', 11, 0, 1),
+(5, NULL, 'test kikou', 'test de kilou lol ++', 11, 0, 1);
+
 -- --------------------------------------------------------
 
 -- 
@@ -104,11 +115,11 @@ CREATE TABLE `membres` (
   `password` varchar(45) default NULL,
   `mail` varchar(255) default NULL,
   `sexe` varchar(10) default NULL,
-  `avatar` varchar(255) default NULL,
+  `avatar` varchar(255) NOT NULL default './templates/images/Avatar_defaut.jpg',
   `birthday` date default NULL,
   `cle` varchar(55) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- 
 -- Contenu de la table `membres`
@@ -117,4 +128,5 @@ CREATE TABLE `membres` (
 INSERT INTO `membres` (`id`, `pseudo`, `password`, `mail`, `sexe`, `avatar`, `birthday`, `cle`) VALUES 
 (8, 'Zoz', 'ee8e921499f6b8051b7c6667985b4e62', 'florian.janson@gmail.com', '1', '', '1989-11-07', '224a1638f54243b5bccd8e6c9a38d3bb'),
 (11, 'Flo', '56910c52ed70539e3ce0391edeb6d339', 'heberg.disocunt@gmail.com', '1', '', '1917-01-18', '89000665051d12e173f1e56ebb5cbdb0'),
-(12, 'Zozor', '56910c52ed70539e3ce0391edeb6d339', 'toto@toto.com', '1', '', '1989-11-07', '84df3e139094919a562cc8c4ae6f8e83');
+(12, 'Zozor', '56910c52ed70539e3ce0391edeb6d339', 'toto@toto.com', '1', '', '1989-11-07', '84df3e139094919a562cc8c4ae6f8e83'),
+(13, 'test', 'cc03e747a6afbbcbf8be7668acfebee5', 'test@test.com', '1', './templates/images/Avatar_defaut.jpg', '1900-01-01', 'c72545aaccbb875d753f00f247ffbfb8');

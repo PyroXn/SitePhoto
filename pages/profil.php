@@ -43,11 +43,11 @@ function profil() {
     $membre = loadMembre($_GET['id']);
     $title = "Bienvenue sur la page de ".$membre->getPseudo()."";
     $contenu = '<div id="menu_gauche">
-                    <img class="photo_article" src="./templates/images/img.jpeg" alt=""></img>
+                    <img class="photo_article" src="'.$_SESSION['user']->getAvatar().'" alt="'.$_SESSION['user']->getPseudo().'"></img>
                     <ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
                         <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
-                        <li><a title="galerie" href="#">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getGalerie">Galerie</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>
@@ -58,10 +58,14 @@ function profil() {
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst. Vestibulum a quam ante, sit amet fermentum orci.
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis </p>
-                
-                <div id="img_profil">
-                    <img src="" alt="photo du profil"></img>
-                </div>
+                <h1>'.$concours->getTitre().'</h1>
+                <div id="img_profil">';
+    if(havePhotoConcours() == 1) {
+        $image = imageConcour($concours->getId());
+        $contenu .= '<img src="'.$image->getUrl().'" alt="'.$image->getTitre().'"></img>';
+    }
+    else { $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>'; }
+    $contenu .= '</div>
                 <div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         Dernières photos galeries
@@ -97,12 +101,15 @@ function profil() {
 }
 
 function newPhoto() {
+    // Mettre en place les contrôles (javascript + PhP) pour verifier que le formulaire est bien remplie
     if(!isOk()) {
         accessForbidden();
     }
     
     include('sql/albums.sql.php');
-
+    include('sql/concours.sql.php');
+    
+    $concours = lastConcour();
     $tabAlbums = array();
     
     $title = 'Pixels Arts - Ajouter une photo';
@@ -126,6 +133,16 @@ function newPhoto() {
     else {
         $contenu .= '<a href="#" onClick="ouvrirPopup(\'index.php?p=home\',\'\',\'top=10, left=10\')">Créer un album</a><span id="album"></span>';
     }
+    $contenu .= '<label for="concours">Concours</label>';
+    if(havePhotoConcours() == 0) {
+        $contenu .= '<select name="concours">
+                     <option value="0">Aucun</option>
+                     <option value="'.$concours->getId().'">'.$concours->getTitre().'</option>
+                     </select>';
+    }
+    else {
+        $contenu .= 'Vous avez déjà une photo.';
+    }
     $contenu .= '<label for="photo">Photo : </label>
                 <input type="file" name="photo" id="photo"><span id="photo"></span>
                 <input class="submit" type="button" value="Partager ma Photo" onClick="checkUpload()">
@@ -135,10 +152,14 @@ function newPhoto() {
 }
 
 function newPhotoSuccess() {
+    // TODO : Terminer la page d'erreur lors de l'upload
     if(!isset($_FILES['photo']) || !isOk()) {
         accessForbidden();
     }
-    
+    $idConcour = @$_POST['concours'];
+    if(!isset($_POST['concours'])) {
+        $idConcour = 0;
+    }
     include('sql/image.sql.php');
     include('sql/albums.sql.php');
     
@@ -169,6 +190,7 @@ function newPhotoSuccess() {
         $image->setTitre($_POST['titre']);
         $image->setIdAlbum($_POST['album']);
         $image->setIdMembre($_SESSION['user']->getId());
+        $image->setIdConcour($idConcour);
         registerImage($image);
         $title = 'Pixels Arts - Photo envoyé avec succès.';
         $contenu = '<h2>Photo envoyé avec succès.';
@@ -179,5 +201,10 @@ function newPhotoSuccess() {
     else {
         accessForbidden();
     }
+}
+
+function newAlbum() {
+    $title = 'Pixels Arts - Ajouter un nouvel album';
+    $contenu .= '';
 }
 ?>

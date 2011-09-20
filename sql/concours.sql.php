@@ -40,5 +40,11 @@ function imageConcour($idConcours) {
     return $image;
 }
 
+function havePhotoConcours() {
+    $concours = lastConcour();
+    $sql = 'SELECT * FROM images WHERE idConcours="'.$concours->getId().'" AND idMembres="'.$_SESSION["user"]->getId().'"';
+    $req = mysql_query($sql);
+    return mysql_num_rows($req);
+}
 
 ?>
