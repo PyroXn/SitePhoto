@@ -130,7 +130,7 @@ class Image {
         // Extensions images autorisés (pour le moment, que du jpeg)
         $extensions_ok = array('jpg', 'jpeg', 'gif', 'png');
         $typeimages_ok = array(4);
-        $taille_ko = 5120; // Taille en kilo octect (ko)
+        $taille_ko = 6144; // Taille en kilo octect (ko)
         $taille_max = $taille_ko * 1024; // En octects
         $dest_dossier = 'pics/'; // Creez ce dossier et chmoodez le !
         if (isset($file)) { // On vérifie que le fichier existe
