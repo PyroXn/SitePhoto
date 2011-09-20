@@ -18,6 +18,7 @@ $connexion = new Connexion();
  */
 if(!isset($_GET['p'])) { $_GET['p'] = "home"; home(); }
 elseif ($_GET['p'] == "home") { home(); }
+
 elseif ($_GET['p'] == "inscription") { include('pages/log.php'); inscription(); }
 elseif ($_GET['p'] == "inscriptionSuccess") { include('pages/log.php'); inscriptionSuccess(); }
 elseif ($_GET['p'] == "checkCle") { include('pages/log.php'); checkCle(); }
@@ -28,6 +29,8 @@ elseif ($_GET['p'] == "deconnexion") { include('pages/log.php'); deconnexion(); 
 elseif ($_GET['p'] == "profil") { include('pages/profil.php'); profil(); }
 elseif ($_GET['p'] == "newPhoto") { include('pages/profil.php'); newPhoto(); }
 elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhotoSuccess(); }
+elseif ($_GET['p'] == "newAlbum") { include('pages/profil.php'); newAlbum(); }
+elseif ($_GET['p'] == "newAlbumSuccess") { include('pages/profil.php'); newAlbumSuccess(); }
 
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
 

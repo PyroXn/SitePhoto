@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns ="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
     <head>
-        <title> Site photo</title>
+        <title><?php echo $title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="./templates/stylesheet.css" media="screen" />
         <script language="javascript" type="text/javascript" src="./js/javascript.js"></script>

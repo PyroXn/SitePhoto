@@ -62,6 +62,7 @@ function inscription() {
 function inscriptionSuccess() {
     // TODO : Améliorer mise en page
     include('sql/membre.sql.php');
+    include('sql/albums.sql.php');
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
     $users->setSexe($_POST['sexe']);
@@ -72,6 +73,7 @@ function inscriptionSuccess() {
         $contenu = 'Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.';
         $cle = md5(microtime(TRUE) * 100000);
         $users->setCle($cle);
+        $users->setAvatar('./templates/images/Avatar_defaut.jpg');
         //sendMail($users);
         register($users);
         @mkdir ("./pics/".$users->getPseudo()."",0777);
@@ -89,19 +91,19 @@ function inscriptionSuccess() {
 
 function sendMail(Membre $membre) {
     // TODO : Modifier les données liés au mail
-    $headers = 'From: "nom"<adresse@fai.fr>' . "\n";
-    $headers .='Reply-To: adresse_de_reponse@fai.fr' . "\n";
+    $headers = 'From: "Pixels Arts"<inscription@pixels-arts.com>' . "\n";
+    $headers .='Reply-To: inscription@pixels-arts.com' . "\n";
     $headers .='Content-Type: text/html; charset="iso-8859-1"' . "\n";
     $headers .='Content-Transfer-Encoding: 8bit';
     $destinataire = $membre->getMail();
     $objet = "Confirmation de l'inscription sur XXX";
-    $message = "Bonjour $membre->getPseudo(),<br /><br />
-            Vous venez de vous inscrire sur XXX et nous vous en remercions.<br /><br />
+    $message = "Bonjour ".$membre->getPseudo().",<br /><br />
+            Vous venez de vous inscrire sur http://www.pixels-arts.com et nous vous en remercions.<br /><br />
             Vous devez valider votre incription afin de pouvoir utiliser votre compte.<br /><br />
-            Cliquez sur le lien suivant : <a href='http://www.test.com?p=checkcle&code=$membre->getCle()'>http://www.test.com?p=xxx&code=$membre->getCle()</a><br /><br />
+            Cliquez sur le lien suivant : <a href='http://www.pixels-arts.com/index.php?p=checkcle&code=".$membre->getCle()."'>http://www.pixels-arts.com/index.php?p=checkCle&code=".$membre->getCle()."</a><br /><br />
             (si le lien n'est pas cliquable, copier le et coller le dans la barre d'adresse de votre navigateur)<br /><br />
-            Merci de votre confiance envers XXX.<br /><br />
-            Cordialement, l'équipe de XXX";
+            Merci de votre confiance envers http://www.pixels-arts.com.<br /><br />
+            Cordialement, l'équipe de Pixels Arts";
     mail($destinataire, $objet, $message, $headers);
 }
 
@@ -144,11 +146,13 @@ function connexion() {
 function connexionSuccess() {
     // TODO : Améliorer mise en page
     include('sql/membre.sql.php');
-
+    include('sql/albums.sql.php');
+    
     $user = new Membre($_POST['mail'], $_POST['password']);
     if (isExist($user)) {
         $user = getMembre($user);
         $_SESSION['user'] = $user;
+        if(getNbAlbums($user->getId() < 1)) { albumDefaut($user->getId()); }
         header('Location: index.php?p=profil&id='.$user->getId().'');
     } else {
         $title = "Connexion impossible !";

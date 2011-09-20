@@ -45,4 +45,14 @@ function getNbAlbums($idMembre) {
     $req = mysql_query($sql);
     return mysql_num_rows($req);
 }
+
+function albumDefaut($idMembre) {
+    $sql = 'INSERT INTO albums(titre,idMembres) VALUES ("defaut","'.$idMembre.'")';
+    $req = mysql_query($sql);
+}
+
+function addAlbum(Album $album) {
+    $sql = 'INSERT INTO albums (titre,idMembres) VALUES ("'.$album->getTitre().'","'.$album->getIdMembres().'")';
+    $req = mysql_query($sql);
+}
 ?>

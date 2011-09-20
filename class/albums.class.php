@@ -7,7 +7,7 @@ class Album {
     
     function __construct($id = null,$titre = null,$idMembres = null) {
         $this->id = $id;
-        $this->titre = $titre;
+        $this->titre = strip_tags(mysql_real_escape_string ($titre));
         $this->idMembres = $idMembres;      
     }
     

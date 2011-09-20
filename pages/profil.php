@@ -200,8 +200,35 @@ function newPhotoSuccess() {
 }
 
 function newAlbum() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    
     $title = 'Pixels Arts - Ajouter un nouvel album';
-    $contenu .= '';
+    $contenu .= '<h2>Ajouter un album</h2>';
+    $contenu .= '<form method="POST" action="index.php?p=newAlbumSuccess">
+                <p>
+                <label for="titre">Titre</label>
+                <input type="text" name="titre">
+                <input type="submit" value="Valider">
+                </p></form>';
+    display($title,$contenu);
+}
+
+function newAlbumSuccess() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    include('sql/albums.sql.php');
+    
+    $album = new Album(null,$_POST['titre'],$_SESSION['user']->getId());
+    addAlbum($album);
+    @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');
+    $title = 'Album ajouté avec succès.';
+    $contenu .= '<h2>Ajouter un album</h2>
+                <p>Album ajouté avec succès.</p>';
+    display($title,$contenu);
+    
 }
 
 ?>
