@@ -5,6 +5,8 @@ class Image {
     private $url;
     private $titre;
     private $description;
+    private $view;
+    private $score;
     private $idMembre;
     private $idAlbum;
     private $idConcour;
@@ -60,6 +62,13 @@ class Image {
         return basename($this->Url);
     }
     
+    function getView() {
+        return $this->view;
+    }
+    
+    function getScore() {
+        return $this->score;
+    }
     /**
      *
      * @return int Retourne 0 si photo paysage
@@ -97,7 +106,15 @@ class Image {
     function setIdConcour($idConcour) {
         $this->idConcour = $idConcour;
     }
+    
+    function setView($view) {
+        $this->view($view);
+    }
 
+    function setScore($score) {
+        $this->score($score);
+    }
+    
     /*    METHODES    */
 
     /**

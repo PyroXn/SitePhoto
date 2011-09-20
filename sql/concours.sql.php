@@ -23,9 +23,6 @@ function lastConcour() {
  * @return Image Retourne un objet image
  */
 function imageConcour($idConcours) {
-    // TODO : Mettre en place un système si l'utilisateur n'a pas d'image pour le concours en cour
-    
-    
     $sql = "SELECT * FROM images WHERE idMembres = '".$_SESSION['user']->getId()."' AND idConcours = '".$idConcours."'";
     $req = mysql_query($sql);
     $data = mysql_fetch_assoc($req);
@@ -36,6 +33,8 @@ function imageConcour($idConcours) {
     $image->setIdMembre($data['idMembres']);
     $image->setIdAlbum($data['idAlbum']);
     $image->setIdConcour($data['idConcours']);
+    $image->setScore($data['score']);
+    $image->setView($data['view']);
     
     return $image;
 }
