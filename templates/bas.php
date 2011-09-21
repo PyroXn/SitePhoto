@@ -27,9 +27,9 @@
                         Derniers commentaires
                     </h2>
                     <ol>
-                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Cucu Lapraline</h3>Trop mignon ton chat !</li>
-                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Herbert Lepivert</h3>J'aime les chenilles</li>
-                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h3>Sarah Fraichis</h3>Trop beau ton effet flou</li>    
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h4>Cucu Lapraline</h4>Trop mignon ton chat !</li>
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h4>Herbert Lepivert</h4>J'aime les chenilles</li>
+                        <li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h4>Sarah Fraichis</h4>Trop beau ton effet flou</li>    
                     </ol>
                 </div>
                 <div id="colonne4">

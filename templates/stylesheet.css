@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2  {
+ul, li, p, div, h1, h2, h3, blockquote  {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -100,7 +100,7 @@ ul, li, p, div, h1, h2  {
 
 #contenu h2 {
    
-    /*background: transparent url(./templates/images/fond-titre-post.png) no-repeat top left; moche*/
+    /*background: transparent url(./templates/images/fond-titre-post.png) no-repeat top left; */
 }
 
 #contenu h2 a {
@@ -127,7 +127,7 @@ ul, li, p, div, h1, h2  {
 #contenu input {
     background: none repeat scroll 0 0 white;
     border: 1px solid #C6C0AC;
-    color: #333333;
+    color: #333;
     padding: 4px;
     vertical-align: 3px;
     width: 240px;
@@ -136,7 +136,7 @@ ul, li, p, div, h1, h2  {
 #contenu select {
     background: none repeat scroll 0 0 white;
     border: 1px solid #C6C0AC;
-    color: #333333;
+    color: #333;
     padding: 4px;
     vertical-align: 3px;
     width: 100px;
@@ -148,9 +148,47 @@ ul, li, p, div, h1, h2  {
     width: 250px;
 }
 
-#contenu .createAlbum {
-    font-size: 8pt;
-    color: darkblue;
+#img_profil {
+    margin-top: 10px;
+    margin-left: 160px;
+}
+
+#img_profil h3 {
+    text-align: center;
+}
+
+#commentaire {
+    display: block;
+    float: left;
+    width: 60%;
+    margin-top: 5px;
+    text-align: justify;
+    color: #3f3f3f;
+    font-style: italic;
+}
+
+#statistique {
+    display: inline-block;
+    width: 39%;
+    margin-top: 5px;
+    text-align: right;
+}
+
+#statistique label {
+    display: inline-block;
+    vertical-align: 0;
+    padding-bottom: 0;  /*TODO faire des classe pour les page de log pour éviter les problème*/
+    color: #00638D;
+}
+
+.res_stat {
+    color: #f60;
+}
+
+#vote {
+    position: absolute;
+    margin-top: 5px;
+    left: 65%;  /*TODO a faire des petites icones*/
 }
 
 /*----COLONNE PAGE SANS PROFIL----*/
@@ -221,14 +259,6 @@ ul, li, p, div, h1, h2  {
     font-weight: bold;
 }
 
-#img_profil {
-    margin-top: 25px;
-    margin-left: 160px;
-    width: 820px;
-    height: 500px;
-    border: 1px solid #333;
-}
-
 /*----FOOTER----*/
 #footer {
     height: 265px; /*hauteur de notre image footer*/
@@ -292,7 +322,7 @@ ul, li, p, div, h1, h2  {
     width: 245px;
 }
 
-#colonne3 h3 {
+#colonne3 h4 {
     color: white;
     font-size: 14px;
     line-height: 1px;

@@ -5,7 +5,7 @@
 function inscription() {
     // TODO : Améliorer mise en page
     $title = "Inscrivez-vous et devenez photographe !";
-    $content = "<h2>Inscrivez vous - Partagez vos galleries !</h2>";
+    $content = "<h1>Inscrivez vous - Partagez vos galleries !</h1>";
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
     $content .= "<p>
         <label for='mail'>E-mail </label>
@@ -129,7 +129,7 @@ function checkCle() {
 function connexion() {
     // TODO : Améliorer mise en page
     $title = "Connectez-vous à votre espace perso !";
-    $content = "<h2>Connexion</h2>";
+    $content = "<h1>Connexion</h1>";
     $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
                 <p>
                 <label for='mail'>E-mail</label>

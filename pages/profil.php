@@ -62,9 +62,25 @@ function profil() {
                 <div id="img_profil">';
     if (havePhotoConcours() == 1) {
         $image = imageConcour($concours->getId());
-        $contenu .= '<img src="' . $image->getUrl() . '" alt="' . $image->getTitre() . '"></img>';
+        $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
+        $contenu .= '<h3>' . $image->getTitre() . '</h3>';
+        $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
+        //TODO le code PHP sur le +1 et le -1 et les stats
+        $contenu .= '<div id="vote">
+                            <a title="vote positif" href="">+1</a>
+                            <a title="vote négatif" href="">-1</a>
+                    </div>
+                    <div id="statistique">
+                        
+                        <label>Votes positifs: <span class="res_stat">3</span></label>
+                        <label>Votes négatifs: <span class="res_stat">1</span></label>
+                        <label>Totals des points: <span class="res_stat">5</span></label>
+                        <label>Classement: <span class="res_stat">2</span></label>
+                        <label>Commentaires: <span class="res_stat">2</span></label>
+                    </div>';
     } else {
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
+        $contenu .= '<h3>Aucune image!</h3>';
     }
     $contenu .= '</div>
                 <div id="colonne_gauche" class="colonne_profil">
