@@ -191,6 +191,29 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     left: 65%;  /*TODO a faire des petites icones*/
 }
 
+#album {
+    margin-top: 5px;
+    height: 240px;
+    width: 240px;
+    display: inline;
+    margin-right: 2px;
+    z-index: 1;
+    position: relative;
+}
+
+#albumInvisible {
+    display: none;
+}
+
+#album p {
+    z-index: 2;
+    font-size: 16pt;
+    position: absolute;
+    padding-top: 10px;
+    color : black;
+    margin-top: -130px;
+    margin-left: 100px;
+}
 /*----COLONNE PAGE SANS PROFIL----*/
 .colonne {
     display: inline-block;

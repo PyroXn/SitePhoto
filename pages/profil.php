@@ -46,7 +46,7 @@ function profil() {
                     <img class="photo_article" src="' . $_SESSION['user']->getAvatar() . '" alt="' . $_SESSION['user']->getPseudo() . '"></img>
                     <ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="galerie" href="index.php?p=getGalerie">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$_SESSION['user']->getId().'">Galerie</a></li>
                         <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
@@ -67,8 +67,8 @@ function profil() {
         $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
         //TODO le code PHP sur le +1 et le -1 et les stats
         $contenu .= '<div id="vote">
-                            <a title="vote positif" href="">+1</a>
-                            <a title="vote négatif" href="">-1</a>
+                            <input type="button" value="+1">
+                            <input type="button" value="+1">
                     </div>
                     <div id="statistique">
                         
