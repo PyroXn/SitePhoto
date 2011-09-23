@@ -12,7 +12,7 @@ function getGalerie() {
     $tabPhoto = array();
     $tabAlbums = getAlbums($_GET['id']);
     $title = 'Galerie test';
-    $contenu .= '<h2>Choix de l\'album à consulter :</h2>';
+    $contenu = '<h2>Choix de l\'album à consulter :</h2>';
     $u = 1;
     foreach($tabAlbums as $tab) {
         $sql = 'SELECT * FROM images WHERE idMembres="'.$_GET['id'].'" AND idAlbum="'.$tab->getId().'"';
