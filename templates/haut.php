@@ -19,44 +19,45 @@
         <script type="text/javascript" src="./js/zoombox.js"></script>
         <link href="./templates/zoombox.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript">
-        jQuery(function($){
-            $('a.zoombox').zoombox();
+            jQuery(function($){
+                $('a.zoombox').zoombox();
 
-        });
+            });
         </script>
     </head>
     <body>
         <div id="header">
-
-            <?php
-            if (@$_SESSION['user']) {
-                ?>
-                <ul>
-                    <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
-                    <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
-                    <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
-                    <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
-                    <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
-                    <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
-                    <li><a title="inscription" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
-                    <li><a title="connexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
-                </ul>
+            <div id="menu_header">
                 <?php
-            } else {
+                if (@$_SESSION['user']) {
+                    ?>
+                    <ul>
+                        <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
+                        <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
+                        <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                        <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                        <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                        <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                        <li><a title="inscription" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
+                        <li><a title="connexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
+                    </ul>
+                    <?php
+                } else {
+                    ?>
+                    <ul>
+                        <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
+                        <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
+                        <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                        <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                        <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                        <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                        <li><a title="inscription" accesskey="3" href="index.php?p=inscription"><span>Inscription</span></a></li>
+                        <li><a title="connexion" accesskey="4" href="index.php?p=connexion"><span>Connexion</span></a></li>
+                    </ul>  
+                    <?php
+                }
                 ?>
-                <ul>
-                    <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
-                    <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
-                    <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
-                    <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
-                    <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
-                    <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
-                    <li><a title="inscription" accesskey="3" href="index.php?p=inscription"><span>Inscription</span></a></li>
-                    <li><a title="connexion" accesskey="4" href="index.php?p=connexion"><span>Connexion</span></a></li>
-                </ul>  
-                <?php
-            }
-            ?>
+            </div>
         </div>
         <div id="global">
             <div id="contenu">

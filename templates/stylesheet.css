@@ -20,10 +20,15 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     background: url(./images/header4.jpg) top center no-repeat;
 }
 
-#header ul {
+#menu_header {
     width: 980px;
     margin: auto;
-    padding: 8px 10px 0 370px;
+}
+
+#menu_header ul {
+    margin-left : 175px;
+    padding-top: 8px; 
+    /*padding: 8px 10px 0 370px;*/
 }
 
 #header img {
