@@ -16,21 +16,22 @@
     </head>
     <body>
         <div id="header">
-
-            <ul>
-                <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
-                <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
-                <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
-                <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
-                <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
-                <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
-                <li><a title="inscription" accesskey="3" href="#"><span>Inscription</span></a></li>
-                <li><a title="connexion" accesskey="4" href="#"><span>Connexion</span></a></li>
-            </ul>
+            <div id="menu_header">
+                <ul>
+                    <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
+                    <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
+                    <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                    <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                    <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                    <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                    <li><a title="inscription" accesskey="3" href="#"><span>Inscription</span></a></li>
+                    <li><a title="connexion" accesskey="4" href="#"><span>Connexion</span></a></li>
+                </ul>
+            </div>
         </div>
         <div id="global">
             <div id="contenu">
-                
+
                 <div id="menu_gauche">
                     <img class="photo_article" src="./templates/images/avatar_defaut.jpg" alt=""></img>
                     <ul>
@@ -49,24 +50,20 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis </p>
                 <h1>Le mois d'août, la couleur jaune !</h1>
                 <div id="img_profil">
-                    
-                    <img src="./templates/images/photo_defaut.jpg" title="titre photo" alt="photo du profil"></img>
                     <h3>Pas d'image!</h3>
-                    <span id="commentaire">Commentaire concernant la photo du dessus ! Commentaire concernant la photo du dessus ! Commentaire concernant la photo du dessus ! Commentaire concernant la photo du dessus ! Commentaire concernant la photo du dessus ! Commentaire concernant la photo du dessus !</span>
-                    <div id="vote">
-                            <a title="vote positif" href="">+1</a>
-                            <a title="vote négatif" href="">-1</a>
-                    </div>
+                    <img src="./templates/images/photo_defaut.jpg" title="titre photo" alt="photo du profil"></img>
                     <div id="statistique">
-                        
-                        <label>Votes positifs: <span class="res_stat">3</span></label>
-                        <label>Votes négatifs: <span class="res_stat">1</span></label>
-                        <label>Totals des points: <span class="res_stat">5</span></label>
-                        <label>Classement: <span class="res_stat">2</span></label>
-                        <label>Commentaires: <span class="res_stat">2</span></label>
+                        <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">2</span>
+                        <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">5</span>
+                        <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">2</span>
+                        <span id="vote"> 
+                            <a id="positif" title="vote positif" href=""><img src="./templates/images/positif.png" title="vote positif" alt="vote positif"></img></a>
+                            <a id="negatif" title="vote négatif" href=""><img src="./templates/images/negatif.png" title="vote négatif" alt="vote négatif"></img></a>
+                        </span>
                     </div>
+                    <span id="commentaire">ire consus ! rnant la photo du dessus !</span>
                 </div>
-                
+
                 <div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a title="" href="#">Dernières photos galeries</a>

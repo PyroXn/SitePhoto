@@ -62,25 +62,23 @@ function profil() {
                 <div id="img_profil">';
     if (havePhotoConcours() == 1) {
         $image = imageConcour($concours->getId());
-        $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
         $contenu .= '<h3>' . $image->getTitre() . '</h3>';
+        $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
+        $contenu .= '<div id="statistique">
+                        <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">2</span>
+                        <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">5</span>
+                        <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">2</span>
+                        <span id="vote"> 
+                            <a id="positif" title="vote positif" href=""><img src="./templates/images/positif.png" title="vote positif" alt="vote positif"></img></a>
+                            <a id="negatif" title="vote négatif" href=""><img src="./templates/images/negatif.png" title="vote négatif" alt="vote négatif"></img></a>
+                        </span>
+                    </div>';
         $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
         //TODO le code PHP sur le +1 et le -1 et les stats
-        $contenu .= '<div id="vote">
-                            <input type="button" value="+1">
-                            <input type="button" value="+1">
-                    </div>
-                    <div id="statistique">
-                        
-                        <label>Votes positifs: <span class="res_stat">3</span></label>
-                        <label>Votes négatifs: <span class="res_stat">1</span></label>
-                        <label>Totals des points: <span class="res_stat">5</span></label>
-                        <label>Classement: <span class="res_stat">2</span></label>
-                        <label>Commentaires: <span class="res_stat">2</span></label>
-                    </div>';
+        
     } else {
-        $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
         $contenu .= '<h3>Aucune image!</h3>';
+        $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
     }
     $contenu .= '</div>
                 <div id="colonne_gauche" class="colonne_profil">

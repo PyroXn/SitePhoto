@@ -30,7 +30,6 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     padding-top: 8px; 
     /*padding: 8px 10px 0 370px;*/
 }
-
 #header img {
     float: left;
 }
@@ -156,6 +155,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 #img_profil {
     margin-top: 10px;
     margin-left: 160px;
+    
 }
 
 #img_profil h3 {
@@ -173,27 +173,32 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 }
 
 #statistique {
-    display: inline-block;
-    width: 39%;
-    margin-top: 5px;
-    text-align: right;
-}
-
-#statistique label {
-    display: inline-block;
-    vertical-align: 0;
-    padding-bottom: 0;  /*TODO faire des classe pour les page de log pour éviter les problème*/
-    color: #00638D;
+    word-spacing: 198px;
 }
 
 .res_stat {
-    color: #f60;
+    position: relative;
+    bottom: 3px;
+    margin-left: 10px;
+    font-size: 140%;
+    font-weight: bold;
+    color: #00638D;
 }
 
 #vote {
+    float: right;
+    margin-right: 40px;
+    display: inline;
+    height: 24px;
+}
+
+#positif {
+    float: left;
+    
+}
+
+#negatif {
     position: absolute;
-    margin-top: 5px;
-    left: 65%;  /*TODO a faire des petites icones*/
 }
 
 /*----COLONNE PAGE SANS PROFIL----*/
