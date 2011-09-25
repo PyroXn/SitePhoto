@@ -24,8 +24,8 @@ function getGalerie() {
             $objet->setView($data['view']);
             $objet->setScore($data['score']);
             $objet->setIdAlbum($data['idAlbum']);
-            $objet->setIdConcour($data['idConcour']);
-            $objet->setIdMembre($data['idMembre']);
+            $objet->setIdConcour(@$data['idConcour']);
+            $objet->setIdMembre($data['idMembres']);
             $tabPhoto[] = $objet;         
         }
         $i = 0;
