@@ -5,7 +5,7 @@ include('class/connexion.class.php');
 include('class/concours.class.php');
 include('class/commentaire.class.php');
 include('class/image.class.php');
-include("class/resizeImage.class.php");
+include('class/resizeImage.class.php');
 include('class/albums.class.php');
 
 session_start();
@@ -31,6 +31,7 @@ elseif ($_GET['p'] == "newPhoto") { include('pages/profil.php'); newPhoto(); }
 elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhotoSuccess(); }
 elseif ($_GET['p'] == "newAlbum") { include('pages/profil.php'); newAlbum(); }
 elseif ($_GET['p'] == "newAlbumSuccess") { include('pages/profil.php'); newAlbumSuccess(); }
+elseif ($_GET['p'] == "vote") { include('pages/profil.php'); vote(); }
 
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
 
@@ -103,5 +104,31 @@ function mosaique() {
                     <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
                 </div>';
     return $contenu;
+}
+
+function getFooterImage() {
+    $tabImage = array();
+    $sql = 'SELECT * FROM images ORDER BY id DESC LIMIT 3';
+    $req = mysql_query($sql);
+    while($data = mysql_fetch_assoc($req)) {
+        $image = new Image($data['url']);
+        $image->setTitre($data['titre']);
+        $tabImage[] = $image;
+    }
+    return $tabImage;
+}
+
+function getFooterMembre() {
+    $tabMembre = array();
+    $sql = 'SELECT * FROM membres ORDER BY id DESC LIMIT 3';
+    $req = mysql_query($sql);
+    while($data = mysql_fetch_assoc($req)) {
+        $membre = new Membre($data['mail'],null);
+        $membre->setPseudo($data['pseudo']);
+        $membre->setAvatar($data['avatar']);
+        $membre->setId($data['id']);
+        $tabMembre[] = $membre;
+    }
+    return $tabMembre;
 }
 ?>

@@ -17,6 +17,7 @@
         <![endif]-->
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="./js/zoombox.js"></script>
+        <script type="text/javascript" src="./js/vote.js"></script>
         <link href="./templates/zoombox.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript">
             jQuery(function($){
@@ -33,26 +34,26 @@
                     ?>
                     <ul>
                         <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
-                        <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
-                        <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
-                        <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
-                        <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
-                        <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
-                        <li><a title="inscription" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
-                        <li><a title="connexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
+                        <li <?php if($_GET['p'] == "home" || !isset($_GET['p'])) { echo 'id="current"'; } ?>><a title="accueil" accesskey="1" href="index.php"><span>Accueil</span></a></li>
+                        <li <?php if($_GET['p'] == "photos") { echo 'id="current"'; } ?>><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                        <li <?php if($_GET['p'] == "concours") { echo 'id="current"'; } ?>><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                        <li <?php if($_GET['p'] == "forum") { echo 'id="current"'; } ?>><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                        <li <?php if($_GET['p'] == "contact") { echo 'id="current"'; } ?>><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                        <li <?php if($_GET['p'] == "profil") { echo 'id="current"'; } ?>><a title="mon profil" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
+                        <li <?php if($_GET['p'] == "deconnexion") { echo 'id="current"'; } ?>><a title="deconnexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
                     </ul>
                     <?php
                 } else {
                     ?>
                     <ul>
                         <!--<li><img src="./templates/images/logo6.png" alt="logo du site" /></li>-->
-                        <li id="current"><a title="accueil" accesskey="1" href="#"><span>Accueil</span></a></li>
-                        <li><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
-                        <li><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
-                        <li><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
-                        <li><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
-                        <li><a title="inscription" accesskey="3" href="index.php?p=inscription"><span>Inscription</span></a></li>
-                        <li><a title="connexion" accesskey="4" href="index.php?p=connexion"><span>Connexion</span></a></li>
+                        <li <?php if($_GET['p'] == "home" || !isset($_GET['p'])) { echo 'id="current"'; } ?>><a title="accueil" accesskey="1" href="index.php"><span>Accueil</span></a></li>
+                        <li <?php if($_GET['p'] == "photos") { echo 'id="current"'; } ?>><a title="photos" accesskey="2" href="#"><span>Photos</span></a></li>
+                        <li <?php if($_GET['p'] == "concours") { echo 'id="current"'; } ?>><a title="concours" accesskey="3" href="#"><span>Concours</span></a></li>
+                        <li <?php if($_GET['p'] == "forum") { echo 'id="current"'; } ?>><a title="forum" accesskey="4" href="#"><span>Forum</span></a></li>
+                        <li <?php if($_GET['p'] == "contact") { echo 'id="current"'; } ?>><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
+                        <li <?php if($_GET['p'] == "inscription") { echo 'id="current"'; } ?>><a title="inscription" accesskey="3" href="index.php?p=inscription"><span>Inscription</span></a></li>
+                        <li <?php if($_GET['p'] == "connexion") { echo 'id="current"'; } ?>><a title="connexion" accesskey="4" href="index.php?p=connexion"><span>Connexion</span></a></li>
                     </ul>  
                     <?php
                 }

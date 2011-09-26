@@ -21,7 +21,7 @@ function isRealId($id) {
 
 function profil() {
     // On vérifie qu'un id est bien utilisé pour choisir le profile à afficher
-    if (!isset($_GET['id']) || !isRealId($_GET['id']) || !isOk()) {
+    if (!isset($_GET['id']) || !isRealId($_GET['id'])) {
         accessForbidden();
     }
 
@@ -29,6 +29,9 @@ function profil() {
     include('sql/concours.sql.php');
     include('sql/commentaire.sql.php');
     include('sql/membre.sql.php');
+    include('sql/vue.sql.php');
+    include('sql/classement.sql.php');
+    include('sql/image.sql.php');
 
     /*
      * On a besoin de quoi pour cette page :
@@ -39,38 +42,50 @@ function profil() {
      * - 
      */
     $concours = lastConcour();
-    $image = imageConcour($concours->getId());
     $membre = loadMembre($_GET['id']);
+    
     $title = "Bienvenue sur la page de " . $membre->getPseudo() . "";
     $contenu = '<div id="menu_gauche">
-                    <img class="photo_article" src="' . $_SESSION['user']->getAvatar() . '" alt="' . $_SESSION['user']->getPseudo() . '"></img>
-                    <ul>
+                    <img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img>';
+    if(isMyPage($_GET['id'])) {
+        $contenu .= '<ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$_SESSION['user']->getId().'">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$membre->getId().'">Galerie</a></li>
                         <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
-                    </ul>
-                </div>';
+                    </ul>';
+    } else {
+        $contenu .= '<ul>
+                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="messagerie" href="#">Contacter</a></li>
+                        <li><a title="statistiques" href="#">Statistiques</a></li>
+                    </ul>';
+    }
+    $contenu .= '</div>';
+    // TODO : /!\ Pierre : Créez du css pour améliorer ce rendu
     $contenu .= '<h1>
-                    Titre article
+                    Présentation
                 </h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst. Vestibulum a quam ante, sit amet fermentum orci.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis </p>
-                <h1>' . $concours->getTitre() . '</h1>
+                <span>
+                    <font color="grey">Sexe : </font>'.$membre->getSexe().'
+                    <font color="grey">Date de naissance :</font>'.$membre->getBirthday().'
+                    <font color="grey">Dernière visite :</font>'.$membre->getLastVisit().'
+                </span>
+                <h1></h1>
                 <div id="img_profil">';
-    if (havePhotoConcours() == 1) {
-        $image = imageConcour($concours->getId());
+    if (havePhotoConcours($concours->getId(),$membre->getId()) == 1) {
+        $image = imageConcour($concours->getId(),$membre->getId());
+        view($image);
         $contenu .= '<h3>' . $image->getTitre() . '</h3>';
         $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
         $contenu .= '<div id="statistique">
-                        <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">2</span>
-                        <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">5</span>
-                        <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">2</span>
+                        <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
+                        <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
+                        <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
                         <span id="vote"> 
-                            <a id="positif" title="vote positif" href=""><img src="./templates/images/positif.png" title="vote positif" alt="vote positif"></img></a>
-                            <a id="negatif" title="vote négatif" href=""><img src="./templates/images/negatif.png" title="vote négatif" alt="vote négatif"></img></a>
+                            <img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id='.$image->getId().'\')"></img>
+                            <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img></a>
                         </span>
                     </div>';
         $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
@@ -80,18 +95,23 @@ function profil() {
         $contenu .= '<h3>Aucune image!</h3>';
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
     }
+    // On recupère les 6 dernières images
+    $listImage = array();
+    $listImage = getLastImage($membre->getId());
     $contenu .= '</div>
                 <div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
-                    </h2>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                </div>
+                    </h2>';
+    for($i = 0; $i <= count($listImage)-1;$i++) {
+        $contenu .= '<a title="'.$listImage[$i]->getTitre().'" class="zoombox" href="'.$listImage[$i]->getUrl().'"><img src="thumb.php?src='.$listImage[$i]->getUrl().'&x=110&y=69&f=0"></img></a>';
+    }
+    if(count($listImage) < 6) {
+        for($i = 1; $i <= (6 - count($listImage)); $i++) {
+            $contenu .= '<a title="" href="#" class="zoombox"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>';
+        }
+    }
+    $contenu .= '</div>
                 <div class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières actions">Dernières actions</a>
@@ -142,7 +162,8 @@ function newPhoto() {
     }
     $contenu .= '</select><span id="album"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
-    if (havePhotoConcours() == 0) {
+    $concours = lastConcour();
+    if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
         $contenu .= '<select name="concours">
                      <option value="0">Aucun</option>
                      <option value="' . $concours->getId() . '">' . $concours->getTitre() . '</option>
@@ -238,4 +259,35 @@ function newAlbumSuccess() {
     @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');    
 }
 
+function vote() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    include('sql/image.sql.php');
+    
+    $vote = $_POST['vote'];
+    $idImage = $_POST['id'];
+    
+    $image = loadImage($idImage);
+    $now_Y = date("Y");
+    $now_m = date("m");
+    $now_d = date("d");
+    $now = "$now_d-$now_m-$now_Y";
+    
+    // On efface les anciens votes
+    $sql = 'DELETE FROM vote WHERE date != "'.$now.'" AND idImage = "'.$image->getId().'"';
+    $req = mysql_query($sql);
+
+    // On regarde si le vote journalié est déjà enregistré
+    $sql = 'SELECT * FROM vote WHERE date="'.$now.'" AND idImage = "'.$image->getId().'" AND idMembre = "'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+    $nb = mysql_num_rows($req);
+
+    if($nb < 1) {
+        // On ajoute l'ip pour la journée
+        $sql = 'INSERT INTO vote (date,idImage,idMembre,vote) VALUES ("'.$now.'","'.$image->getId().'","'.$_SESSION['user']->getId().'","'.$vote.'")';
+        $req = mysql_query($sql);
+        voteImage($vote, $idImage);
+    }
+}
 ?>

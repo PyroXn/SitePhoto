@@ -22,8 +22,8 @@ function lastConcour() {
  * @param int $idConcours Id du concour
  * @return Image Retourne un objet image
  */
-function imageConcour($idConcours) {
-    $sql = "SELECT * FROM images WHERE idMembres = '".$_SESSION['user']->getId()."' AND idConcours = '".$idConcours."'";
+function imageConcour($idConcours,$idMembre) {
+    $sql = "SELECT * FROM images WHERE idMembres = '".$idMembre."' AND idConcours = '".$idConcours."'";
     $req = mysql_query($sql);
     $data = mysql_fetch_assoc($req);
     
@@ -35,13 +35,13 @@ function imageConcour($idConcours) {
     $image->setIdConcour($data['idConcours']);
     $image->setScore($data['score']);
     $image->setView($data['view']);
+    $image->setId($data['id']);
     
     return $image;
 }
 
-function havePhotoConcours() {
-    $concours = lastConcour();
-    $sql = 'SELECT * FROM images WHERE idConcours="'.$concours->getId().'" AND idMembres="'.$_SESSION["user"]->getId().'"';
+function havePhotoConcours($idConcours,$idMembre) {
+    $sql = 'SELECT * FROM images WHERE idConcours="'.$idConcours.'" AND idMembres="'.$idMembre.'"';
     $req = mysql_query($sql);
     return mysql_num_rows($req);
 }

@@ -190,6 +190,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     margin-right: 40px;
     display: inline;
     height: 24px;
+    word-spacing: 0;
 }
 
 #positif {

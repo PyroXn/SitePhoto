@@ -1,3 +1,10 @@
+<?php
+
+    $tabImage = array();
+    $tabMembre = array();
+    $tabImage = getFooterImage();
+    $tabMembre = getFooterMembre();
+?>
 </div>
         </div>
         <div id="footer">
@@ -17,9 +24,11 @@
                         Dernières photos
                     </h2>
                     <ol>
-                        <li><a title="image1" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image1"></img>Nom de l'image1</a></li>
-                        <li><a title="image2" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image2"></img>Nom de l'image2</a></li>
-                        <li><a title="image3" href="#"><img src="./templates/images/photominiaturefooter.jpg" alt="image3"></img>Nom de l'image3</a></li>
+<?php
+    for($i = 0; $i <= 2; $i++) {
+        echo '<li><a title="'.$tabImage[$i]->getTitre().'" href="'.$tabImage[$i]->getUrl().'" class="zoombox"><img src="thumb.php?src='.$tabImage[$i]->getUrl().'&x=50&y=31&f=0" alt="'.$tabImage[$i]->getTitre().'"></img>'.$tabImage[$i]->getTitre().'</a></li>';
+    }
+?>
                     </ol>
                 </div>
                 <div id="colonne3">
@@ -37,9 +46,11 @@
                         Derniers membres
                     </h2>
                     <ol>
-                        <li><a title="PyrO" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="PyrO"></img>PyrO</a></li>
-                        <li><a title="FloW" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="FloW"></img>FloW</a></li>
-                        <li><a title="Bad" href="#"><img src="./templates/images/avatarminiaturefooter.jpg" alt="Bad"></img>Bad</a></li>
+<?php
+    for($i = 0; $i <= 2; $i++) {
+        echo '<li><a title="'.$tabMembre[$i]->getPseudo().'" href="index.php?p=profil&id='.$tabMembre[$i]->getId().'"><img src="thumb.php?src='.$tabMembre[$i]->getAvatar().'&x=30&y=34&f=0" alt="'.$tabMembre[$i]->getPseudo().'"></img>'.$tabMembre[$i]->getPseudo().'</a></li>';
+    }   
+?>
                     </ol>
                 </div>
                 <div id="copyright">

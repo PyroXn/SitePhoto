@@ -66,7 +66,7 @@ function inscriptionSuccess() {
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
     $users->setSexe($_POST['sexe']);
-    $birthday = $_POST['birthyear'] . '-' . $_POST['birthmonth'] . '-' . $_POST['birthday'];
+    $birthday = $_POST['birthday'] . '-' . $_POST['birthmonth'] . '-' . $_POST['birthyear'];
     $users->setBirthday($birthday);
     if (!isPseudoExist($users) && !isMailExist($users)) {
         $title = 'Inscription terminée';
@@ -152,6 +152,7 @@ function connexionSuccess() {
     if (isExist($user)) {
         $user = getMembre($user);
         $_SESSION['user'] = $user;
+        updateLastVisit();
         if(getNbAlbums($user->getId() < 1)) { albumDefaut($user->getId()); }
         header('Location: index.php?p=profil&id='.$user->getId().'');
     } else {

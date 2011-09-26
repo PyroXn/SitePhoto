@@ -1,6 +1,5 @@
 <?php
 
-
 class Membre {
 
     private $id;
@@ -11,6 +10,7 @@ class Membre {
     private $avatar; // Uniquement l'url de l'avatar
     private $birthday;
     private $cle;
+    private $lastVisit;
 
     /*   CONSTRUCTOR    */
 
@@ -20,16 +20,16 @@ class Membre {
      * @param Password $password
      */
     function __construct($mail, $password) {
-        $this->mail = strip_tags(mysql_real_escape_string ($mail));
-        $this->password = md5(strip_tags(mysql_real_escape_string ($password)));
+        $this->mail = strip_tags(mysql_real_escape_string($mail));
+        $this->password = md5(strip_tags(mysql_real_escape_string($password)));
     }
 
     /*   GETTER    */
-    
+
     function getId() {
         return $this->id;
     }
-    
+
     function getPseudo() {
         return $this->pseudo;
     }
@@ -39,11 +39,15 @@ class Membre {
     }
 
     function getMail() {
-        return $this-> mail;
+        return $this->mail;
     }
 
     function getSexe() {
-        return $this->sexe;
+        if ($this->sexe == 1) {
+            return "Homme";
+        } else {
+            return "Femme";
+        }
     }
 
     function getAvatar() {
@@ -53,15 +57,19 @@ class Membre {
     function getBirthday() {
         return $this->birthday;
     }
-    
+
     function getCle() {
         return $this->cle;
+    }
+
+    function getLastVisit() {
+        return $this->lastVisit;
     }
 
     /*   SETTER    */
 
     function setPseudo($pseudo) {
-        $this->pseudo = strip_tags(mysql_real_escape_string ($pseudo));
+        $this->pseudo = strip_tags(mysql_real_escape_string($pseudo));
     }
 
     /**
@@ -69,15 +77,15 @@ class Membre {
      * @param String $password Mot de passe en clair
      */
     function setPassword($password) {
-        $this->password = md5(strip_tags(mysql_real_escape_string ($password)));
+        $this->password = md5(strip_tags(mysql_real_escape_string($password)));
     }
 
     function setMail($mail) {
-        $this->mail = strip_tags(mysql_real_escape_string ($mail));
+        $this->mail = strip_tags(mysql_real_escape_string($mail));
     }
 
     function setSexe($sexe) {
-        $this->sexe = strip_tags(mysql_real_escape_string ($sexe));
+        $this->sexe = strip_tags(mysql_real_escape_string($sexe));
     }
 
     function setAvatar($url) {
@@ -87,16 +95,20 @@ class Membre {
     function setBirthday($birthday) {
         $this->birthday = $birthday;
     }
-    
+
     function setCle($cle) {
         $this->cle = $cle;
     }
-    
+
     function setId($id) {
         $this->id = $id;
     }
-    
-    /*   METHODES    */
 
+    function setLastVisit($timestamp) {
+        $this->lastVisit = $timestamp;
+    }
+
+    /*   METHODES    */
 }
+
 ?>

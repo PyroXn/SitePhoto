@@ -2,6 +2,7 @@
 
 class Image {
 
+    private $id;
     private $url;
     private $titre;
     private $description;
@@ -18,7 +19,11 @@ class Image {
     }
 
     /*    GETTER    */
-
+    
+    function getId() {
+        return $this->id;
+    }
+    
     function getUrl() {
         return $this->url;
     }
@@ -86,6 +91,10 @@ class Image {
 
     function setTitre($titre) {
         $this->titre = strip_tags(mysql_real_escape_string ($titre));
+    }
+    
+    function setId($id) {
+        $this->id = $id;
     }
     
     function setUrl($url) {

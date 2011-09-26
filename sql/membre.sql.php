@@ -45,6 +45,7 @@ function getMembre(Membre $membre) {
     $membre->setAvatar($data['avatar']);
     $membre->setCle($data['cle']);
     $membre->setId($data['id']);
+    $membre->setLastVisit($data['lastVisit']);
     return $membre;
 }
 
@@ -79,6 +80,16 @@ function loadMembre($id) {
     $membre->setBirthday($data['birthday']);
     $membre->setCle($data['cle']);
     $membre->setId($data['id']);
+    $membre->setLastVisit($data['lastVisit']);
     return $membre;
 }
+
+/**
+ * Permet d'update le timestamp du membre
+ */
+function updateLastVisit() {
+    $sql = 'UPDATE membres SET lastVisit=NOW() WHERE id="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+}
+
 ?>
