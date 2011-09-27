@@ -89,7 +89,6 @@ function profil() {
         $contenu .= '</span>
                     </div>';
         $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
-        //TODO le code PHP sur le +1 et le -1 et les stats
         
     } else {
         $contenu .= '<h3>Aucune image!</h3>';
