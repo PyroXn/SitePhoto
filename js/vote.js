@@ -49,5 +49,5 @@ function req_xhrVote( page, params)
 	xhr.open("POST", page, true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send(params);
-	document.getElementById("vote").innerHTML = "Merci d'avoir voté.";
+	document.getElementById("vote").innerHTML = "<img src='./templates/images/positif2.png' id='positif' title='Merci d avoir voté.' alt='Merci d avoir voté.'></img><img src='./templates/images/negatif2.png' id='negatif' title='Merci d avoir voté.' alt='Merci d\'avoir voté.'></img>";
 }

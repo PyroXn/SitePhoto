@@ -191,6 +191,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     display: inline;
     height: 24px;
     word-spacing: 0;
+    cursor: pointer;
 }
 
 #positif {

@@ -32,6 +32,7 @@ function profil() {
     include('sql/vue.sql.php');
     include('sql/classement.sql.php');
     include('sql/image.sql.php');
+    include('sql/vote.sql.php');
 
     $concours = lastConcour();
     $membre = loadMembre($_GET['id']);
@@ -75,10 +76,17 @@ function profil() {
                         <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
                         <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
                         <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
-                        <span id="vote"> 
-                            <img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id='.$image->getId().'\')"></img>
-                            <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img></a>
-                        </span>
+                        <span id="vote">';
+        if(alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_SESSION['user']->getId())) {
+            $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
+                         <img src="./templates/images/negatif2.png" id="negatif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>';
+        }
+        else {
+            $contenu .= '<img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id='.$image->getId().'\')"></img>
+                         <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img></a>';
+        }
+
+        $contenu .= '</span>
                     </div>';
         $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
         //TODO le code PHP sur le +1 et le -1 et les stats
