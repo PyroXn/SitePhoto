@@ -33,7 +33,15 @@ class Membre {
     function getPseudo() {
         return $this->pseudo;
     }
-
+    
+    function getPseudoFormat() {
+        if($this->sexe == 1) {
+            return '<font color="#06C">'.$this->getPseudo().'</font>';
+        } else {
+            return '<font color="#F06">'.$this->getPseudo().'</font>';
+        }
+    }
+    
     function getPassword() {
         return $this->password;
     }

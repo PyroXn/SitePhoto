@@ -50,14 +50,14 @@ function profil() {
     if(isMyPage($_GET['id'])) {
         $contenu .= '<ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
                         <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
                         <li><a title="messagerie" href="#">Messagerie</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>';
     } else {
         $contenu .= '<ul>
-                        <li><a title="galerie" href="index.php?p=getGalerie&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
                         <li><a title="messagerie" href="#">Contacter</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>';
@@ -111,17 +111,14 @@ function profil() {
             $contenu .= '<a title="" href="#" class="zoombox"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>';
         }
     }
+    // TODO : Pierre : Prevoir mise en page des dernières actions
     $contenu .= '</div>
                 <div class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières actions">Dernières actions</a>
                     </h2>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <span>Y a commenté votre photo <a href="#">photo</a></span>
+                    <span>G a publié votre photo sur Facebook.</span>
                 </div>';
 
 

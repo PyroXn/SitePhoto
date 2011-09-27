@@ -33,7 +33,9 @@ elseif ($_GET['p'] == "newAlbum") { include('pages/profil.php'); newAlbum(); }
 elseif ($_GET['p'] == "newAlbumSuccess") { include('pages/profil.php'); newAlbumSuccess(); }
 elseif ($_GET['p'] == "vote") { include('pages/profil.php'); vote(); }
 
+elseif ($_GET['p'] == "getAlbum") { include('pages/galerie.php'); getAlbum(); }
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
+elseif ($_GET['p'] == "getPhoto") { include('pages/galerie.php'); getPhoto(); }
 
 /**
  * Sert à afficher la page

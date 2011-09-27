@@ -10,10 +10,8 @@ function getAlbums($idMembre) {
     $req = mysql_query($sql);
     
     if(mysql_num_rows($req) > 0) {
-        $i = 0;
         while ($data = mysql_fetch_assoc($req)) {
-            $tabAlbums[$i] = new Album($data['id'],$data['titre'], $data['idMembres']);
-            $i++;
+            $tabAlbums[] = new Album($data['id'],$data['titre'], $data['idMembres']);
         }
         return $tabAlbums;
     }
