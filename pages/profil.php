@@ -33,14 +33,6 @@ function profil() {
     include('sql/classement.sql.php');
     include('sql/image.sql.php');
 
-    /*
-     * On a besoin de quoi pour cette page :
-     * - Derniers concours : Ok
-     * - Savoir si l'utilisateur est sur sa page : Ok
-     * - Recuperer la photo du membres en fonction du dernier concours : Ok
-     * - Recuperer les commentaires liés à la photo ci dessus : Ok
-     * - 
-     */
     $concours = lastConcour();
     $membre = loadMembre($_GET['id']);
     

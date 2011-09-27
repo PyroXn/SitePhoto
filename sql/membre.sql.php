@@ -81,6 +81,7 @@ function loadMembre($id) {
     $membre->setCle($data['cle']);
     $membre->setId($data['id']);
     $membre->setLastVisit($data['lastVisit']);
+    $membre->setSexe($data['sexe']);
     return $membre;
 }
 
