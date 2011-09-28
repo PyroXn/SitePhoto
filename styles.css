@@ -103,7 +103,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 }
 
 #contenu h2 {
-   
+
     /*background: transparent url(./templates/images/fond-titre-post.png) no-repeat top left; */
 }
 
@@ -114,7 +114,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif; /*police facebook*/
     text-decoration: none;
     border-bottom: 1px solid #00638D;
-    
+
 }
 
 #contenu h2 a:hover {
@@ -155,14 +155,14 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 #img_profil {
     margin-top: 10px;
     margin-left: 160px;
-    
+
 }
 
 #img_profil h3 {
     text-align: center;
 }
 
-#commentaire {
+/*#commentaire {
     display: block;
     float: left;
     width: 60%;
@@ -170,6 +170,52 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     text-align: justify;
     color: #3f3f3f;
     font-style: italic;
+}
+
+*/
+#img_profil .bulle_dialogue {
+    float: left;
+    margin-left: 0px;
+    position: relative;
+    padding: 15px;
+    color: white;
+    font-style: italic;
+    text-align: justify;
+    
+    /*Paye ton dégradé compatible*/
+    
+    /*chrome 2+, safari 4+*/
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#B8DB29), to(#5A8F00));
+    /* Safari 5.1+, Chrome 10+ */  
+    background: -webkit-linear-gradient(#B8DB29, #5A8F00);
+    /*mozilla*/
+    background: -moz-linear-gradient(#B8DB29, #5A8F00);
+    /*opera*/
+    background: -o-linear-gradient(#B8DB29, #5A8F00);
+    /*ie 10*/
+    background-image: -ms-linear-gradient(top, #B8DB29, #5A8F00);
+    /*IE6 & IE7*/ 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff'); 
+    /*IE8+*/ 
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff')";  
+    /*pour les navigateur compatible css3*/
+    background: linear-gradient(#B8DB29, #5A8F00); 
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.bulle_dialogue:after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 50px;
+    border-width: 30px 20px 0px 0px;
+    border-style: solid;
+    border-color: transparent #B8DB29;
+    display: block;
+    width: 0;
 }
 
 #statistique {
@@ -195,7 +241,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 
 #positif {
     float: left;
-    
+
 }
 
 #negatif {
@@ -224,6 +270,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 /*----COLONNE PAGE AVEC PROFIL----*/
 #colonne_gauche {
     margin-left: 160px;
+    vertical-align: top;
 }
 
 .colonne_profil {

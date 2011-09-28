@@ -88,7 +88,7 @@ function profil() {
 
         $contenu .= '</span>
                     </div>';
-        $contenu .= '<span id="commentaire">' . $image->getDescription() . '</span>';
+        $contenu .= '<p class="bulle_dialogue">' . $image->getDescription() . '</p>';
         
     } else {
         $contenu .= '<h3>Aucune image!</h3>';
@@ -105,19 +105,19 @@ function profil() {
     for($i = 0; $i <= count($listImage)-1;$i++) {
         $contenu .= '<a title="'.$listImage[$i]->getTitre().'" class="zoombox" href="'.$listImage[$i]->getUrl().'"><img src="thumb.php?src='.$listImage[$i]->getUrl().'&x=110&y=69&f=0"></img></a>';
     }
-    if(count($listImage) < 6) {
-        for($i = 1; $i <= (6 - count($listImage)); $i++) {
-            $contenu .= '<a title="" href="#" class="zoombox"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>';
-        }
-    }
+
     // TODO : Pierre : Prevoir mise en page des dernières actions
     $contenu .= '</div>
                 <div class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières actions">Dernières actions</a>
                     </h2>
-                    <span>Y a commenté votre photo <a href="#">photo</a></span>
-                    <span>G a publié votre photo sur Facebook.</span>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
                 </div>';
 
 
