@@ -14,6 +14,12 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     padding: 0;
 }
 
+/*bidouille pour rétablir le flux après un float*/
+hr {
+     clear: both;
+     visibility: hidden;
+ }
+
 /*----HEADER----*/
 #header {
     height: 230px; /*hauteur de notre image header*/
@@ -173,6 +179,12 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 }
 
 */
+
+#test {
+    width: 920px;
+    height: 100px;
+}
+
 #img_profil .bulle_dialogue {
     float: left;
     margin-left: 0px;
@@ -217,7 +229,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     display: block;
     width: 0;
 }
-
+ 
 #statistique {
     word-spacing: 198px;
 }
@@ -271,6 +283,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 #colonne_gauche {
     margin-left: 160px;
     vertical-align: top;
+    clear: both;
 }
 
 .colonne_profil {

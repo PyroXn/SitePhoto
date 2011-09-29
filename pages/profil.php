@@ -98,6 +98,7 @@ function profil() {
     $listImage = array();
     $listImage = getLastImage($membre->getId());
     $contenu .= '</div>
+                <hr></hr>
                 <div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>

@@ -8,11 +8,17 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote  {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+
+/*bidouille pour rétablir le flux après un float*/
+hr {
+     clear: both;
+     visibility: hidden;
+ }
 
 /*----HEADER----*/
 #header {
@@ -151,6 +157,44 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     margin-top: 18px;
     width: 250px;
 }
+#contenu table {
+    
+    margin: 5px 0 0 160px;
+    width: 820px;
+}
+
+#contenu table td {
+    text-align: center;
+}
+
+#contenu dl {
+    margin: 5px 0 0 160px;
+    width: 100%;
+}
+
+#contenu dt {
+    margin: auto;
+    display: inline;
+    color: #818181;
+    font-weight: bold;
+}
+
+#contenu dd {
+    margin: auto;
+    display: inline-block;
+    text-align: right;
+    font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif; /*police facebook*/
+    margin-left: 5px;
+}
+
+#presentation {
+    margin: 5px 0 0 160px;
+    text-align: justify;
+}
+
+.caracteristique {
+    display: inline-block;
+}
 
 #img_profil {
     margin-top: 10px;
@@ -162,17 +206,6 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     text-align: center;
 }
 
-/*#commentaire {
-    display: block;
-    float: left;
-    width: 60%;
-    margin-top: 5px;
-    text-align: justify;
-    color: #3f3f3f;
-    font-style: italic;
-}
-
-*/
 #img_profil .bulle_dialogue {
     float: left;
     margin-left: 0px;
@@ -217,7 +250,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
     display: block;
     width: 0;
 }
-
+ 
 #statistique {
     word-spacing: 198px;
 }
@@ -271,6 +304,7 @@ ul, li, p, div, h1, h2, h3, blockquote  {
 #colonne_gauche {
     margin-left: 160px;
     vertical-align: top;
+    clear: both;
 }
 
 .colonne_profil {
