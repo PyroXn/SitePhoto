@@ -62,7 +62,7 @@ function profil() {
                 </h1>
                 <div id="presentation">
                     <span id="caracteristique_gauche">
-                        <span class="type">Sexe: </span><span  class="data">'.$membre->getSexe().'</span>
+                        <span class="type">Sexe: </span><span  class="data">'.$membre->getSexeFormat().'</span>
                     </span>
                     <span class="type">Date de naissance: </span><span class="data">'.$membre->getBirthday().'</span>
                     <span id="caracteristique_droite">
@@ -86,7 +86,7 @@ function profil() {
         }
         else {
             $contenu .= '<img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id='.$image->getId().'\')"></img>
-                         <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img></a>';
+                         <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img>';
         }
 
         $contenu .= '</span>

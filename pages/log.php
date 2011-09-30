@@ -66,7 +66,7 @@ function inscriptionSuccess() {
     $users = new Membre($_POST['mail'], $_POST['password']);
     $users->setPseudo($_POST['pseudo']);
     $users->setSexe($_POST['sexe']);
-    $birthday = $_POST['birthday'] . '-' . $_POST['birthmonth'] . '-' . $_POST['birthyear'];
+    $birthday = $_POST['birthyear'] . '-' . $_POST['birthmonth'] . '-' . $_POST['birthday'];
     $users->setBirthday($birthday);
     if (!isPseudoExist($users) && !isMailExist($users)) {
         $title = 'Inscription terminée';

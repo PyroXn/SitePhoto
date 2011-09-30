@@ -51,6 +51,10 @@ class Membre {
     }
 
     function getSexe() {
+        return $this->sexe;
+    }
+    
+    function getSexeFormat() {
         if ($this->sexe == 1) {
             return "Homme";
         } else {
@@ -63,7 +67,7 @@ class Membre {
     }
 
     function getBirthday() {
-        return $this->birthday;
+        return date("d/m/Y", strtotime($this->birthday));
     }
 
     function getCle() {
@@ -71,7 +75,7 @@ class Membre {
     }
 
     function getLastVisit() {
-        return $this->lastVisit;
+        return date("d/m/Y", strtotime($this->lastVisit));
     }
 
     /*   SETTER    */
