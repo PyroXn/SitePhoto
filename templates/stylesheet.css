@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote  {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -158,6 +158,36 @@ hr {
     width: 250px;
 }
 
+/*----CARACTERISTIQUE DU PROFIL----*/
+#presentation {
+    margin: 5px 0 0 160px;
+    text-align: justify;
+    text-align: center;
+}
+
+#caracteristique_gauche {
+    float: left;
+}
+
+#caracteristique_droite {
+    float: right;
+}
+
+.type {
+    margin: auto;
+    display: inline;
+    color: #818181;
+    font-weight: bold;
+}
+
+.data {
+    margin: auto;
+    display: inline-block;
+    text-align: right;
+    font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif; /*police facebook*/
+    margin-left: 5px;
+}
+
 #img_profil {
     margin-top: 10px;
     margin-left: 160px;
@@ -166,23 +196,6 @@ hr {
 
 #img_profil h3 {
     text-align: center;
-}
-
-/*#commentaire {
-    display: block;
-    float: left;
-    width: 60%;
-    margin-top: 5px;
-    text-align: justify;
-    color: #3f3f3f;
-    font-style: italic;
-}
-
-*/
-
-#test {
-    width: 920px;
-    height: 100px;
 }
 
 #img_profil .bulle_dialogue {

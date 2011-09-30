@@ -157,43 +157,35 @@ hr {
     margin-top: 18px;
     width: 250px;
 }
-#contenu table {
-    
-    margin: 5px 0 0 160px;
-    width: 820px;
-}
 
-#contenu table td {
+/*----CARACTERISTIQUE DU PROFIL----*/
+#presentation {
+    margin: 5px 0 0 160px;
+    text-align: justify;
     text-align: center;
 }
 
-#contenu dl {
-    margin: 5px 0 0 160px;
-    width: 100%;
+#caracteristique_gauche {
+    float: left;
 }
 
-#contenu dt {
+#caracteristique_droite {
+    float: right;
+}
+
+.type {
     margin: auto;
     display: inline;
     color: #818181;
     font-weight: bold;
 }
 
-#contenu dd {
+.data {
     margin: auto;
     display: inline-block;
     text-align: right;
     font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif; /*police facebook*/
     margin-left: 5px;
-}
-
-#presentation {
-    margin: 5px 0 0 160px;
-    text-align: justify;
-}
-
-.caracteristique {
-    display: inline-block;
 }
 
 #img_profil {

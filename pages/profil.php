@@ -60,12 +60,15 @@ function profil() {
     $contenu .= '<h1>
                     Présentation
                 </h1>
-                <span>
-                    <font color="grey">Sexe : </font>'.$membre->getSexe().'
-                    <font color="grey">Date de naissance :</font>'.$membre->getBirthday().'
-                    <font color="grey">Dernière visite :</font>'.$membre->getLastVisit().'
-                </span>
-                <h1></h1>
+                <div id="presentation">
+                    <span id="caracteristique_gauche">
+                        <span class="type">Sexe: </span><span  class="data">'.$membre->getSexe().'</span>
+                    </span>
+                    <span class="type">Date de naissance: </span><span class="data">'.$membre->getBirthday().'</span>
+                    <span id="caracteristique_droite">
+                        <span class="type">Dernière visite: </span><span class="data">'.$membre->getLastVisit().'</span>
+                    </span>
+                </div>
                 <div id="img_profil">';
     if (havePhotoConcours($concours->getId(),$membre->getId()) == 1) {
         $image = imageConcour($concours->getId(),$membre->getId());
@@ -77,7 +80,7 @@ function profil() {
                         <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
                         <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
                         <span id="vote">';
-        if(alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_SESSION['user']->getId())) {
+        if(alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_GET['id'])) {
             $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
                          <img src="./templates/images/negatif2.png" id="negatif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>';
         }
