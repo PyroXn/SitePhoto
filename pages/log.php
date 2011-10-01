@@ -67,7 +67,7 @@ function inscription() {
         <input type='text' id='pseudo' name='pseudo'>
         <span class='error'></span>
         
-        <input  type='submit' value='Inscription' id='submit' onSubmit='checkInscription()'/>";
+        <input  type='submit' value='Inscription' id='submit' class='submit' onSubmit='checkInscription()'/>";
     $content .= "</p></form>";
     $content .= mosaique();
     display($title, $content);
@@ -84,7 +84,7 @@ function inscriptionSuccess() {
     $users->setBirthday($birthday);
     if (!isPseudoExist($users) && !isMailExist($users)) {
         $title = 'Inscription terminée';
-        $contenu = 'Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.';
+        $contenu = '<p>Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.</p>';
         $cle = md5(microtime(TRUE) * 100000);
         $users->setCle($cle);
         $users->setAvatar('./templates/images/Avatar_defaut.jpg');

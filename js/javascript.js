@@ -3,7 +3,7 @@ $(function() {
     $('#mail').keyup(function() {
         var email=$(this).val();
         if (!ck_email.test(email)) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
         } else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         }
@@ -11,8 +11,13 @@ $(function() {
     $('#mail2').keyup(function() {
         var email = $('#mail').val();
         var email2 = $(this).val();
-        if (!ck_email.test(email2) && email != email2) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        if (!ck_email.test(email2) || email != email2) {
+            
+            if (!ck_email.test(email2)) {
+                $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
+            } else {
+                $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mails ne sont pas identiques");
+            }
         } else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         }
@@ -21,7 +26,7 @@ $(function() {
     $('#password').keyup(function() {
         var password=$(this).val();
         if (password.length < 6) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
         } else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         }
@@ -30,7 +35,7 @@ $(function() {
         var password = $('#password').val();
         var password2=$(this).val();
         if (password != password2) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mots de passe ne sont pas identiques");
         } else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         }
@@ -79,7 +84,7 @@ $(function() {
     $('#pseudo').keyup(function() {
         var pseudo = $(this).val();
         if (pseudo.length < 3) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre pseudo doit contenir au minimun 3 caractères");
         } else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         }

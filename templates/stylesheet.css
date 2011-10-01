@@ -158,6 +158,20 @@ hr {
     width: 250px;
 }
 
+#contenu .error {
+    /*font-family: "Lucida grande", Tahoma, Verdana, Arial, Sans-serif; /*police facebook*/
+    font-size: 85%;
+    font-style: italic;
+    font-weight: bold;
+    color: #e70000;
+    vertical-align: 4px;
+}
+
+/*bidouille centrer la croix par rapport au texte*/
+#contenu .error img {
+    vertical-align: -3px;;
+}
+
 /*----CARACTERISTIQUE DU PROFIL----*/
 #presentation {
     margin: 5px 0 0 160px;
