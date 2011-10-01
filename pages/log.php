@@ -8,6 +8,10 @@ function inscription() {
     $content = "<h1>Inscrivez vous - Partagez vos galleries !</h1>";
     $content .= "<form method='post' action='index.php?p=inscriptionSuccess'>";
     $content .= "<p>
+        <label for='pseudo'>Pseudo </label>
+        <input type='text' id='pseudo' name='pseudo'>
+        <span class='error'></span>
+        
         <label for='mail'>E-mail </label>
         <input type='text' id='mail' name='mail'>
         <span class='error'></span>
@@ -15,7 +19,7 @@ function inscription() {
         <label for='mail2'> Confirmer e-mail </label>
         <input type='text' id='mail2' name='mail2'>
         <span class='error'></span>
-                            
+        
         <label for='password'>Mot de passe </label>
         <input type='password' id='password' name='password'>
         <span class='error'></span>
@@ -62,12 +66,7 @@ function inscription() {
     }
     $content .= "</select><span class='error'></span>";
     
-    $content .= "
-        <label for='pseudo'>Pseudo </label>
-        <input type='text' id='pseudo' name='pseudo'>
-        <span class='error'></span>
-        
-        <input  type='submit' value='Inscription' id='submit' class='submit' onSubmit='checkInscription()'/>";
+    $content .= "<input  type='submit' value='Inscription' id='submit' class='submit' onSubmit='checkInscription()'/>";
     $content .= "</p></form>";
     $content .= mosaique();
     display($title, $content);
@@ -84,7 +83,7 @@ function inscriptionSuccess() {
     $users->setBirthday($birthday);
     if (!isPseudoExist($users) && !isMailExist($users)) {
         $title = 'Inscription terminée';
-        $contenu = '<p>Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.</p>';
+        $contenu = '<p class="server_return">Votre inscription s\'est terminée avec succès. Vous recevrez d\'ici quelques minutes un e-mail vous permettant de valider votre compte.</p>';
         $cle = md5(microtime(TRUE) * 100000);
         $users->setCle($cle);
         $users->setAvatar('./templates/images/Avatar_defaut.jpg');
@@ -95,10 +94,10 @@ function inscriptionSuccess() {
 
     } elseif (isPseudoExist($users)) {
         $title = 'Inscription impossible';
-        $contenu = 'Le pseudo choisit existe déjà. Merci de bien vouloir en choisir un autre. <a href="javascript:history.back()">Retour</a>';
+        $contenu = '<p class="server_return">Le pseudo choisit existe déjà. Merci de bien vouloir en choisir un autre. <a href="javascript:history.back()">Retour</a></p>';
     } elseif (isMailExist($users)) {
         $title = 'Inscription impossible';
-        $contenu = 'L\'adresse e-mail choisit existe déjà. Merci de bien vouloir en choisir une autre. <a href="javascript:history.back()">Retour</a>';
+        $contenu = '<p class="server_return">L\'adresse e-mail choisit existe déjà. Merci de bien vouloir en choisir une autre. <a href="javascript:history.back()">Retour</a></p>';
     }
     display($title, $contenu);
 }
@@ -131,11 +130,11 @@ function checkCle() {
         $sqlUpdate = "UPDATE membres SET cle = 0 WHERE id = '" . $data['id'] . "'";
         $reqUpdate = mysql_query($sqlUpdate);
         $title = "Compte validé !";
-        $contenu = "Votre compte a été validé avec succès. Vous pouvez maintenant vous connecter à votre espace personnel.";
+        $contenu = "<p class='server_return'>Votre compte a été validé avec succès. Vous pouvez maintenant vous connecter à votre espace personnel.</p>";
         display($title, $contenu);
     } else {
         $title = "Erreur !";
-        $contenu = "Erreur ! Merci de bien vouloir revenir  l'accueil.";
+        $contenu = "<p class='server_return'>Erreur ! Merci de bien vouloir revenir  l'accueil.</p>";
         display($title, $contenu);
     }
 }
@@ -171,7 +170,7 @@ function connexionSuccess() {
         header('Location: index.php?p=profil&id='.$user->getId().'');
     } else {
         $title = "Connexion impossible !";
-        $contenu = "<p>Adresse e-mail et/ou Mot de passe érroné.</p>";
+        $contenu = "<p class='server_return'>Adresse e-mail et/ou Mot de passe érroné.</p>";
         display($title, $contenu);
     }
 }

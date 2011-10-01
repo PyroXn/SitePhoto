@@ -1,43 +1,62 @@
 $(function() {
     var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    $('#mail').keyup(function() {
-        var email=$(this).val();
-        if (!ck_email.test(email)) {
+    $('#mail').blur(function() {
+        var email = $(this).val();
+        var email2 = $('#mail2').val();
+        if (!ck_email.test(email) && (email != "" || email == null)) {
             $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
-        } else {
+        } else if (ck_email.test(email) && email == email2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
-        }
-    });
-    $('#mail2').keyup(function() {
-        var email = $('#mail').val();
-        var email2 = $(this).val();
-        if (!ck_email.test(email2) || email != email2) {
-            
-            if (!ck_email.test(email2)) {
-                $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
-            } else {
-                $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mails ne sont pas identiques");
+            $('#mail2').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else if (ck_email.test(email)) {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+            if (email2 != "" || email2 == null) {
+                $('#mail2').next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mails ne sont pas identiques");
             }
         } else {
+            $(this).next().show().html("");
+        }
+    });
+    $('#mail2').blur(function() {
+        var email = $('#mail').val();
+        var email2 = $(this).val();
+        if ((!ck_email.test(email2) || email != email2) && ck_email.test(email) && (email2 != "" || email2 == null)) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mails ne sont pas identiques");
+        } else if (ck_email.test(email2) && email == email2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+            $('#mail').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
         }
     });
 
-    $('#password').keyup(function() {
-        var password=$(this).val();
-        if (password.length < 6) {
+    $('#password').blur(function() {
+        var password = $(this).val();
+        var password2 =  $('#password2').val();
+        if (password.length < 6 && (password != "" || password == null)) {
             $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
-        } else {
+        } else if (password.length >= 6 && password == password2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+            $('#password2').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else if (password.length >= 6) {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+            if (password2 != "" || password2 == null) {
+                $('#password2').next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mots de passe ne sont pas identique");
+            }
+        } else {
+            $(this).next().show().html("");
         }
     });
-    $('#password2').keyup(function() {
+    $('#password2').blur(function() {
         var password = $('#password').val();
-        var password2=$(this).val();
-        if (password != password2) {
+        var password2 = $(this).val();
+        if ((password2.length < 6 || password != password2) && password.length >= 6 && (password2 != "" || password2 == null)) {
             $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Les mots de passe ne sont pas identiques");
-        } else {
+        } else if (password2.length >= 6 && password == password2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+            $('#password').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
         }
     });
  
@@ -81,12 +100,14 @@ $(function() {
         }
     });
 
-    $('#pseudo').keyup(function() {
+    $('#pseudo').blur(function() {
         var pseudo = $(this).val();
-        if (pseudo.length < 3) {
+        if (pseudo.length < 3 && (pseudo != "" || pseudo == null)) {
             $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre pseudo doit contenir au minimun 3 caractères");
-        } else {
+        } else if (pseudo.length >= 3) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
         }
     });
 

@@ -172,6 +172,10 @@ hr {
     vertical-align: -3px;;
 }
 
+#contenu .server_return {
+    margin-top: 0px;
+}
+
 /*----CARACTERISTIQUE DU PROFIL----*/
 #presentation {
     margin: 5px 0 0 160px;
