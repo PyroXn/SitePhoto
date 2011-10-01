@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -238,9 +238,9 @@ hr {
     /*ie 10*/
     background-image: -ms-linear-gradient(top, #B8DB29, #5A8F00);
     /*IE6 & IE7*/ 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff'); 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B8DB29', endColorstr='#5A8F00'); 
     /*IE8+*/ 
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff')";  
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#B8DB29', endColorstr='#5A8F00')";  
     /*pour les navigateur compatible css3*/
     background: linear-gradient(#B8DB29, #5A8F00); 
     
@@ -253,7 +253,7 @@ hr {
     content: "";
     position: absolute;
     top: -30px;
-    left: 50px;
+    left: 70px;
     border-width: 30px 20px 0px 0px;
     border-style: solid;
     border-color: transparent #B8DB29;
@@ -262,7 +262,14 @@ hr {
 }
  
 #statistique {
-    word-spacing: 198px;
+    /*word-spacing: 198px;*/
+    display: table;
+    width: 820px;
+}
+
+#statistique .test {
+    display: table-cell;
+    width: 250px;
 }
 
 .res_stat {

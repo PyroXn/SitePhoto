@@ -75,9 +75,15 @@ function profil() {
         $contenu .= '<h3>' . $image->getTitre() . '</h3>';
         $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
         $contenu .= '<div id="statistique">
-                        <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
-                        <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
-                        <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
+                        <span class="test">
+                            <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
+                        </span>                            
+                        <span class="test">
+                            <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
+                        </span>
+                        <span class="test">
+                            <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
+                        </span>
                         <span id="vote">';
         if(alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_GET['id'])) {
             $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
@@ -145,7 +151,7 @@ function newPhoto() {
     $tabAlbums = array();
 
     $title = 'Pixels Arts - Ajouter une photo';
-    $contenu = '<h2>Ajouter une photo à votre galerie</h2>';
+    $contenu = '<h1>Ajouter une photo à votre galerie</h1>';
     $contenu .= '<form method="POST" action="index.php?p=newPhotoSuccess" name="formAjoutPhoto" enctype="multipart/form-data">';
     $contenu .= '<p>
                  <label for="titre">Titre</label>
