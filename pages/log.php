@@ -61,7 +61,7 @@ function inscription() {
     
     $content .= "<select id='birthyear' name='birthyear'>
              <option value=''>Année</option>";
-    for ($i = 1900; $i <= Date("Y"); $i++) {
+    for ($i = Date("Y"); $i >= 1931; $i--) {
         $content .= "<option value=$i>$i</option>";
     }
     $content .= "</select><span class='error'></span>";
