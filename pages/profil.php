@@ -56,7 +56,6 @@ function profil() {
                     </ul>';
     }
     $contenu .= '</div>';
-    // TODO : /!\ Pierre : Créez du css pour améliorer ce rendu
     $contenu .= '<h1>
                     Présentation
                 </h1>

@@ -6,30 +6,40 @@ function inscription() {
     // TODO : Améliorer mise en page
     $title = "Inscrivez-vous et devenez photographe !";
     $content = "<h1>Inscrivez vous - Partagez vos galleries !</h1>";
-    $content .= "<form method='post' action='index.php?p=inscriptionSuccess' name='formInscription'>";
+    $content .= "<form method='post' action='index.php?p=inscriptionSuccess'>";
     $content .= "<p>
         <label for='mail'>E-mail </label>
-        <input type='text' id='mail' name='mail' onBlur='checkMail()'><span id='checkMail'></span>
+        <input type='text' id='mail' name='mail'>
+        <span class='error'></span>
+        
         <label for='mail2'> Confirmer e-mail </label>
-        <input type='text' id='mail2' name='mail2' onBlur='checkMail2()'><span id='checkMail2'></span>
+        <input type='text' id='mail2' name='mail2'>
+        <span class='error'></span>
+                            
         <label for='password'>Mot de passe </label>
-        <input type='password' id='password' name='password' onBlur='checkPassword()'><span id='checkPassword'></span>
+        <input type='password' id='password' name='password'>
+        <span class='error'></span>
         <label for='password2'>Confirmer mot de passe </label>
-        <input type='password' id='password2' name='password2' onBlur='checkPassword2()'><span id='checkPassword2'></span>
+        <input type='password' id='password2' name='password2'>
+        <span class='error'></span>
+                                    
         <label for='sexe'>Je suis </label>
-        <select id='sexe' name='sexe' size='1'>
-        <option value='2'>Femme</option>
-        <option value='1'>Homme</option>
+        <select id='sexe' name='sexe'>
+            <option value=''>Sexe</option>
+            <option value='2'>Femme</option>
+            <option value='1'>Homme</option>
         </select>
+        <span class='error'></span>
+        
         <label for='birthday'>Date de naissance </label> 
         <select id='birthday' name='birthday'>
         <option value=''>Jour</option>";
     for ($i = 01; $i <= 31; $i++) {
         $content .= "<option value=$i>$i</option>";
     }
-
     $content .= "</select> ";
-    $content .= "<select name='birthmonth'>
+    
+    $content .= "<select id='birthmonth' name='birthmonth'>
              <option value=''>Mois</option>
              <option value='01'>Janvier</option>
              <option value='02'>Fevrier</option>
@@ -44,16 +54,20 @@ function inscription() {
              <option value='11'>Novembre</option>
              <option value='12'>Decembre</option>";
     $content .= "</select> ";
-    $content .= "<select name='birthyear' onBlur='checkBirthday()'>
+    
+    $content .= "<select id='birthyear' name='birthyear'>
              <option value=''>Année</option>";
     for ($i = 1900; $i <= Date("Y"); $i++) {
         $content .= "<option value=$i>$i</option>";
     }
-    $content .= "</select><span id='checkBirthday'></span>";
+    $content .= "</select><span class='error'></span>";
+    
     $content .= "
         <label for='pseudo'>Pseudo </label>
-        <input type='text' id='pseudo' name='pseudo' onBlur='checkPseudo()'><span id='checkPseudo'></span>
-        <input class='submit' type='button' name='Submit' value='Inscription' onClick='checkInscription()'>";
+        <input type='text' id='pseudo' name='pseudo'>
+        <span class='error'></span>
+        
+        <input  type='submit' value='Inscription' id='submit' onSubmit='checkInscription()'/>";
     $content .= "</p></form>";
     $content .= mosaique();
     display($title, $content);

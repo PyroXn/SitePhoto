@@ -6,6 +6,7 @@
         <title><?php echo $title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="./templates/stylesheet.css" media="screen" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="./js/javascript.js"></script>
         <!--[if lte IE 8]>
             <style type="text/css">

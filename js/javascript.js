@@ -1,88 +1,108 @@
-function checkMail() {
-    var reg = new RegExp('^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$', 'i');
-    if (document.formInscription.mail.value == "" || !reg.test(document.formInscription.mail.value)) {
-        document.getElementById("checkMail").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkMail").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
+$(function() {
+    var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    $('#mail').keyup(function() {
+        var email=$(this).val();
+        if (!ck_email.test(email)) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    $('#mail2').keyup(function() {
+        var email = $('#mail').val();
+        var email2 = $(this).val();
+        if (!ck_email.test(email2) && email != email2) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
 
-function checkMail2() {
-    var reg = new RegExp('^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$', 'i');
-    if (document.formInscription.mail2.value != document.formInscription.mail.value || document.formInscription.mail2.value == "" || !reg.test(document.formInscription.mail2.value)) {
-        document.getElementById("checkMail2").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkMail2").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
+    $('#password').keyup(function() {
+        var password=$(this).val();
+        if (password.length < 6) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    $('#password2').keyup(function() {
+        var password = $('#password').val();
+        var password2=$(this).val();
+        if (password != password2) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+ 
+    $('#sexe').blur(function() {
+        var sexe = $(this).val();
+        if (sexe == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
 
-function checkPassword() {
-    if (document.formInscription.password.value == "" || document.formInscription.password.value.length < 6) {
-        document.getElementById("checkPassword").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkPassword").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
+    $('#birthyear').blur(function() {
+        var birthyear = $(this).val();
+        var birthmonth = $('#birthmonth').val();
+        var birthday = $('#birthday').val();
+        if (birthday == "" || birthmonth == "" || birthyear == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    $('#birthmonth').blur(function() {
+        var birthmonth = $(this).val();
+        var birthyear = $('#birthyear').val();
+        var birthday = $('#birthday').val();
+        if (birthday == "" || birthmonth == "" || birthyear == "") {
+            $('#birthyear').next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $('#birthyear').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    $('#birthday').blur(function() {
+        var birthday = $(this).val();
+        var birthyear = $('#birthyear').val();
+        var birthmonth = $('#birthmonth').val();
+        if (birthday == "" || birthmonth == "" || birthyear == "") {
+            $('#birthyear').next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $('#birthyear').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
 
-function checkPassword2() {
-    if (document.formInscription.password2.value != document.formInscription.password.value || document.formInscription.password2.value == "") {
-        document.getElementById("checkPassword2").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkPassword2").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
+    $('#pseudo').keyup(function() {
+        var pseudo = $(this).val();
+        if (pseudo.length < 3) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
 
-function checkBirthday() {
-    if (document.formInscription.birthday.value == "" || document.formInscription.birthmonth.value == "" || document.formInscription.birthyear.value == "") {
-        document.getElementById("checkBirthday").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkBirthday").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    } 
-}
-
-function checkPseudo() {
-    if(document.formInscription.pseudo.value.length < 3) {
-        document.getElementById("checkPseudo").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("checkPseudo").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
-
-function checkInscription() {
-    var mail = document.getElementById("checkMail").innerHTML;
-    var mail2 = document.getElementById("checkMail2").innerHTML;
-    var password = document.getElementById("checkPassword").innerHTML;
-    var password2 = document.getElementById("checkPassword2").innerHTML;
-    var birthday = document.getElementById("checkBirthday").innerHTML;
-    var pseudo = document.getElementById("checkPseudo").innerHTML;
-    
-    var rouge = "<img src=\"templates/images/check-rouge.png\" class=\"noBorder\">";
-    
-    checkMail();
-    checkMail2();
-    checkPassword();
-    checkPassword2();
-    checkBirthday();
-    checkPseudo();
-    
-    if (mail == rouge || mail2 == rouge || password == rouge || password2 == rouge || birthday == rouge || pseudo == rouge) {
-        alert("Merci de bien vouloir corriger le formulaire.");
-    }
-    else if (mail == "" || mail2 == "" || password == "" || password2 == "" || birthday == "" || pseudo == "") {
-        alert("Merci de bien vouloir remplir tous les champs.");
-    }
-    else {
-        document.formInscription.submit();
-        
-    }
-    
-}
+    $('#submit').click(function() {
+        var mail = $("#mail").val();
+        var mail2 = $("#mail2").val();
+        var password = $("#password").val();
+        var password2 = $("#password2").val();
+        var sexe = $("#sexe").val();
+        var birthday = $("#birthday").val();
+        var birthmonth = $("#birthmonth").val();
+        var birthyear = $("#birthyear").val();
+        var pseudo = $("#pseudo").val();
+                    
+        if(ck_email.test(mail) && (mail == mail2) && (password.length >= 6) && (password == password2) 
+            && (sexe != "") && (birthday != "") && (birthmonth != "") && (birthyear != "") && (pseudo.length >= 3)) {
+            submit();
+        }
+        return false;
+    });
+})
 
 function ouvrirPopup(page,nom,option) {
     window.open(page,nom,option);
