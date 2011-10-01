@@ -75,13 +75,13 @@ function profil() {
         $contenu .= '<h3>' . $image->getTitre() . '</h3>';
         $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
         $contenu .= '<div id="statistique">
-                        <span class="test">
+                        <span class="statistique_cellule">
                             <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
                         </span>                            
-                        <span class="test">
+                        <span class="statistique_cellule">
                             <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
                         </span>
-                        <span class="test">
+                        <span class="statistique_cellule">
                             <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
                         </span>
                         <span id="vote">';

@@ -267,7 +267,7 @@ hr {
     width: 820px;
 }
 
-#statistique .test {
+#statistique .statistique_cellule {
     display: table-cell;
     width: 250px;
 }
