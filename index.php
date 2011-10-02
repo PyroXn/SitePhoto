@@ -94,7 +94,7 @@ function mosaique() {
                     </h2>';
     foreach($tabImage as $tab) {
         $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox">
-                        <img src="thumb.php?src='.$tab->getUrl().'&x=110&y=69&f=0"></img></a>';
+                        <img src="thumb.php?src='.$tab->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>
                 <div class="colonne">
