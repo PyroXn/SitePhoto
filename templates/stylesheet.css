@@ -305,7 +305,10 @@ hr {
     margin-top: 40px;
     margin-bottom: 15px;
     vertical-align: top;
+}
 
+.colonne a {
+    text-decoration: none;
 }
 
 .colonne img {
