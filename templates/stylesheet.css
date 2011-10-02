@@ -16,9 +16,9 @@ ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input {
 
 /*bidouille pour rétablir le flux après un float*/
 hr {
-     clear: both;
-     visibility: hidden;
- }
+    clear: both;
+    visibility: hidden;
+}
 
 /*----HEADER----*/
 #header {
@@ -224,9 +224,9 @@ hr {
     color: white;
     font-style: italic;
     text-align: justify;
-    
+
     /*Paye ton dégradé compatible*/
-    
+
     /*chrome 2+, safari 4+*/
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#B8DB29), to(#5A8F00));
     /* Safari 5.1+, Chrome 10+ */  
@@ -243,7 +243,7 @@ hr {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#B8DB29', endColorstr='#5A8F00')";  
     /*pour les navigateur compatible css3*/
     background: linear-gradient(#B8DB29, #5A8F00); 
-    
+
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -260,7 +260,7 @@ hr {
     display: block;
     width: 0;
 }
- 
+
 #statistique {
     /*word-spacing: 198px;*/
     display: table;
@@ -304,6 +304,7 @@ hr {
     width: 488px; /*2 pixels disparu je sais pas pkoi ... devrait être 490px*/
     margin-top: 40px;
     margin-bottom: 15px;
+    vertical-align: top;
 
 }
 
@@ -410,8 +411,8 @@ hr {
 #colonne2 {
     float: left;
     width: 288px;
-    border-left: 1px dotted #efefef;
-    border-right: 1px dotted #efefef;
+    /*border-left: 1px dotted #efefef;
+    border-right: 1px dotted #efefef;*/
 }
 
 #colonne2 a {
@@ -434,7 +435,7 @@ hr {
     float: left;
     width: 288px;
     height: 220px;
-    border-right: 1px dotted #efefef;
+    /*border-right: 1px dotted #efefef;*/
 }
 
 #colonne3 h4 {

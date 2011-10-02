@@ -83,17 +83,20 @@ function home() {
 }
 
 function mosaique() {
-    $contenu = '<div class="colonne">
+    include_once 'sql/classement.sql.php';
+    include_once 'sql/concours.sql.php';
+    
+    $concours = lastConcour();
+    $tabImage = bestScore($concours->getId());
+    $contenu = '<hr></hr><div class="colonne">
                     <h2>
                         <a href="#" alt="Les mieux notées">Les mieux notées</a>
-                    </h2>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                </div>
+                    </h2>';
+    foreach($tabImage as $tab) {
+        $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox">
+                        <img src="thumb.php?src='.$tab->getUrl().'&x=110&y=69&f=0"></img></a>';
+    }
+    $contenu .= '</div>
                 <div class="colonne">
                     <h2>
                         <a href="#" alt="Les dernières photos de nos gold">Les dernières photos de nos gold</a>
