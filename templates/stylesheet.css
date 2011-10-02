@@ -387,19 +387,20 @@ hr {
     font-size: 18px;
     font-weight: normal;
     text-decoration: underline;
+    text-align: center;
 }
 
 #colonne1 {
     float: left;
-    width: 245px;
+    width: 200px;
 }
 
 #colonne1 a {
-    margin-left: -15px;
+    margin-left: 20px;
     text-decoration: none;
     color: white;
     font-size: 14px;
-    line-height: 30px;
+    line-height: 42px;
 }
 
 #colonne1 img {
@@ -408,7 +409,9 @@ hr {
 
 #colonne2 {
     float: left;
-    width: 245px;
+    width: 288px;
+    border-left: 1px dotted #efefef;
+    border-right: 1px dotted #efefef;
 }
 
 #colonne2 a {
@@ -416,19 +419,22 @@ hr {
     text-decoration: none;
     color: white;
     font-size: 14px;
-    line-height: 42px;
+    line-height: 46px;
 }
 
 #colonne2 img {
     float: left;
-    margin-left: -35px;
+    /*margin-left: -25px;*/
+    margin-top: 5px;
     margin-right: 25px;
     border: 1px solid white;
 }
 
 #colonne3 {
     float: left;
-    width: 245px;
+    width: 288px;
+    height: 220px;
+    border-right: 1px dotted #efefef;
 }
 
 #colonne3 h4 {
@@ -451,13 +457,13 @@ hr {
     margin-right: 10px;
 }
 
-#colonne4 {   
-    float: left;
-    width: 245px;
+#colonne4 {
+    float: right;
+    width: 200px;
 }
 
 #colonne4 a {
-    margin-left: -15px;
+    margin-left: 15px;
     text-decoration: none;
     color: white;
     font-size: 14px;
@@ -467,7 +473,7 @@ hr {
 
 #colonne4 img {
     float: left;
-    margin-right: 25px;
+    margin-left: 25px;
     border: 1px solid white;
 }
 
