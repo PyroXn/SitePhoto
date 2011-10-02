@@ -166,7 +166,7 @@ function connexionSuccess() {
         $user = getMembre($user);
         $_SESSION['user'] = $user;
         updateLastVisit();
-        if(getNbAlbums($user->getId() < 1)) { albumDefaut($user->getId()); }
+        if(getNbAlbums($user->getId()) < 1) { albumDefaut($user->getId()); }
         header('Location: index.php?p=profil&id='.$user->getId().'');
     } else {
         $title = "Connexion impossible !";
