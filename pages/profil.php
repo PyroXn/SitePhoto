@@ -228,7 +228,7 @@ function newPhotoSuccess() {
             membreParticipe($idConcour);
         }
         $title = 'Pixels Arts - Photo envoyé avec succès.';
-        $contenu = '<h2>Photo envoyé avec succès.</h2>';
+        $contenu = '<h1>Photo envoyé avec succès.</h1>';
         $contenu .= '<p>Votre Photo a été envoyé avec succès</p>';
         $contenu .= mosaique();
         display($title, $contenu);
