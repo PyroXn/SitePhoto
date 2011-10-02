@@ -14,13 +14,11 @@ class resizeImage {
      * @param $hauteur Int Hauteur de l'image générée, si 0 cette valeur sera calculé en fonction de la largeur
      * Si largeur et hauteur = 0 l'image gardera son format d'origine mais sera convertie en JPG
      * */
-    public static function resize($img, $dest, $nomFichier, $largeur=0, $hauteur=0) {
+    public static function resize($img, $dest, $nomFichier, $largeur=0, $hauteur=0, $largeurMax=820, $hauteurMax=500) {
         // Si le nom est déjà utilisé
         while (file_exists($dest . $nomFichier)) {
             $nomFichier = rand() . $nomFichier;
         }
-        $largeurMax = 820;
-        $hauteurMax = 500;
         $dest = $dest . $nomFichier;
         // On récupère les dimensions de l'image
         $dimension = getimagesize($img);

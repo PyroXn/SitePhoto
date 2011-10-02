@@ -93,4 +93,18 @@ function updateLastVisit() {
     $req = mysql_query($sql);
 }
 
+function updateAvatar($avatar) {
+    $sql = 'UPDATE membres SET avatar="'.$avatar.'" WHERE id="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+}
+
+function updatePassword($password) {
+    $sql = 'UPDATE membres SET password="'.$password.'" WHERE id="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+}
+
+function updateMail($mail) {
+    $sql = 'UPDATE membres SET mail="'.$mail.'" WHERE id="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+}
 ?>

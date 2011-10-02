@@ -38,24 +38,7 @@ function profil() {
     $membre = loadMembre($_GET['id']);
     
     $title = "Bienvenue sur la page de " . $membre->getPseudo() . "";
-    $contenu = '<div id="menu_gauche">
-                    <img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img>';
-    if(isMyPage($_GET['id'])) {
-        $contenu .= '<ul>
-                        <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
-                        <li><a title="modifier profil" href="#">Modifier mon profil</a></li>
-                        <li><a title="messagerie" href="#">Messagerie</a></li>
-                        <li><a title="statistiques" href="#">Statistiques</a></li>
-                    </ul>';
-    } else {
-        $contenu .= '<ul>
-                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
-                        <li><a title="messagerie" href="#">Contacter</a></li>
-                        <li><a title="statistiques" href="#">Statistiques</a></li>
-                    </ul>';
-    }
-    $contenu .= '</div>';
+    $contenu .= menuLeft($membre);
     $contenu .= '<h1>
                     Présentation
                 </h1>
@@ -136,6 +119,27 @@ function profil() {
 
     display($title, $contenu);
 }
+function menuLeft($membre) {
+    $contenu = '<div id="menu_gauche">
+                    <a href="index.php?p=profil&id='.$membre->getId().'" alt="Mon profil"><img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img></a>';
+    if(isMyPage($membre->getId())) {
+        $contenu .= '<ul>
+                        <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="modifier profil" href="index.php?p=changeProfil">Modifier mon profil</a></li>
+                        <li><a title="messagerie" href="#">Messagerie</a></li>
+                        <li><a title="statistiques" href="#">Statistiques</a></li>
+                    </ul>';
+    } else {
+        $contenu .= '<ul>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="messagerie" href="#">Contacter</a></li>
+                        <li><a title="statistiques" href="#">Statistiques</a></li>
+                    </ul>';
+    }
+    $contenu .= '</div>';
+    return $contenu;
+}
 
 function newPhoto() {
     // TODO : Mettre en place les contrôles (javascript + PhP) pour verifier que le formulaire est bien remplie
@@ -151,7 +155,8 @@ function newPhoto() {
     $tabAlbums = array();
 
     $title = 'Pixels Arts - Ajouter une photo';
-    $contenu = '<h1>Ajouter une photo à votre galerie</h1>';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Ajouter une photo à votre galerie</h1>';
     $contenu .= '<form method="POST" action="index.php?p=newPhotoSuccess" name="formAjoutPhoto" enctype="multipart/form-data">';
     $contenu .= '<p>
                  <label for="titre">Titre</label>
@@ -294,5 +299,122 @@ function vote() {
         $req = mysql_query($sql);
         voteImage($vote, $idImage);
     }
+}
+
+function changeProfil() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    $title = 'Pixels Arts - Modifier mon profil';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Modifier mon profil</h1>
+                <fieldset>
+                    <legend>Modifier l\'avatar</legend>
+                    <form method="POST" action="index.php?p=setAvatar" enctype="multipart/form-data">
+                        <p>
+                        <img src="'.$_SESSION['user']->getAvatar().'" title="'.$_SESSION['user']->getPseudo().'"></img>
+                        <label for="avatar">Avatar</label>
+                        <input type="file" name="photo" id="photo">
+                        <input  type="submit" value="Modifier l\'avatar" class="submit"/>
+                        </p>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <legend>Modifier l\'e-mail</legend>
+                    <form action="index.php?p=setMail" method="POST">
+                        <p>
+                        <label for="mail">E-mail</label>
+                        <input type="text" name="mail" id="mail">
+                        <span class="error"></span>
+                        <label for="mail2">Confirmer e-mail</label>
+                        <input type="text" name="mail2" id="mail2">
+                        <span class="error"></span>
+                        <input type="submit" value="Modifier le profil" id="submitMail" class="submit"/>
+                        </p>
+                    </form>
+                </fieldset>
+                <fieldset>
+                    <legend>Modifier votre mot de passe</legend>
+                    <form action="index.php?p=setPassword" method="POST">
+                    <p>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password">
+                        <span class="error"></span>
+                        <label for="password2">Confirmer mot de passe</label>
+                        <input type="password" name="password2" id="password2">
+                        <span class="error"></span>
+                        <input  type="submit" value="Modifier le mot de passe" id="submitPassword" class="submit"/>
+                   </p>
+                    </form>
+               </fieldset>';
+    display($title,$contenu);
+}
+
+function setAvatar() {
+
+    include_once 'sql/membre.sql.php';
+    if (!isset($_FILES['photo']) || !isOk()) {
+        accessForbidden();
+    }
+    $image = new Image(null);
+    $dest = "./pics/" . $_SESSION['user']->getPseudo() . "/";
+    $error = $image->upload($_FILES['photo']);
+    if (!is_array($error)) {
+        $image->setUrl($error);
+    }
+    if (is_dir($dest)) {
+        if ($image->getRatio() == 0) {
+            $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 128, 128,173));
+        } else {
+            $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 0, 173, 128, 173));
+        }
+        resizeImage::deleteImage($error);
+        updateAvatar($image->getUrl());
+        $_SESSION['user']->setAvatar($image->getUrl());
+        $title = 'Pixels Arts - Modifier mon profil';
+        $contenu = menuLeft($_SESSION['user']);
+        $contenu .= '<p>Avatar modifié avec succès.</p>';
+        $contenu .= mosaique();
+    }
+    display($title,$contenu);
+    
+    
+}
+
+function setMail() {
+    if (!isOk()) {
+        accessForbidden();
+    }
+    include_once 'sql/membre.sql.php';
+    $user = loadMembre($_SESSION['user']->getId());
+    $user->setMail($_POST['mail']);
+    $title = 'Pixels Arts - Modifier mon profil';
+    $contenu = menuLeft($_SESSION['user']);     
+    if(!isMailExist($user)) {
+        updateMail($user->getMail());
+        $contenu .= '<h1>Modifier mon profil</h1>
+                     <p>Votre adresse e-mail a été modifié avec succès.</p>';
+    }
+    else {
+        $contenu .= '<h1>Modifier mon profil</h1>
+                     <p>L\'adresse e-mail choisit éxiste déjà.';
+    }
+    display($title,$contenu);
+    
+}
+
+function setPassword() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    include_once 'sql/membre.sql.php';
+    $user = loadMembre($_SESSION['user']->getId());
+    $user->setPassword($_POST['password']);
+    updatePassword($user->getPassword());
+    $title = 'Pixels Arts - Modifier mon profil';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Modifier mon profil</h1>
+                 <p>Votre mot de passe a bien été changé.</p>';
+    display($title,$contenu);
 }
 ?>

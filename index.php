@@ -32,6 +32,10 @@ elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhoto
 elseif ($_GET['p'] == "newAlbum") { include('pages/profil.php'); newAlbum(); }
 elseif ($_GET['p'] == "newAlbumSuccess") { include('pages/profil.php'); newAlbumSuccess(); }
 elseif ($_GET['p'] == "vote") { include('pages/profil.php'); vote(); }
+elseif ($_GET['p'] == "changeProfil") { include_once 'pages/profil.php'; changeProfil(); }
+elseif ($_GET['p'] == "setAvatar") { include_once 'pages/profil.php'; setAvatar(); }
+elseif ($_GET['p'] == "setMail") { include_once 'pages/profil.php'; setMail(); }
+elseif ($_GET['p'] == "setPassword") { include_once 'pages/profil.php'; setPassword(); }
 
 elseif ($_GET['p'] == "getAlbum") { include('pages/galerie.php'); getAlbum(); }
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }

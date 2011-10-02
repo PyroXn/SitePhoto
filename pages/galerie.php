@@ -1,6 +1,6 @@
 <?php
 
-include('pages/profil.php');
+include_once 'pages/profil.php';
 
 function getAlbum() {
 
@@ -11,8 +11,9 @@ function getAlbum() {
     include('sql/albums.sql.php');
 
     $tabAlbums = getAlbums($_GET['id']);
-    $title = 'Galerie test';
-    $contenu = '<h1>Choix de l\'album à consulter :</h1>';
+    $title = 'Pixels Arts - Albums';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Choix de l\'album à consulter :</h1>';
     foreach ($tabAlbums as $tab) {
         $sql = 'SELECT * FROM images WHERE idMembres="' . $_GET['id'] . '" AND idAlbum="' . $tab->getId() . '" ORDER BY id LIMIT 1';
         $req = mysql_query($sql);
@@ -35,8 +36,9 @@ function getGalerie() {
     if(!isset($_GET['album'])) {
         accessForbidden();
     }
-    $title = 'test';
-    $contenu = '<h1>Choix de la photo à consulter :</h1>';
+    $title = 'Pixels Arts - Galerie';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Choix de la photo à consulter :</h1>';
     $sql = 'SELECT * FROM images WHERE idAlbum="'.$_GET['album'].'" ORDER BY id';
     $req = mysql_query($sql);
     while($data = mysql_fetch_assoc($req)) {
@@ -97,7 +99,7 @@ function getPhoto() {
     $contenu .= '<div id="img_profil">';
     $contenu .= '<h3>'.$objet->getTitre().'</h3>';
     $contenu .= '<img src="'.$objet->getUrl().'" title="'.$objet->getTitre().'"></img>';
-    $contenu .= '<span id="commentaire">' . $objet->getDescription() . '</span>';
+    $contenu .= '<p class="bulle_dialogue">' . $objet->getDescription() . '</p>';
     $contenu .= '</div>';
     display($title,$contenu);
 }

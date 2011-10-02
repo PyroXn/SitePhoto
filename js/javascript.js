@@ -128,6 +128,26 @@ $(function() {
         }
         return false;
     });
+    
+    $('#submitMail').click(function() {
+        var mail = $("#mail").val();
+        var mail2 = $("#mail2").val();
+                    
+        if(ck_email.test(mail) && (mail == mail2)) {
+            submit();
+        }
+        return false;
+    });
+    
+    $('#submitPassword').click(function() {
+        var password = $("#password").val();
+        var password2 = $("#password2").val();
+                    
+        if(password == password2) {
+            submit();
+        }
+        return false;
+    });
 })
 
 function ouvrirPopup(page,nom,option) {

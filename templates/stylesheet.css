@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input, fieldset {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -125,6 +125,23 @@ hr {
 
 #contenu h2 a:hover {
     color: #f60;
+}
+
+#contenu fieldset {
+    margin-top: 10px;
+    margin-left: 160px;
+    width: 820px;
+    
+}
+
+#contenu fieldset p {
+    margin-left: 60px;
+    
+}
+
+#contenu fieldset img {
+    margin-left: 50px;
+    
 }
 
 #contenu label {
