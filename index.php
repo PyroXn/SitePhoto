@@ -71,16 +71,16 @@ function isOk() {
 }
 
 function home() {
-    $title = "Bienvenue !";
+    $title = "Pixels Arts - Site de concours de photo gratuit";
     $contenu = '<div id="menu_gauche">
                     <img class="photo_article" src="./templates/images/img.jpeg" alt=""></img>
                 </div>
                 <h1>
-                    Titre article
+                    Présentation
                 </h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst. Vestibulum a quam ante, sit amet fermentum orci.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mollis orci sit amet mi egestas a tincidunt libero dignissim. Cras tincidunt rutrum sem, sit amet pharetra ante varius a. Praesent feugiat accumsan felis at dignissim. Cras nec elit vitae sapien ultrices volutpat. Nunc velit risus, volutpat ut tempus ut, tristique quis lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam eros diam, tincidunt ac hendrerit at, tempus at dolor. Fusce felis metus, imperdiet eu pellentesque sed, lacinia quis leo. Suspendisse ut ligula et magna lacinia pulvinar. Nunc lacinia enim sed elit venenatis vehicula. Praesent at massa dui. Nullam condimentum vulputate metus non euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In hac habitasse platea dictumst. Vestibulum a quam ante, sit amet fermentum orci.
+                    <strong>Pixels Arts</strong> vous permet de participer à un concours de photographie. Chaques mois de nouveaux concours sont proposés et des cadeaux sont à gagner.
+                    <strong>Pixels Arts</strong>, c\'est aussi la possibilité de partager ses photographies personnelles avec une communautée de passionnés.
                 </p>';
     $contenu .= mosaique();
     display($title,$contenu);
@@ -89,29 +89,29 @@ function home() {
 function mosaique() {
     include_once 'sql/classement.sql.php';
     include_once 'sql/concours.sql.php';
+    include_once 'sql/image.sql.php';
     
     $concours = lastConcour();
-    $tabImage = bestScore($concours->getId());
+    $tabBestNote = bestScore($concours->getId());
+    $tabGalerie = getImageGalerie();
     $contenu = '<hr></hr><div class="colonne">
                     <h2>
                         <a href="#" alt="Les mieux notées">Les mieux notées</a>
                     </h2>';
-    foreach($tabImage as $tab) {
+    foreach($tabBestNote as $tab) {
         $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox">
                         <img src="thumb.php?src='.$tab->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>
                 <div class="colonne">
                     <h2>
-                        <a href="#" alt="Les dernières photos de nos gold">Les dernières photos de nos gold</a>
-                    </h2>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenu.jpg" alt=""></img></a>
-                </div>';
+                        <a href="#" alt="Photos issues des galeries">Photos issues des galeries</a>
+                    </h2>';
+    foreach($tabGalerie as $tabG) {
+        $contenu .= '<a href="'.$tabG->getUrl().'" title="'.$tabG->getTitre().'" class="zoombox">
+                        <img src="thumb.php?src='.$tabG->getUrl().'&x=132&y=83&f=0"></img></a>';
+    }
+    $contenu .= '</div>';
     return $contenu;
 }
 

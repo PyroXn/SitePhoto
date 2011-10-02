@@ -71,4 +71,20 @@ function getLastImage($idMembre) {
     }
     return $tabImage;
 }
+
+/**
+ * Permet de retourner des photos de galerie
+ */
+function getImageGalerie() {
+    $tabImage = array();
+    $sql = 'SELECT * FROM images WHERE idConcours=0 ORDER BY RAND() LIMIT 6';
+    $req = mysql_query($sql);
+    while($data = mysql_fetch_assoc($req)) {
+        $image = new Image($data['url']);
+        $image->setTitre($data['titre']);
+        $image->setId($data['id']);
+        $tabImage[] = $image;
+    }
+    return $tabImage;
+}
 ?>
