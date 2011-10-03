@@ -31,7 +31,7 @@ class Membre {
     }
 
     function getPseudo() {
-        return $this->pseudo;
+        return stripcslashes($this->pseudo);
     }
     
     function getPseudoFormat() {

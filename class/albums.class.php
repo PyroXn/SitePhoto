@@ -7,7 +7,7 @@ class Album {
     
     function __construct($id = null,$titre = null,$idMembres = null) {
         $this->id = $id;
-        $this->titre = strip_tags(mysql_real_escape_string ($titre));
+        $this->titre = stripcslashes(strip_tags(mysql_real_escape_string ($titre)));
         $this->idMembres = $idMembres;      
     }
     
@@ -20,7 +20,7 @@ class Album {
     }
 
     public function getTitre() {
-        return $this->titre;
+        return stripcslashes($this->titre);
     }
 
     public function setTitre($titre) {
