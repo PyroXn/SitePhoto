@@ -37,8 +37,8 @@ function profil() {
     $concours = lastConcour();
     $membre = loadMembre($_GET['id']);
     
-    $title = "Bienvenue sur la page de " . $membre->getPseudo() . "";
-    $contenu .= menuLeft($membre);
+    $title = 'Bienvenue sur la page de ' . $membre->getPseudo() . '';
+    $contenu = menuLeft($membre);
     $contenu .= '<h1>
                     Présentation
                 </h1>
