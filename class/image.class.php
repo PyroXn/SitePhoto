@@ -29,11 +29,11 @@ class Image {
     }
 
     function getTitre() {
-        return $this->titre;
+        return utf8_encode($this->titre);
     }
 
     function getDescription() {
-        return $this->description;
+        return utf8_encode($this->description);
     }
 
     function getIdMembre() {
