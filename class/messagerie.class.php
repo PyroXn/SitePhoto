@@ -8,60 +8,81 @@
 
 class Messagerie {
     
+    private $id;
     private $expediteur;
     private $destinataire;
     private $sujet;
     private $message;
     private $timestamp;
+    private $etat;
     
-    function __construct($expediteur, $destinataire, $sujet, $message, $timestamp) {
+    function __construct($id=null,$expediteur=null, $destinataire=null, $sujet=null, $message=null, $timestamp=null, $etat=null) {
+        $this->id = $id;
         $this->expediteur = $expediteur;
         $this->destinataire = $destinataire;
         $this->sujet = $sujet;
         $this->message = $message;
         $this->timestamp = $timestamp;
+        $this->etat = $etat;
     }
     
-    function getExpediteur() {
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getExpediteur() {
         return $this->expediteur;
     }
 
-    function setExpediteur($expediteur) {
+    public function setExpediteur($expediteur) {
         $this->expediteur = $expediteur;
     }
 
-    function getDestinataire() {
+    public function getDestinataire() {
         return $this->destinataire;
     }
 
-    function setDestinataire($destinataire) {
+    public function setDestinataire($destinataire) {
         $this->destinataire = $destinataire;
     }
 
-    function getSujet() {
+    public function getSujet() {
         return $this->sujet;
     }
 
-    function setSujet($sujet) {
+    public function setSujet($sujet) {
         $this->sujet = $sujet;
     }
 
-    function getMessage() {
+    public function getMessage() {
         return $this->message;
     }
 
-    function setMessage($message) {
+    public function setMessage($message) {
         $this->message = $message;
     }
-    
-    function getTimestamp() {
+
+    public function getTimestamp() {
         return $this->timestamp;
     }
 
-    function setTimestamp($timestamp) {
+    public function setTimestamp($timestamp) {
         $this->timestamp = $timestamp;
     }
-    
+
+    public function getEtat() {
+        return $this->etat;
+    }
+
+    public function setEtat($etat) {
+        $this->etat = $etat;
+    }
+
+        
     /**
      * Permet de sécuriser le message
      */

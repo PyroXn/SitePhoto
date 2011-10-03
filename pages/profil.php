@@ -120,6 +120,7 @@ function profil() {
     display($title, $contenu);
 }
 function menuLeft($membre) {
+    include_once 'sql/messagerie.sql.php';
     $contenu = '<div id="menu_gauche">
                     <a href="index.php?p=profil&id='.$membre->getId().'" alt="Mon profil"><img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img></a>';
     if(isMyPage($membre->getId())) {
@@ -127,7 +128,7 @@ function menuLeft($membre) {
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
                         <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
                         <li><a title="modifier profil" href="index.php?p=changeProfil">Modifier mon profil</a></li>
-                        <li><a title="messagerie" href="#">Messagerie</a></li>
+                        <li><a title="messagerie" href="index.php?p=messagerie">'.newMessage().'</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>';
     } else {

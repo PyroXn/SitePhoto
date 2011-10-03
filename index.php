@@ -41,6 +41,8 @@ elseif ($_GET['p'] == "getAlbum") { include('pages/galerie.php'); getAlbum(); }
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
 elseif ($_GET['p'] == "getPhoto") { include('pages/galerie.php'); getPhoto(); }
 
+elseif ($_GET['p'] == "messagerie") { include_once 'pages/messagerie.php'; messagerie(); }
+
 /**
  * Sert à afficher la page
  * @param String $titre Titre de la page
