@@ -373,7 +373,8 @@ function setAvatar() {
         $_SESSION['user']->setAvatar($image->getUrl());
         $title = 'Pixels Arts - Modifier mon profil';
         $contenu = menuLeft($_SESSION['user']);
-        $contenu .= '<p>Avatar modifié avec succès.</p>';
+        $contenu .= '<h1>Modifier mon profil</h1>
+                    <p>Avatar modifié avec succès.</p>';
         $contenu .= mosaique();
     }
     display($title,$contenu);

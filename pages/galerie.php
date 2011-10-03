@@ -26,9 +26,12 @@ function getAlbum() {
         $objet->setIdAlbum($data['idAlbum']);
         $objet->setIdConcour(@$data['idConcour']);
         $objet->setIdMembre($data['idMembres']);
-        $contenu .= '<a href="index.php?p=getGalerie&album='.$tab->getId().'"><img src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$objet->getTitre().'"></img></a>';
+        if(mysql_num_rows($req) == 1) {
+            $contenu .= '<a href="index.php?p=getGalerie&album='.$tab->getId().'"><img src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$objet->getTitre().'"></img></a>';
+        }
         unset($objet);
     }
+    $contenu .= mosaique();
     display($title, $contenu);
 }
 
