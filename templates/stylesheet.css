@@ -130,19 +130,33 @@ hr {
 #contenu fieldset {
     margin-top: 10px;
     margin-left: 160px;
-    width: 820px;
+    width: 816px;
+    border:2px solid black;
     
+    
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;	
+    padding-bottom: 10px;
 }
 
 #contenu fieldset p {
-    margin-left: 60px;
-    
+    margin-left: 60px; 
 }
 
 #contenu fieldset img {
     margin-left: 50px;
-    
+    border: 2px solid black;
 }
+
+#contenu fieldset legend {
+    margin-left: 10px;
+    border-left: black 2px solid;
+    border-right: black 2px solid;
+    font-weight: bold;
+    color: black;
+    
+  }
 
 #contenu label {
     display: block;
