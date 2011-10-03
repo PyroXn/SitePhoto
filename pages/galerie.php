@@ -57,6 +57,7 @@ function getGalerie() {
         $contenu .= '<a href="index.php?p=getPhoto&id='.$objet->getId().'"><img src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$objet->getTitre().'"></img></a>';
         unset($objet);
     }
+    $contenu .= mosaique();
     display($title,$contenu);
 }
 
