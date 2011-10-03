@@ -29,11 +29,11 @@ class Image {
     }
 
     function getTitre() {
-        return utf8_encode($this->titre);
+        return stripcslashes($this->titre);
     }
 
     function getDescription() {
-        return utf8_encode($this->description);
+        return stripcslashes($this->description);
     }
 
     function getIdMembre() {
@@ -90,7 +90,7 @@ class Image {
     /*    SETTER    */
 
     function setTitre($titre) {
-        $this->titre = strip_tags(mysql_real_escape_string ($titre));
+        $this->titre = stripcslashes(strip_tags(mysql_real_escape_string ($titre)));
     }
     
     function setId($id) {
@@ -101,7 +101,7 @@ class Image {
         $this->url = $url;
     }
     function setDescription($description) {
-        $this->description = strip_tags(mysql_real_escape_string ($description));
+        $this->description = stripcslashes(strip_tags(mysql_real_escape_string ($description)));
     }
 
     function setIdMembre($idMembre) {

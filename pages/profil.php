@@ -160,17 +160,17 @@ function newPhoto() {
     $contenu .= '<form method="POST" action="index.php?p=newPhotoSuccess" name="formAjoutPhoto" enctype="multipart/form-data">';
     $contenu .= '<p>
                  <label for="titre">Titre</label>
-                 <input type="text" name="titre" onBlur="checkTitre()"><span id="titre"></span>
+                 <input type="text" name="titre" id="titre"><span class="error"></span>
                  <label for="description">Description</label>
-                 <textarea name="description" rows="4" cols="50" onBlur="checkDescription()"></textarea><span id="description"></span>              
+                 <textarea name="description" rows="4" cols="50" id="description"></textarea><span class="error"></span>              
                  <label for="album">Album</label>';
-    $contenu .= '<select name="album" onBlur="checkAlbum">
+    $contenu .= '<select name="album" id="album">
                  <option value="">...</option>';
     $tabAlbums = getAlbums($_SESSION['user']->getId());
     for ($i = 0; $i < getNbAlbums($_SESSION['user']->getId()); $i++) {
         $contenu .= '<option value="' . $tabAlbums[$i]->getId() . '">' . $tabAlbums[$i]->getTitre() . '</option>';
     }
-    $contenu .= '</select><span id="album"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
+    $contenu .= '</select><span class="error"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     $concours = lastConcour();
     if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
@@ -183,7 +183,7 @@ function newPhoto() {
     }
     $contenu .= '<label for="photo">Photo : </label>
                 <input type="file" name="photo" id="photo"><span id="photo"></span>
-                <input class="submit" type="button" value="Partager ma Photo" onClick="checkUpload()">
+                <input class="submit" type="submit" value="Partager ma Photo" id="submitPhoto">
                 </p>
                 </form>';
     display($title, $contenu);

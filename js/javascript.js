@@ -148,38 +148,52 @@ $(function() {
         }
         return false;
     });
+    
+    $('#titre').blur(function() {
+        var titre = $(this).val();
+        if (titre.length > 25 || titre == null || titre.length < 3) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le titre de la photo doit contenir entre 3 et 25 caractères");
+        } else if (titre.length >= 3) {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
+        }
+    });
+    
+    $('#description').blur(function() {
+        var desc = $(this).val();
+        if (desc == null || desc.length < 20) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> La description de la photo doit contenir au minimum 20 caractères");
+        } else if (desc.length >= 20) {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
+        }
+    });
+    
+    $('#album').blur(function() {
+        var album = $(this).val();
+        if (album == null || album == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Merci de bien vouloir choisir un album");
+        } else if (album != null) {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        } else {
+            $(this).next().show().html("");
+        }
+    });
+    
+        $('#submitPhoto').click(function() {
+        var titre = $("#titre").val();
+        var desc = $("#description").val();
+        var album = $("#album").val();
+                    
+        if(titre != "" && titre != null && desc != "" && desc != null
+                && album != "" && album != null) {
+            submit();
+        }
+        return false;
+    });
 })
-
-function ouvrirPopup(page,nom,option) {
-    window.open(page,nom,option);
-}
-
-function checkTitre() {
-    if(document.formAjoutPhoto.titre.value.length < 3) {
-        document.getElementById("titre").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("titre").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
-
-function checkDescription() {
-    if(document.formAjoutPhoto.description.value.length < 15) {
-        document.getElementById("description").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("description").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
-
-function checkAlbum() {
-    if(document.formAjoutPhoto.album.value == "") {
-        document.getElementById("album").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("album").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
 
 function checkPhoto() {
     if(document.formAjoutPhoto.photo.value == "") {
