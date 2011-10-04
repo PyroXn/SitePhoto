@@ -27,8 +27,11 @@ function getAlbum() {
         $objet->setIdConcour(@$data['idConcour']);
         $objet->setIdMembre($data['idMembres']);
         if(mysql_num_rows($req) == 1) {
-            $contenu .= ' 
-                <a href="index.php?p=getGalerie&album='.$tab->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$tab->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$tab->getTitre().'"></img></a>';
+            $contenu .= '
+                <a href="index.php?p=getGalerie&album='.$tab->getId().'">
+                    <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=255&f=0" title="'.$tab->getTitre().'"></img>
+                </a>';
+            //'<a href="index.php?p=getGalerie&album='.$tab->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$tab->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$tab->getTitre().'"></img></a>';
         }
         unset($objet);
     }
@@ -42,7 +45,8 @@ function getGalerie() {
     }
     $title = 'Pixels Arts - Galerie';
     $contenu = menuLeft($_SESSION['user']);
-    $contenu .= '<h1>Choix de la photo à consulter :</h1>';
+    $contenu .= '<h1>Choix de la photo à consulter :</h1>
+                    <div id="galerie">';
     $sql = 'SELECT * FROM images WHERE idAlbum="'.$_GET['album'].'" ORDER BY id';
     $req = mysql_query($sql);
     while($data = mysql_fetch_assoc($req)) {
@@ -55,9 +59,19 @@ function getGalerie() {
         $objet->setIdAlbum($data['idAlbum']);
         $objet->setIdConcour(@$data['idConcour']);
         $objet->setIdMembre($data['idMembres']);
-        $contenu .= '<a href="index.php?p=getPhoto&id='.$objet->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$objet->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$objet->getTitre().'"></img></a>';
+        $contenu .= '
+            
+                    <a href="index.php?p=getPhoto&id='.$objet->getId().'">
+                        <span class="cadre_album"></span>
+                        <span class="titre_album">'.$objet->getTitre().'</span>
+                        <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=255&f=0" title="'.$objet->getTitre().'"></img>
+                    </a>
+           
+            ';
+        //'<a href="index.php?p=getPhoto&id='.$objet->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$objet->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$objet->getTitre().'"></img></a>';
         unset($objet);
     }
+    $contenu .= '</div>';
     $contenu .= mosaique();
     display($title,$contenu);
 }

@@ -135,8 +135,8 @@ hr {
     
     
     -moz-border-radius:8px;
-    -webkit-border-radius:8px;	
-    border-radius:8px;	
+    -webkit-border-radius:8px;
+    border-radius:8px;
     padding-bottom: 10px;
 }
 
@@ -207,14 +207,19 @@ hr {
     margin-top: 0px;
 }
 
-#contenu a {
-   position: relative;
+#galerie {
+    margin-left: 160px;
+    width: 820px;
+    position: relative;
+}
+
+#galerie a {
    text-decoration: none;
 }
 
-#contenu .album {
+#galerie .album {
     margin-top: 5px;
-    margin-left: 8px;
+    margin-right: 5px;
     border: 5px solid white;
 
     /*marche pas sur les ancienne version windaube voir commentaire conditionnel*/
@@ -223,35 +228,35 @@ hr {
     z-index: 1;
 }
 
-#contenu .cadre_album, .titre_album {
+#galerie .cadre_album, .titre_album {
     visibility: hidden;
     position: absolute;
     z-index: 2;
     margin-top: 10px;
-    margin-left: 13px;
+    margin-left: 5px;
     
     
 }
 
-#contenu .cadre_album {
-    width: 240px;
-    height: 146px;
+#galerie .cadre_album {
+    width: 255px;
+    height: 155px;
     background: #ddd;
     opacity: 0.5;
 }
 
-#contenu .titre_album {
+#galerie .titre_album {
     z-index: 3;
-    width: 240px;
+    width: 255px;
     text-align: center;
-    margin-top: 58px;
+    margin-top: 65px;
     color: #222;
     font-size: 28px;
     font-weight: bold;
     text-decoration: none;
 }
 
-#contenu a:hover span {
+#galerie a:hover span {
     visibility: visible;
 }
 
