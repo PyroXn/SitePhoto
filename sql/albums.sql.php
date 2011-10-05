@@ -53,4 +53,15 @@ function addAlbum(Album $album) {
     $sql = 'INSERT INTO albums (titre,idMembres) VALUES ("'.$album->getTitre().'","'.$album->getIdMembres().'")';
     $req = mysql_query($sql);
 }
+
+function loadAlbum() {
+    // Affichage des ...
+    echo '<option value="">...</option>';
+    $sql = 'SELECT * FROM albums WHERE idMembres="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+    while($data = mysql_fetch_assoc($req)) {
+        $album = new Album($data['id'],$data['titre'],$data['idMembres']);
+        echo '<option value="'.$album->getId().'">'.$album->getTitre().'</option>';
+    }
+}
 ?>

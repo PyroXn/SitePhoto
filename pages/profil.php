@@ -165,13 +165,9 @@ function newPhoto() {
                  <label for="description">Description</label>
                  <textarea name="description" rows="4" cols="50" id="description"></textarea><span class="error"></span>              
                  <label for="album">Album</label>';
-    $contenu .= '<select name="album" id="album">
-                 <option value="">...</option>';
-    $tabAlbums = getAlbums($_SESSION['user']->getId());
-    for ($i = 0; $i < getNbAlbums($_SESSION['user']->getId()); $i++) {
-        $contenu .= '<option value="' . $tabAlbums[$i]->getId() . '">' . $tabAlbums[$i]->getTitre() . '</option>';
-    }
-    $contenu .= '</select><span class="error"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
+    $contenu .= '<select name="album" id="loadAlbum">
+                    <option>...</option>
+                 </select> <span class="error"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     $concours = lastConcour();
     if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
@@ -268,38 +264,6 @@ function newAlbumSuccess() {
     $album = new Album(null,$_POST['titre'],$_SESSION['user']->getId());
     addAlbum($album);
     @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');    
-}
-
-function vote() {
-    if(!isOk()) {
-        accessForbidden();
-    }
-    include('sql/image.sql.php');
-    
-    $vote = $_POST['vote'];
-    $idImage = $_POST['id'];
-    
-    $image = loadImage($idImage);
-    $now_Y = date("Y");
-    $now_m = date("m");
-    $now_d = date("d");
-    $now = "$now_d-$now_m-$now_Y";
-    
-    // On efface les anciens votes
-    $sql = 'DELETE FROM vote WHERE date != "'.$now.'" AND idImage = "'.$image->getId().'"';
-    $req = mysql_query($sql);
-
-    // On regarde si le vote journalié est déjà enregistré
-    $sql = 'SELECT * FROM vote WHERE date="'.$now.'" AND idImage = "'.$image->getId().'" AND idMembre = "'.$_SESSION['user']->getId().'"';
-    $req = mysql_query($sql);
-    $nb = mysql_num_rows($req);
-
-    if($nb < 1) {
-        // On ajoute l'ip pour la journée
-        $sql = 'INSERT INTO vote (date,idImage,idMembre,vote) VALUES ("'.$now.'","'.$image->getId().'","'.$_SESSION['user']->getId().'","'.$vote.'")';
-        $req = mysql_query($sql);
-        voteImage($vote, $idImage);
-    }
 }
 
 function changeProfil() {

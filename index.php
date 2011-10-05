@@ -31,7 +31,6 @@ elseif ($_GET['p'] == "newPhoto") { include('pages/profil.php'); newPhoto(); }
 elseif ($_GET['p'] == "newPhotoSuccess") { include('pages/profil.php'); newPhotoSuccess(); }
 elseif ($_GET['p'] == "newAlbum") { include('pages/profil.php'); newAlbum(); }
 elseif ($_GET['p'] == "newAlbumSuccess") { include('pages/profil.php'); newAlbumSuccess(); }
-elseif ($_GET['p'] == "vote") { include('pages/profil.php'); vote(); }
 elseif ($_GET['p'] == "changeProfil") { include_once 'pages/profil.php'; changeProfil(); }
 elseif ($_GET['p'] == "setAvatar") { include_once 'pages/profil.php'; setAvatar(); }
 elseif ($_GET['p'] == "setMail") { include_once 'pages/profil.php'; setMail(); }
@@ -42,6 +41,10 @@ elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie()
 elseif ($_GET['p'] == "getPhoto") { include('pages/galerie.php'); getPhoto(); }
 
 elseif ($_GET['p'] == "messagerie") { include_once 'pages/messagerie.php'; messagerie(); }
+
+// AJAX
+elseif ($_GET['p'] == "loadAlbum") { include_once 'sql/albums.sql.php'; loadAlbum(); }
+elseif ($_GET['p'] == "vote") { include_once 'sql/image.sql.php'; vote(); }
 
 /**
  * Sert à afficher la page

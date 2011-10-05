@@ -87,4 +87,35 @@ function getImageGalerie() {
     }
     return $tabImage;
 }
+
+function vote() {
+    if(!isOk()) {
+        accessForbidden();
+    }
+    
+    $vote = $_POST['vote'];
+    $idImage = $_POST['id'];
+    
+    $image = loadImage($idImage);
+    $now_Y = date("Y");
+    $now_m = date("m");
+    $now_d = date("d");
+    $now = "$now_d-$now_m-$now_Y";
+    
+    // On efface les anciens votes
+    $sql = 'DELETE FROM vote WHERE date != "'.$now.'" AND idImage = "'.$image->getId().'"';
+    $req = mysql_query($sql);
+
+    // On regarde si le vote journalié est déjà enregistré
+    $sql = 'SELECT * FROM vote WHERE date="'.$now.'" AND idImage = "'.$image->getId().'" AND idMembre = "'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+    $nb = mysql_num_rows($req);
+
+    if($nb < 1) {
+        // On ajoute l'ip pour la journée
+        $sql = 'INSERT INTO vote (date,idImage,idMembre,vote) VALUES ("'.$now.'","'.$image->getId().'","'.$_SESSION['user']->getId().'","'.$vote.'")';
+        $req = mysql_query($sql);
+        voteImage($vote, $idImage);
+    }
+}
 ?>

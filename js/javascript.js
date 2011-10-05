@@ -171,7 +171,45 @@ $(function() {
         }
     });
     
-    $('#album').blur(function() {
+    $('#submitPhoto').click(function() {
+        var titre = $("#titre").val();
+        var desc = $("#description").val();
+        var album = $("#loadAlbum").val();
+                    
+        if(titre != "" && titre != null && desc != "" && desc != null
+                && album != "" && album != null) {
+            submit();
+        }
+        return false;
+    });
+    
+    $('#loadAlbum').mouseover(function() {
+        $.ajax ({
+            url : "index.php?p=loadAlbum",
+            complete : function (xhr, result)
+            {
+                if(result != "success") return;
+                var reponse = xhr.responseText;
+                $('#loadAlbum').html('');
+                $('#loadAlbum').append(reponse);
+            }
+        });
+    });
+    
+    $('#loadAlbum').focus(function() {
+        $.ajax ({
+            url : "index.php?p=loadAlbum",
+            complete : function (xhr, result)
+            {
+                if(result != "success") return;
+                var reponse = xhr.responseText;
+                $('#loadAlbum').html('');
+                $('#loadAlbum').append(reponse);
+            }
+        });
+    });
+    
+    $('#loadAlbum').blur(function() {
         var album = $(this).val();
         if (album == null || album == "") {
             $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Merci de bien vouloir choisir un album");
@@ -182,17 +220,6 @@ $(function() {
         }
     });
     
-        $('#submitPhoto').click(function() {
-        var titre = $("#titre").val();
-        var desc = $("#description").val();
-        var album = $("#album").val();
-                    
-        if(titre != "" && titre != null && desc != "" && desc != null
-                && album != "" && album != null) {
-            submit();
-        }
-        return false;
-    });
 })
 
 function checkPhoto() {
@@ -287,7 +314,6 @@ function req_xhr( page, params)
 	xhr.open("POST", page, true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send(params);
-	document.getElementById("formAlbum").innerHTML = "Album ajouté. Actualisation...";
-        setTimeout("location.reload(true);","1000");
+	document.getElementById("formAlbum").innerHTML = "Album ajouté.";
 }
 
