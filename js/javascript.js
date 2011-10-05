@@ -183,7 +183,7 @@ $(function() {
         return false;
     });
     
-    $('#loadAlbum').mouseover(function() {
+    $('#loadAlbum').click(function() {
         $.ajax ({
             url : "index.php?p=loadAlbum",
             complete : function (xhr, result)
@@ -220,48 +220,16 @@ $(function() {
         }
     });
     
+    $('#formAlbum').click(function() {
+        var form = '<form method="POST" name="ajoutAlbum">\n\
+                    <label for="titre">Titre de l\'album</label>\n\
+                    <input type="text" name="titreAl" id="titreAlbum">\n\
+                    <input type="button" value="Ajouter l\'album" onclick="req_xhr(\'index.php?p=newAlbumSuccess\',\'titre=\'+titreAlbum.value+\'\')">\n\
+                    </form>';
+        $(this).next().show().html(form);       
+    })
+    
 })
-
-function checkPhoto() {
-    if(document.formAjoutPhoto.photo.value == "") {
-        document.getElementById("photo").innerHTML = "<img src='templates/images/check-rouge.png' class='noBorder'>";
-    }
-    else {
-        document.getElementById("photo").innerHTML = "<img src='templates/images/check-vert.png' class='noBorder'>";
-    }
-}
-function checkUpload() {
-    
-    checkTitre();
-    checkDescription();
-    checkAlbum();
-    checkPhoto();
-    
-    var titre = document.getElementById("titre").innerHTML;
-    var description = document.getElementById("description").innerHTML;
-    var album = document.getElementById("album").innerHTML;
-    var photo = document.getElementById("photo").innerHTML;
-    
-    var rouge = "<img src=\"templates/images/check-rouge.png\" class=\"noBorder\">";
-    
-    if(titre == rouge || description == rouge || album == rouge || photo == rouge) {
-        alert("Merci de bien vouloir corriger le formulaire.");
-    }
-    else {
-        document.formAjoutPhoto.submit();
-        document.getElementsByName(formAjoutPhoto)[0].submit();
-    }
-}
-
-function formAlbum() {
-    form = '<form method="POST" name="ajoutAlbum">';
-    form = form + '<label for="titre">Titre de l\'album</label>\n\
-                   <input type="text" name="titreAl" id="titreAlbum">\n\
-                   <input type="button" value="Ajouter l\'album" onclick="req_xhr(\'index.php?p=newAlbumSuccess\',\'titre=\'+titreAlbum.value+\'\')">\n\
-                   </form>';
-    <!--  -->
-    document.getElementById("formAlbum").innerHTML = form;
-}
 
 function getXHR()
 {
@@ -314,6 +282,6 @@ function req_xhr( page, params)
 	xhr.open("POST", page, true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send(params);
-	document.getElementById("formAlbum").innerHTML = "Album ajouté.";
+	document.getElementById("ajoutAlbum").innerHTML = "Album ajouté.";
 }
 

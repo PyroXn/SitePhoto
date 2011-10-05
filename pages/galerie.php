@@ -13,7 +13,8 @@ function getAlbum() {
     $tabAlbums = getAlbums($_GET['id']);
     $title = 'Pixels Arts - Albums';
     $contenu = menuLeft($_SESSION['user']);
-    $contenu .= '<h1>Choix de l\'album à consulter :</h1>';
+    $contenu .= '<h1>Choix de l\'album à consulter :</h1>
+                 <div id="galerie">';
     foreach ($tabAlbums as $tab) {
         $sql = 'SELECT * FROM images WHERE idMembres="' . $_GET['id'] . '" AND idAlbum="' . $tab->getId() . '" ORDER BY id LIMIT 1';
         $req = mysql_query($sql);
@@ -29,12 +30,15 @@ function getAlbum() {
         if(mysql_num_rows($req) == 1) {
             $contenu .= '
                 <a href="index.php?p=getGalerie&album='.$tab->getId().'">
+                    <span class="cadre_album"></span>
+                    <span class="titre_album">'.$tab->getTitre().'</span>
                     <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=255&f=0" title="'.$tab->getTitre().'"></img>
                 </a>';
             //'<a href="index.php?p=getGalerie&album='.$tab->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$tab->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$tab->getTitre().'"></img></a>';
         }
         unset($objet);
     }
+    $contenu .= '</div>';
     $contenu .= mosaique();
     display($title, $contenu);
 }

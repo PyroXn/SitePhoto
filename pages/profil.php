@@ -166,8 +166,8 @@ function newPhoto() {
                  <textarea name="description" rows="4" cols="50" id="description"></textarea><span class="error"></span>              
                  <label for="album">Album</label>';
     $contenu .= '<select name="album" id="loadAlbum">
-                    <option>...</option>
-                 </select> <span class="error"></span> - <a href="#" class="createAlbum" onClick="formAlbum()">Créer un album</a><span id="formAlbum"></span>';
+                    <option value="">...</option>
+                 </select> <span class="error"></span> - <a href="#" class="createAlbum" id="formAlbum">Créer un album</a><span id="ajoutAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     $concours = lastConcour();
     if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
@@ -179,7 +179,7 @@ function newPhoto() {
         $contenu .= 'Vous avez déjà une photo.';
     }
     $contenu .= '<label for="photo">Photo : </label>
-                <input type="file" name="photo" id="photo"><span id="photo"></span>
+                <input type="file" name="photo" id="photo"><span class="error"></span>
                 <input class="submit" type="submit" value="Partager ma Photo" id="submitPhoto">
                 </p>
                 </form>';
