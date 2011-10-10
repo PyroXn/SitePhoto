@@ -37,10 +37,10 @@ function profil() {
     $concours = lastConcour();
     $membre = loadMembre($_GET['id']);
     
-    $title = 'Bienvenue sur la page de ' . $membre->getPseudo() . '';
+    $title = 'Pixels Arts - ' . $membre->getPseudo() . '';
     $contenu = menuLeft($membre);
     $contenu .= '<h1>
-                    Présentation
+                    Profil de '.$membre->getPseudoFormat().'
                 </h1>
                 <div id="presentation">
                     <span id="caracteristique_gauche">
@@ -85,17 +85,23 @@ function profil() {
         $contenu .= '<h3>Aucune image!</h3>';
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
     }
+    $contenu .= '</div><hr></hr>';
+    $contenu .= mosaiqueProfil($membre->getId());
+    display($title, $contenu);
+}
+
+function mosaiqueProfil($id) {
+    include_once 'sql/image.sql.php';
+    
     // On recupère les 6 dernières images
     $listImage = array();
-    $listImage = getLastImage($membre->getId());
-    $contenu .= '</div>
-                <hr></hr>
-                <div id="colonne_gauche" class="colonne_profil">
+    $listImage = getLastImage($id);
+    $contenu .= '<div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>';
-    for($i = 0; $i <= count($listImage)-1;$i++) {
-        $contenu .= '<a title="'.$listImage[$i]->getTitre().'" class="zoombox" href="'.$listImage[$i]->getUrl().'"><img src="thumb.php?src='.$listImage[$i]->getUrl().'&x=110&y=69&f=0"></img></a>';
+    foreach($listImage as $list) {
+        $contenu .= '<a title="'.$list->getTitre().'" class="zoombox zgallery3" href="'.$list->getUrl().'"><img src="thumb.php?src='.$list->getUrl().'&x=110&y=69&f=0"></img></a>';
     }
 
     // TODO : Pierre : Prevoir mise en page des dernières actions
@@ -111,13 +117,7 @@ function profil() {
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
                     <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
                 </div>';
-
-
-
-
-
-
-    display($title, $contenu);
+    return $contenu;
 }
 function menuLeft($membre) {
     include_once 'sql/messagerie.sql.php';
@@ -163,11 +163,15 @@ function newPhoto() {
                  <label for="titre">Titre</label>
                  <input type="text" name="titre" id="titre"><span class="error"></span>
                  <label for="description">Description</label>
-                 <textarea name="description" rows="4" cols="50" id="description"></textarea><span class="error"></span>              
+                 <textarea name="description" rows="4" cols="40" id="description"></textarea><span class="error"></span>              
                  <label for="album">Album</label>';
     $contenu .= '<select name="album" id="loadAlbum">
-                    <option value="">...</option>
-                 </select> <span class="error"></span> - <a href="#" class="createAlbum" id="formAlbum">Créer un album</a><span id="ajoutAlbum"></span>';
+                    <option value="">...</option>';
+    $tabAlbums = getAlbums($_SESSION['user']->getId());
+    foreach($tabAlbums as $tabA) {
+        $contenu .= '<option value="'.$tabA->getId().'">'.$tabA->getTitre().'<img src="templates/images/check-rouge.png"></img></option>';
+    }
+    $contenu .= '</select> <span class="error"></span> - <a href="#" class="createAlbum" id="formAlbum">Ajouter un album</a><span id="ajoutAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     $concours = lastConcour();
     if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
@@ -279,8 +283,8 @@ function changeProfil() {
                         <p>
                         <img src="'.$_SESSION['user']->getAvatar().'" title="'.$_SESSION['user']->getPseudo().'"></img>
                         <label for="avatar">Avatar</label>
-                        <input type="file" name="photo" id="photo">
-                        <input  type="submit" value="Modifier l\'avatar" class="submit"/>
+                        <input type="file" name="photo" id="avatar"><span class="error"></span>
+                        <input  type="submit" value="Modifier l\'avatar" id="submitAvatar" class="submit"/>
                         </p>
                     </form>
                 </fieldset>
@@ -318,6 +322,8 @@ function changeProfil() {
 function setAvatar() {
 
     include_once 'sql/membre.sql.php';
+    include_once 'sql/image.sql.php';
+    
     if (!isset($_FILES['photo']) || !isOk()) {
         accessForbidden();
     }
@@ -333,6 +339,7 @@ function setAvatar() {
         } else {
             $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 0, 173, 128, 173));
         }
+        // On supprime l'original
         resizeImage::deleteImage($error);
         updateAvatar($image->getUrl());
         $_SESSION['user']->setAvatar($image->getUrl());
@@ -383,4 +390,5 @@ function setPassword() {
                  <p>Votre mot de passe a bien été changé.</p>';
     display($title,$contenu);
 }
+
 ?>

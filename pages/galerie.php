@@ -8,11 +8,13 @@ function getAlbum() {
         accessForbidden();
     }
 
-    include('sql/albums.sql.php');
-
+    include_once 'sql/albums.sql.php';
+    include_once 'sql/membre.sql.php';
+    
+    $membre = loadMembre($_GET['id']);
     $tabAlbums = getAlbums($_GET['id']);
     $title = 'Pixels Arts - Albums';
-    $contenu = menuLeft($_SESSION['user']);
+    $contenu = menuLeft($membre);
     $contenu .= '<h1>Choix de l\'album à consulter :</h1>
                  <div id="galerie">';
     foreach ($tabAlbums as $tab) {
@@ -32,7 +34,7 @@ function getAlbum() {
                 <a href="index.php?p=getGalerie&album='.$tab->getId().'">
                     <span class="cadre_album"></span>
                     <span class="titre_album">'.$tab->getTitre().'</span>
-                    <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=255&f=0" title="'.$tab->getTitre().'"></img>
+                    <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=155&f=0" title="'.$tab->getTitre().'"></img>
                 </a>';
             //'<a href="index.php?p=getGalerie&album='.$tab->getId().'"><span class="cadre_album"></span><span class="titre_album">'.$tab->getTitre().'</span><img class="album" src="thumb.php?src='.$objet->getUrl().'&x=240&y=240&f=0" title="'.$tab->getTitre().'"></img></a>';
         }
@@ -47,8 +49,15 @@ function getGalerie() {
     if(!isset($_GET['album'])) {
         accessForbidden();
     }
+    include_once 'sql/membre.sql.php';
+    
+    $sql = 'SELECT idMembres FROM images WHERE idAlbum="'.$_GET['album'].'"';
+    $req = mysql_query($sql);
+    $infos = mysql_fetch_assoc($req);
+    
+    $membre = loadMembre($infos['idMembres']);
     $title = 'Pixels Arts - Galerie';
-    $contenu = menuLeft($_SESSION['user']);
+    $contenu = menuLeft($membre);
     $contenu .= '<h1>Choix de la photo à consulter :</h1>
                     <div id="galerie">';
     $sql = 'SELECT * FROM images WHERE idAlbum="'.$_GET['album'].'" ORDER BY id';
@@ -68,7 +77,7 @@ function getGalerie() {
                     <a href="index.php?p=getPhoto&id='.$objet->getId().'">
                         <span class="cadre_album"></span>
                         <span class="titre_album">'.$objet->getTitre().'</span>
-                        <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=255&f=0" title="'.$objet->getTitre().'"></img>
+                        <img class="album" src="thumb.php?src='.$objet->getUrl().'&x=255&y=155&f=0" title="'.$objet->getTitre().'"></img>
                     </a>
            
             ';
@@ -107,7 +116,7 @@ function getPhoto() {
                     <img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img>';
     if(isMyPage($membre->getId())) {
         $contenu .= '<ul>
-                        <li><a title="ajouter une photo" href="index.php?p=newPhoto">Supprimer la photo</a></li>
+                        <li><a title="ajouter une photo" href="index.php?p=deleteImage&id='.$objet->getId().'" id="deletePhoto">Supprimer la photo</a></li>
                     </ul>';
     } else {
         $contenu .= '<ul>
@@ -128,4 +137,24 @@ function getPhoto() {
     display($title,$contenu);
 }
 
+
+function deleteImage() {
+    include_once 'pages/profil.php';
+    include_once 'sql/image.sql.php';
+    
+    if(!isOk() || !isset($_GET['id']) || isMyImage($_GET['id']) != 1) {
+        accessForbidden();
+    }
+    $image = loadImage($_GET['id']);
+    resizeImage::deleteImage($image->getUrl());
+    delImage($image->getId());
+    $title = 'Pixels Arts - Galerie';
+    $contenu = menuLeft($_SESSION['user']);
+    $contenu .= '<h1>Galerie - Image supprimé</h1>';
+    $contenu .= '<p>Votre photo a été supprimé avec succès.</p><hr></hr>';
+    $contenu .= mosaiqueProfil($_SESSION['user']->getId());
+    display($title,$contenu);
+    
+    
+}
 ?>

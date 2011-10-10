@@ -133,7 +133,7 @@ $(function() {
         var mail = $("#mail").val();
         var mail2 = $("#mail2").val();
                     
-        if(ck_email.test(mail) && (mail == mail2)) {
+        if(ck_email.test(mail) && (mail == mail2) && mail != "" && mail != null) {
             submit();
         }
         return false;
@@ -143,7 +143,7 @@ $(function() {
         var password = $("#password").val();
         var password2 = $("#password2").val();
                     
-        if(password == password2) {
+        if(password == password2 && password != "" && password != null) {
             submit();
         }
         return false;
@@ -151,8 +151,8 @@ $(function() {
     
     $('#titre').blur(function() {
         var titre = $(this).val();
-        if (titre.length > 25 || titre == null || titre.length < 3) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le titre de la photo doit contenir entre 3 et 25 caractères");
+        if (titre.length > 17 || titre == null || titre.length < 3) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le titre de la photo doit contenir entre 3 et 17 caractères");
         } else if (titre.length >= 3) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         } else {
@@ -177,36 +177,14 @@ $(function() {
         var album = $("#loadAlbum").val();
                     
         if(titre != "" && titre != null && desc != "" && desc != null
-                && album != "" && album != null) {
+            && album != "" && album != null) {
             submit();
         }
         return false;
     });
     
-    $('#loadAlbum').click(function() {
-        $.ajax ({
-            url : "index.php?p=loadAlbum",
-            complete : function (xhr, result)
-            {
-                if(result != "success") return;
-                var reponse = xhr.responseText;
-                $('#loadAlbum').html('');
-                $('#loadAlbum').append(reponse);
-            }
-        });
-    });
-    
-    $('#loadAlbum').focus(function() {
-        $.ajax ({
-            url : "index.php?p=loadAlbum",
-            complete : function (xhr, result)
-            {
-                if(result != "success") return;
-                var reponse = xhr.responseText;
-                $('#loadAlbum').html('');
-                $('#loadAlbum').append(reponse);
-            }
-        });
+    $('body').bind("contextmenu",function(e){  
+        return false;  
     });
     
     $('#loadAlbum').blur(function() {
@@ -227,61 +205,100 @@ $(function() {
                     <input type="button" value="Ajouter l\'album" onclick="req_xhr(\'index.php?p=newAlbumSuccess\',\'titre=\'+titreAlbum.value+\'\')">\n\
                     </form>';
         $(this).next().show().html(form);       
-    })
+    });
+    
+    $('#avatar').change(function() {
+        var photo = $(this).val();
+        if(photo == null || photo == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Merci de bien vouloir choisir une photo");       
+        }
+        else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    
+    $('#submitAvatar').click(function() {
+        var photo = $('#avatar').val();
+        if(photo != null && photo != "") {
+            submit();       
+        }
+        return false;
+    });
+    
+    loadAlbum = function() {
+        $.ajax ({
+            url : "index.php?p=loadAlbum",
+            complete : function (xhr, result)
+            {
+                if(result != "success") return;
+                var reponse = xhr.responseText;
+                $('#loadAlbum').html('');
+                $('#loadAlbum').append(reponse);
+            }
+        });
+    }
+    
+    $('#deletePhoto').click(function() {
+        if(confirm("Êtes-vous sur de vouloir supprimer votre photo ?")) {
+            return true;
+        }
+        return false;
+    });
     
 })
 
 function getXHR()
 {
-	var xhr = null;
+    var xhr = null;
 	
-	try
-	{
-		xhr = new XMLHttpRequest();
-	}
-	catch(e)
-	{
-		try
-		{
-			xhr = new ActiveXObject("Msxml2.XMLHTTP");
-		}
-		catch(e)
-		{
-			try
-			{
-				xhr = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			catch(e)
-			{
-				alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
-				return null;
-			}
-		}
-	}
+    try
+    {
+        xhr = new XMLHttpRequest();
+    }
+    catch(e)
+    {
+        try
+        {
+            xhr = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch(e)
+            {
+                alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+                return null;
+            }
+        }
+    }
 	
-	return xhr;
+    return xhr;
 }
 
 function req_xhr( page, params)
 {
-	var xhr = getXHR();
+    var xhr = getXHR();
 
-	xhr.onreadystatechange = function()
-	{	
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
-		{
-			// callback(xhr.responseText);
-			return 0;
-		}
-		if (xhr.readyState == 4 && (xhr.status == 404))
-		{
-			alert('Erreur 404 : Page non trouvee');
-		}		
-	};
+    xhr.onreadystatechange = function()
+    {	
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+        {
+            // callback(xhr.responseText);
+            return 0;
+        }
+        if (xhr.readyState == 4 && (xhr.status == 404))
+        {
+            alert('Erreur 404 : Page non trouvee');
+        }		
+    };
 	
-	xhr.open("POST", page, true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send(params);
-	document.getElementById("ajoutAlbum").innerHTML = "Album ajouté.";
+    xhr.open("POST", page, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(params);
+    document.getElementById("ajoutAlbum").innerHTML = "Album ajouté.";
+    loadAlbum();
 }
 

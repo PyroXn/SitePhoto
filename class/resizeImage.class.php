@@ -55,10 +55,19 @@ class resizeImage {
             $decalX = 0;
             $decalY = 0;
         }
-
         // On crée l'image avec la librairie GD
         if (self::$useGD) {
+            
+            // On prepare l'ajout du filigrame
+            $logo = imagecreatefrompng ('templates/images/copyrigh-photo.png');
+            $logox = imagesx($logo);
+            $logoy = imagesy($logo);
+            
             $miniature = imagecreatetruecolor($largeur, $hauteur);
+            
+            $destx = $largeur - $logox - 5;
+            $desty = $hauteur - $logoy - 5;
+            
             if (substr($img, -4) == ".jpg" || substr($img, -4) == ".JPG") {
                 $image = imagecreatefromjpeg($img);
             }
@@ -69,6 +78,12 @@ class resizeImage {
                 $image = imagecreatefromgif($img);
             }
             imagecopyresampled($miniature, $image, -$decalX, -$decalY, 0, 0, $dimX, $dimY, $dimension[0], $dimension[1]);
+            if($largeur > 130) {
+                imagealphablending($miniature,TRUE);
+                imagesavealpha($miniature,TRUE);
+                imagecopyresampled($miniature, $logo, $destx, $desty, 0, 0, 150, 30, 150, 30);
+            }
+            //imagecopymerge($miniature, $logo, $destx, $desty, 0, 0, $logox, $logoy, 100);
             imagejpeg($miniature, $dest, self::$quality);
 
 

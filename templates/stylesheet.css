@@ -127,13 +127,26 @@ hr {
     color: #f60;
 }
 
-#contenu fieldset {
+/*#contenu fieldset {
     margin-top: 10px;
     margin-left: 160px;
     width: 816px;
     border:2px solid black;
     
     
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    padding-bottom: 10px;
+}*/
+#contenu fieldset {
+    border: 1px solid #CCA383;
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 160px;
+    width: 816px;
+    background: #FFE8EF;
+    padding: 3px
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
     border-radius:8px;
@@ -146,17 +159,23 @@ hr {
 
 #contenu fieldset img {
     margin-left: 50px;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
 }
 
-#contenu fieldset legend {
+/*#contenu fieldset legend {
     margin-left: 10px;
     border-left: black 2px solid;
     border-right: black 2px solid;
     font-weight: bold;
     color: black;
     
-  }
+  }*/
+#contenu fieldset legend {
+    background: #CCA383;
+    padding: 6px;
+    font-weight: bold;
+    margin-left: 5px;
+}
 
 #contenu label {
     display: block;
@@ -214,7 +233,7 @@ hr {
 }
 
 #galerie a {
-   text-decoration: none;
+    text-decoration: none;
 }
 
 #galerie .album {
@@ -234,8 +253,8 @@ hr {
     z-index: 2;
     margin-top: 10px;
     margin-left: 5px;
-    
-    
+
+
 }
 
 #galerie .cadre_album {

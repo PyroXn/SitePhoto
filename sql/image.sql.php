@@ -55,7 +55,7 @@ function score(Image $image,$vote) {
  */
 function getLastImage($idMembre) {
     $tabImage = array();
-    $sql = 'SELECT * FROM images WHERE idMembres ="'.$idMembre.'" ORDER BY id DESC LIMIT 4';
+    $sql = 'SELECT * FROM images WHERE idMembres ="'.$idMembre.'" ORDER BY id DESC LIMIT 6';
     $req = mysql_query($sql);
     while($data = mysql_fetch_assoc($req)) {
         $image = new Image($data['url']);
@@ -117,5 +117,17 @@ function vote() {
         $req = mysql_query($sql);
         voteImage($vote, $idImage);
     }
+}
+
+function isMyImage($id) {
+    $sql = 'SELECT * FROM images WHERE id="'.$id.'" AND idMembres="'.$_SESSION['user']->getId().'"';
+    $req = mysql_query($sql);
+    return mysql_num_rows($req);
+    
+}
+
+function delImage($id) {
+    $sql = 'DELETE FROM images WHERE id="'.$id.'"';
+    $req = mysql_query($sql);
 }
 ?>

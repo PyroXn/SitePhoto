@@ -39,6 +39,7 @@ elseif ($_GET['p'] == "setPassword") { include_once 'pages/profil.php'; setPassw
 elseif ($_GET['p'] == "getAlbum") { include('pages/galerie.php'); getAlbum(); }
 elseif ($_GET['p'] == "getGalerie") { include('pages/galerie.php'); getGalerie(); }
 elseif ($_GET['p'] == "getPhoto") { include('pages/galerie.php'); getPhoto(); }
+elseif ($_GET['p'] == "deleteImage") { include_once 'pages/galerie.php'; deleteImage(); }
 
 elseif ($_GET['p'] == "messagerie") { include_once 'pages/messagerie.php'; messagerie(); }
 
@@ -104,7 +105,7 @@ function mosaique() {
                         <a href="#" alt="Les mieux notées">Les mieux notées</a>
                     </h2>';
     foreach($tabBestNote as $tab) {
-        $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox">
+        $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox zgallery1">
                         <img src="thumb.php?src='.$tab->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>
@@ -113,7 +114,7 @@ function mosaique() {
                         <a href="#" alt="Photos issues des galeries">Photos issues des galeries</a>
                     </h2>';
     foreach($tabGalerie as $tabG) {
-        $contenu .= '<a href="'.$tabG->getUrl().'" title="'.$tabG->getTitre().'" class="zoombox">
+        $contenu .= '<a href="'.$tabG->getUrl().'" title="'.$tabG->getTitre().'" class="zoombox zgallery2">
                         <img src="thumb.php?src='.$tabG->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>';
