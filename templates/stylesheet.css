@@ -592,10 +592,11 @@ hr {
 }
 
 .lastActions {
- 
     height: 18px;
 }
-
+.colonne_profil ul {
+    margin-top: 10px;
+}
 sup {
     color: #818181;
     font-size: 8px;
