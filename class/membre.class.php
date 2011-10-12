@@ -36,9 +36,17 @@ class Membre {
     
     function getPseudoFormat() {
         if($this->sexe == 1) {
-            return '<font color="#06C">'.$this->getPseudo().'</font>';
+            return '<font color=\"#06C\">'.$this->getPseudo().'</font>';
         } else {
-            return '<font color="#F06">'.$this->getPseudo().'</font>';
+            return '<font color=\"#F06\">'.$this->getPseudo().'</font>';
+        }
+    }
+    
+    function getPseudoAction() {
+        if($this->pseudo == $_SESSION['user']->getPseudo()) {
+            return 'Vous';
+        } else {
+            return $this->getPseudoFormat();
         }
     }
     

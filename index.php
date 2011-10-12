@@ -7,6 +7,7 @@ include('class/commentaire.class.php');
 include('class/image.class.php');
 include('class/resizeImage.class.php');
 include('class/albums.class.php');
+include('class/actions.class.php');
 
 session_start();
 

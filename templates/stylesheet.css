@@ -590,3 +590,13 @@ hr {
     color: #818181;
     font-size: 10px;
 }
+
+.lastActions {
+ 
+    height: 18px;
+}
+
+sup {
+    color: #818181;
+    font-size: 8px;
+}

@@ -92,6 +92,7 @@ function profil() {
 
 function mosaiqueProfil($id) {
     include_once 'sql/image.sql.php';
+    include_once 'sql/actions.sql.php';
     
     // On recupère les 6 dernières images
     $listImage = array();
@@ -110,12 +111,12 @@ function mosaiqueProfil($id) {
                     <h2>
                         <a href="#" alt="Dernières actions">Dernières actions</a>
                     </h2>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
-                    <a title="" href="#"><img src="./templates/images/miniaturecontenuprofil.jpg" alt=""></img></a>
+                    <ul>';
+    $tabActions = getLastAction();
+    foreach($tabActions as $tab) {
+        $contenu .= '<li class="lastActions">'.$tab->getActions().' <sup>'.$tab->intervalleTime().'</sup></li>';
+    }
+    $contenu .= '  </ul>
                 </div>';
     return $contenu;
 }
@@ -202,6 +203,7 @@ function newPhotoSuccess() {
     include('sql/image.sql.php');
     include('sql/albums.sql.php');
     include('sql/concours.sql.php');
+    include_once 'sql/actions.sql.php';
 
     $image = new Image(null);
     $album = getThisAlbum($_POST['album']);
@@ -233,6 +235,8 @@ function newPhotoSuccess() {
         if ($idConcour != 0) {
             membreParticipe($idConcour);
         }
+        $actions = $_SESSION['user']->getPseudoFormat() . ' a ajouté une photo à sa <a href=\"index.php?p=getGalerie&album='.$image->getIdAlbum().'\">gallerie</a>';
+        newAction($actions, $_SESSION['user']->getId());
         $title = 'Pixels Arts - Photo envoyé avec succès.';
         $contenu = '<h1>Photo envoyé avec succès.</h1>';
         $contenu .= '<p>Votre Photo a été envoyé avec succès</p>';
@@ -323,6 +327,7 @@ function setAvatar() {
 
     include_once 'sql/membre.sql.php';
     include_once 'sql/image.sql.php';
+    include_once 'sql/actions.sql.php';
     
     if (!isset($_FILES['photo']) || !isOk()) {
         accessForbidden();
@@ -343,11 +348,15 @@ function setAvatar() {
         resizeImage::deleteImage($error);
         updateAvatar($image->getUrl());
         $_SESSION['user']->setAvatar($image->getUrl());
+        // On ajoute l'action
+        $actions = $_SESSION['user']->getPseudoFormat() . ' a modifié son avatar';
+        newAction($actions, $_SESSION['user']->getId());
+        
         $title = 'Pixels Arts - Modifier mon profil';
         $contenu = menuLeft($_SESSION['user']);
         $contenu .= '<h1>Modifier mon profil</h1>
-                    <p>Avatar modifié avec succès.</p>';
-        $contenu .= mosaique();
+                    <p>Avatar modifié avec succès.</p><hr></hr>';
+        $contenu .= mosaiqueProfil($_SESSION['user']->getId());
     }
     display($title,$contenu);
     
@@ -366,12 +375,13 @@ function setMail() {
     if(!isMailExist($user)) {
         updateMail($user->getMail());
         $contenu .= '<h1>Modifier mon profil</h1>
-                     <p>Votre adresse e-mail a été modifié avec succès.</p>';
+                     <p>Votre adresse e-mail a été modifié avec succès.</p><hr></hr>';
     }
     else {
         $contenu .= '<h1>Modifier mon profil</h1>
-                     <p>L\'adresse e-mail choisit éxiste déjà.';
+                     <p>L\'adresse e-mail choisit éxiste déjà.</p><hr></hr>';
     }
+    $contenu .= mosaiqueProfil($_SESSION['user']->getId());
     display($title,$contenu);
     
 }
@@ -387,7 +397,8 @@ function setPassword() {
     $title = 'Pixels Arts - Modifier mon profil';
     $contenu = menuLeft($_SESSION['user']);
     $contenu .= '<h1>Modifier mon profil</h1>
-                 <p>Votre mot de passe a bien été changé.</p>';
+                 <p>Votre mot de passe a bien été changé.</p><hr></hr>';
+    $contenu .= mosaiqueProfil($_SESSION['user']->getId());
     display($title,$contenu);
 }
 

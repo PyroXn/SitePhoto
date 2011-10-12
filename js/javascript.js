@@ -183,7 +183,7 @@ $(function() {
         return false;
     });
     
-    $('body').bind("contextmenu",function(e){  
+    $('#contenu img').bind("contextmenu",function(e){  
         return false;  
     });
     

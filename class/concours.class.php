@@ -20,7 +20,7 @@ class Concours {
     }
 
     function getTitre() {
-        return utf8_encode(stripslashes($this->titre));
+        return stripslashes($this->titre);
     }
 
     function getUrl() {
@@ -32,7 +32,7 @@ class Concours {
     }
 
     function getDescription() {
-        return utf8_encode(stripslashes($this->description));
+        return stripslashes($this->description);
     }
 
     function setDescription($description) {
