@@ -1,8 +1,8 @@
 <?php
 
-function getLastAction() {
+function getLastAction($id) {
     $tabActions = array();
-    $sql = 'SELECT * FROM actions WHERE idMembre="'.$_SESSION['user']->getId().'" ORDER BY Id DESC LIMIT 10';
+    $sql = 'SELECT * FROM actions WHERE idMembre="'.$id.'" ORDER BY Id DESC LIMIT 10';
     $req = mysql_query($sql);
     while($data = mysql_fetch_assoc($req)) {
         $action = new Actions($data['id'], $data['idMembre'], $data['actions'], $data['timestamp']);

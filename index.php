@@ -106,7 +106,7 @@ function mosaique() {
                         <a href="#" alt="Les mieux notées">Les mieux notées</a>
                     </h2>';
     foreach($tabBestNote as $tab) {
-        $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox zgallery1">
+        $contenu .= '<a href="'.$tab->getUrl().'" title="'.$tab->getTitre().'" class="zoombox zgallery1" name="'.$tab->getId().'">
                         <img src="thumb.php?src='.$tab->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>
@@ -115,7 +115,7 @@ function mosaique() {
                         <a href="#" alt="Photos issues des galeries">Photos issues des galeries</a>
                     </h2>';
     foreach($tabGalerie as $tabG) {
-        $contenu .= '<a href="'.$tabG->getUrl().'" title="'.$tabG->getTitre().'" class="zoombox zgallery2">
+        $contenu .= '<a href="'.$tabG->getUrl().'" title="'.$tabG->getTitre().'" class="zoombox zgallery2" name="'.$tabG->getId().'">
                         <img src="thumb.php?src='.$tabG->getUrl().'&x=132&y=83&f=0"></img></a>';
     }
     $contenu .= '</div>';
@@ -129,6 +129,7 @@ function getFooterImage() {
     while($data = mysql_fetch_assoc($req)) {
         $image = new Image($data['url']);
         $image->setTitre($data['titre']);
+        $image->setId($data['id']);
         $tabImage[] = $image;
     }
     return $tabImage;

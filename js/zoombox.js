@@ -254,7 +254,10 @@ function open(){
 
     // We add a title if we find one on the link
     if(elem != null && elem.attr('title')){
+        var id = elem.attr('name');
         $('#zoombox .zoombox_title').append(elem.attr('title'));
+	$('#zoombox .zoombox_title').append(' - <a href="index.php?p=getPhoto&id='+id+'">Accéder à la photo</a>');
+		
     }
 
 

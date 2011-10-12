@@ -75,9 +75,13 @@ class Membre {
     }
 
     function getBirthday() {
+        return $this->birthday;
+    }
+    
+    function getBirthdayFormat() {
         return date("d/m/Y", strtotime($this->birthday));
     }
-
+    
     function getCle() {
         return $this->cle;
     }

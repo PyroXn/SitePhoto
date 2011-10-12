@@ -439,11 +439,10 @@ hr {
 
 }
 
-.colonne_profil img {
+.colonne_profil img {   
     margin-top: 12px;
     margin-right: 12px;
     border: 4px solid white;
-
     /*marche pas sur les ancienne version windaube voir commentaire conditionnel*/
     -moz-box-shadow: 1px 1px 12px #555;
     -webkit-box-shadow: 1px 1px 12px #555;

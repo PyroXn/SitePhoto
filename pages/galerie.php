@@ -90,7 +90,7 @@ function getGalerie() {
 }
 
 function getPhoto() {
-    if(!isset($_GET['id'])) {
+    if(!isset($_GET['id']) || $_GET['id'] == null) {
         accessForbidden();
     }
     

@@ -4,7 +4,10 @@
  * @return Bool Retourne vrai si utilisateur est sur son profil
  */
 function isMyPage($id) {
-    return $_SESSION['user']->getId() == $id;
+    if(isset($_SESSION['user'])) {
+        return $_SESSION['user']->getId() == $id;
+    }
+    return false;
 }
 
 /**
@@ -46,7 +49,7 @@ function profil() {
                     <span id="caracteristique_gauche">
                         <span class="type">Sexe: </span><span  class="data">'.$membre->getSexeFormat().'</span>
                     </span>
-                    <span class="type">Date de naissance: </span><span class="data">'.$membre->getBirthday().'</span>
+                    <span class="type">Date de naissance: </span><span class="data">'.$membre->getBirthdayFormat().'</span>
                     <span id="caracteristique_droite">
                         <span class="type">Dernière visite: </span><span class="data">'.$membre->getLastVisit().'</span>
                     </span>
@@ -68,7 +71,7 @@ function profil() {
                             <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
                         </span>
                         <span id="vote">';
-        if(alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_GET['id'])) {
+        if(!isOk() || @alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_GET['id'])) {
             $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
                          <img src="./templates/images/negatif2.png" id="negatif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>';
         }
@@ -102,7 +105,7 @@ function mosaiqueProfil($id) {
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>';
     foreach($listImage as $list) {
-        $contenu .= '<a title="'.$list->getTitre().'" class="zoombox zgallery3" href="'.$list->getUrl().'"><img src="thumb.php?src='.$list->getUrl().'&x=110&y=69&f=0"></img></a>';
+        $contenu .= '<a title="'.$list->getTitre().'" name="'.$list->getId().'" class="zoombox zgallery3" href="'.$list->getUrl().'"><img src="thumb.php?src='.$list->getUrl().'&x=110&y=69&f=0"></img></a>';
     }
 
     // TODO : Pierre : Prevoir mise en page des dernières actions
@@ -112,7 +115,7 @@ function mosaiqueProfil($id) {
                         <a href="#" alt="Dernières actions">Dernières actions</a>
                     </h2>
                     <ul>';
-    $tabActions = getLastAction();
+    $tabActions = getLastAction($id);
     foreach($tabActions as $tab) {
         $contenu .= '<li class="lastActions">'.$tab->getActions().' <sup>'.$tab->intervalleTime().'</sup></li>';
     }

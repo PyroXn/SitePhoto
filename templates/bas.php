@@ -26,7 +26,7 @@
                     <ol>
 <?php
     for($i = 0; $i <= 2; $i++) {
-        echo '<li><a title="'.$tabImage[$i]->getTitre().'" href="'.$tabImage[$i]->getUrl().'" class="zoombox"><img src="thumb.php?src='.$tabImage[$i]->getUrl().'&x=50&y=31&f=0" alt="'.$tabImage[$i]->getTitre().'"></img>'.$tabImage[$i]->getTitre().'</a></li>';
+        echo '<li><a title="'.$tabImage[$i]->getTitre().'" href="'.$tabImage[$i]->getUrl().'" class="zoombox" name="'.$tabImage[$i]->getId().'"><img src="thumb.php?src='.$tabImage[$i]->getUrl().'&x=50&y=31&f=0" alt="'.$tabImage[$i]->getTitre().'"></img>'.$tabImage[$i]->getTitre().'</a></li>';
     }
 ?>
                     </ol>

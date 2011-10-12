@@ -142,6 +142,9 @@
 	-o-text-shadow:1px 1px #000;
 	text-shadow:1px 1px #000;
 }
+.zoombox .zoombox_title a {
+    color: red;
+}
 .zoombox .zoombox_close{
 	background:url(img/close.png) no-repeat;
 	width:30px;
