@@ -89,6 +89,7 @@ function profil() {
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
     }
     $contenu .= '</div><hr></hr>';
+    $contenu .= commentaire($image->getId());
     $contenu .= mosaiqueProfil($membre->getId());
     display($title, $contenu);
 }
@@ -100,7 +101,7 @@ function mosaiqueProfil($id) {
     // On recupère les 6 dernières images
     $listImage = array();
     $listImage = getLastImage($id);
-    $contenu .= '<div id="colonne_gauche" class="colonne_profil">
+    $contenu = '<div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>';
@@ -403,6 +404,73 @@ function setPassword() {
                  <p>Votre mot de passe a bien été changé.</p><hr></hr>';
     $contenu .= mosaiqueProfil($_SESSION['user']->getId());
     display($title,$contenu);
+}
+
+function setCommentaire() {
+    if (!isOk()) {
+        accessForbidden();
+    }
+    include_once 'sql/commentaire.sql.php';
+    include_once 'class/commentaire.class.php';
+    include_once 'sql/membre.sql.php';
+    $commentaire = new Commentaire($_POST['id_membre'], $_POST['message'], $_POST['timestamp'], $_POST['id_image']);
+    submit($commentaire);
+    $membre = loadMembre($_POST['id_membre']);
+    echo '
+        <li class="comment">
+            <div class="avatar">
+                <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
+            </div>
+            <div class="name">'.$membre->getPseudo().'</div>
+            <div class="date" title="Ajouter le '.date('H:i \o\n d M Y',$_POST['timestamp']).'">'.date('d M Y',$_POST['timestamp']).'</div>
+            <p>'.$_POST['message'].'</p>
+        </li>';
+}
+
+function commentaire($idImage) {
+    $user = $_SESSION['user'];
+    $formulaire = '<ol id="update" class="timeline">';
+    
+    /*
+     * On récupère les commentaires s'il y en a dans la BDD
+     */
+    $comments = getComments($idImage);
+    if ($comments != null) {
+        /*
+         * Affichage des commentaires un par un
+         */
+        foreach($comments as $c){
+            $membre = loadMembre($c->getIdMembre());
+            $formulaire .= '
+                <li class="comment">
+                    <div class="avatar">
+                        <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
+                    </div>
+                    <div class="name">'.$membre->getPseudo().'</div>
+                    <div class="date" title="Ajouter le '.$c->getTimeStamp().'">'.$c->getTimeStamp().'</div>
+                    <p>'.$c->getMessage().'</p>
+                </li>';
+        }
+    }
+    $formulaire .= '</ol>';
+    $formulaire .= '
+        <div id="flash"></div>
+        <div id="commentaireFormulaire">
+            <h4>Ajouter un commentaire</h4>
+            <form id="formCommentaire" method="post" action="#">
+                <p>
+                    <label for="commentaires">Commentaire</label>
+                    <textarea name="message" cols="35" rows="6" id="message"></textarea>
+                </p>
+                <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
+                <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
+                <input type="hidden" name="timestamp" id="timestamp" value='.time().' />
+                <p>
+                    <input type="submit" id="submitCommentaire" value="Envoyer" />
+                </p>
+            </form>
+        </div>';
+    return $formulaire;
 }
 
 ?>

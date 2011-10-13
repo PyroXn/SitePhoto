@@ -5,21 +5,27 @@
      * @return Commentaire Retourne l'objet commentaire
      */
     function getComments($idImage) {
-        $sql = "SELECT * FROM commentaires WHERE idImage='".$idImage."' ORDER BY id DESC";
+        $comments = array();
+        $sql = 'SELECT * FROM commentaire WHERE idImage="'.$idImage.'" ORDER BY id ASC';
         $req = mysql_query($sql);
-        $i = 0;
-        while($data = mysql_fetch_assoc($req)) {
-            $comments[$i] = new Commentaire($data['idMembres'],$data['message'],$data['timestamp'],$data['idImage']);
-            $comments[$i]->setId($data['id']);
+        if(mysql_num_rows($req) > 0) {
+            $i = 0;
+            while($data = mysql_fetch_assoc($req)) {
+                $comments[$i] = new Commentaire($data['idMembre'],$data['message'],$data['timestamp'],$data['idImage']);
+                $comments[$i]->setId($data['id']);
+                $i++;
+            }
+            return $comments;
+        } else {
+            return null;
         }
-        return $comments;
     }
     
     /**
      * Permet d'insérer un nouveau commentaire
      */
     function submit(Commentaire $commentaire) {
-        $sql = "INSERT INTO commentaires(idMembre,message,timestamp,idPhoto) VALUES ('" . $commentaire->getIdMembre() . "','" . $commentaire->getMessage() . "','" . $commentaire->getTimeStamp() . "','" . $commentaire->getIdPhoto() . "')";
+        $sql = "INSERT INTO commentaire(idMembre,message,timestamp,idImage) VALUES ('" . $commentaire->getIdMembre() . "','" . $commentaire->getMessage() . "',NOW(),'" . $commentaire->getIdPhoto() . "')";
         $req = mysql_query($sql);
     }
 

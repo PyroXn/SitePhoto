@@ -59,14 +59,14 @@ INSERT INTO `albums` (`id`, `titre`, `idMembres`) VALUES
 -- Structure de la table `commentaires`
 -- 
 
-CREATE TABLE `commentaires` (
+CREATE TABLE `commentaire` (
   `id` int(11) NOT NULL auto_increment,
   `message` longtext character set utf8,
-  `timestamp` timestamp NULL default NULL,
-  `idMembres` int(11) NOT NULL,
+  `timestamp` date NOT NULL,
+  `idMembre` int(11) NOT NULL,
   `idImage` int(10) NOT NULL,
   PRIMARY KEY  (`id`),
-  KEY `fk_commentaires_membres1` (`idMembres`)
+  KEY `fk_commentaires_membres1` (`idMembre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- 

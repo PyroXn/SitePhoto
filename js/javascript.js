@@ -245,7 +245,41 @@ $(function() {
         return false;
     });
     
-})
+   /* $('#submitCommentaire').click(function() {
+        var comm = $('#body').val();
+        if(comm != null && comm != "") {
+            submit();
+        }
+        return false;
+    });*/
+    /* Le code qui suit est exécuté une fois que le DOM est chargé */
+
+    /* cette variable empêche les posts intempestifs */
+    
+
+    /* On récupère les événements du bouton submit */
+    $('#submitCommentaire').click(function() {
+        var id_membre = $("#id_membre").val();
+        var id_image = $("#id_image").val();
+        var timestamp = $("#timestamp").val();
+        var message = $("#message").val(); 
+        var dataString = 'id_membre='+ id_membre + '&id_image=' + id_image + '&timestamp=' + timestamp + '&message=' + message;
+        $("#flash").show();
+        $("#flash").fadeIn(400).html('Loading Comment...');
+        $.ajax ({
+            type: "POST",
+            url : "index.php?p=setCommentaire",
+            data: dataString,
+            cache: false,
+            success: function(html){
+                $("ol#update").append(html);
+                $("ol#update li:last").fadeIn("slow");
+                $("#flash").hide();
+                $('#message').val('');
+            }
+        });return false;
+    });
+});
 
 function getXHR()
 {
@@ -301,4 +335,3 @@ function req_xhr( page, params)
     document.getElementById("ajoutAlbum").innerHTML = "Album ajouté.";
     loadAlbum();
 }
-
