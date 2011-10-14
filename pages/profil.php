@@ -101,7 +101,8 @@ function mosaiqueProfil($id) {
     // On recupère les 6 dernières images
     $listImage = array();
     $listImage = getLastImage($id);
-    $contenu = '<div id="colonne_gauche" class="colonne_profil">
+    $contenu = '<hr></hr>
+                <div id="colonne_gauche" class="colonne_profil">
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>';
@@ -447,7 +448,7 @@ function commentaire($idImage) {
                         <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
                     </div>
                     <div class="name">'.$membre->getPseudo().'</div>
-                    <div class="date" title="Ajouter le '.$c->getTimeStamp().'">'.$c->getTimeStamp().'</div>
+                    <div class="date" title="Ajouté le '.$c->getTimeStamp().'">Posté il y a '.$c->getTimeStampFormat().'</div>
                     <p>'.$c->getMessage().'</p>
                 </li>';
         }
@@ -456,18 +457,16 @@ function commentaire($idImage) {
     $formulaire .= '
         <div id="flash"></div>
         <div id="commentaireFormulaire">
-            <h4>Ajouter un commentaire</h4>
             <form id="formCommentaire" method="post" action="#">
-                <p>
-                    <label for="commentaires">Commentaire</label>
-                    <textarea name="message" cols="35" rows="6" id="message"></textarea>
-                </p>
                 <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
                 <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
                 <input type="hidden" name="timestamp" id="timestamp" value='.time().' />
                 <p>
+                    <label for="commentaires">Commentaire</label>
+                    <textarea name="message" id="message"></textarea>
                     <input type="submit" id="submitCommentaire" value="Envoyer" />
                 </p>
+                
             </form>
         </div>';
     return $formulaire;

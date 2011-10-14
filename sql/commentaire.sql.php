@@ -6,14 +6,13 @@
      */
     function getComments($idImage) {
         $comments = array();
-        $sql = 'SELECT * FROM commentaire WHERE idImage="'.$idImage.'" ORDER BY id ASC';
+        $sql = 'SELECT * FROM commentaires WHERE idImage="'.$idImage.'" ORDER BY id ASC';
         $req = mysql_query($sql);
         if(mysql_num_rows($req) > 0) {
-            $i = 0;
             while($data = mysql_fetch_assoc($req)) {
-                $comments[$i] = new Commentaire($data['idMembre'],$data['message'],$data['timestamp'],$data['idImage']);
-                $comments[$i]->setId($data['id']);
-                $i++;
+                $commentaire = new Commentaire($data['idMembre'],$data['message'],$data['timestamp'],$data['idImage']);
+                $commentaire->setId($data['id']);
+                $comments[] = $commentaire;
             }
             return $comments;
         } else {
@@ -25,7 +24,7 @@
      * Permet d'insérer un nouveau commentaire
      */
     function submit(Commentaire $commentaire) {
-        $sql = "INSERT INTO commentaire(idMembre,message,timestamp,idImage) VALUES ('" . $commentaire->getIdMembre() . "','" . $commentaire->getMessage() . "',NOW(),'" . $commentaire->getIdPhoto() . "')";
+        $sql = "INSERT INTO commentaires(idMembre,message,idImage) VALUES ('" . $commentaire->getIdMembre() . "','" . $commentaire->getMessage() . "','" . $commentaire->getIdPhoto() . "')";
         $req = mysql_query($sql);
     }
 
