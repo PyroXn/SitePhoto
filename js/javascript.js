@@ -259,6 +259,7 @@ $(function() {
 
     /* On récupère les événements du bouton submit */
     $('#submitCommentaire').click(function() {
+        if($("#message").val() != null && $("#message").val() != "") {
         var id_membre = $("#id_membre").val();
         var id_image = $("#id_image").val();
         var timestamp = $("#timestamp").val();
@@ -277,7 +278,7 @@ $(function() {
                 $("#flash").hide();
                 $('#message').val('');
             }
-        });return false;
+        }); } return false;
     });
 });
 

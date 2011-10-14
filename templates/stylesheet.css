@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input, fieldset, hr {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input, fieldset, hr, ol {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -607,7 +607,7 @@ sup {
 
 
 
-/* MODULE DE COMMENTAIRE AJAX */
+/* MODULE DE COMMENTAIRE */
 .comment {
     background: #f7f7f7;
     background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
@@ -619,14 +619,16 @@ sup {
     -moz-box-shadow: 0 0 15px #aaa;
     -webkit-box-shadow: 0 0 15px #aaa;
     box-shadow: 0 0 15px #aaa;
-    width: 738px;
-    margin: 15px 0 15px 160px;
+    width: 800px;
+    min-height: 50px;
+    margin: 3px 0 3px 160px;
     padding: 10px;
 }
 
 .comment .avatar {
     height: 50px;
     width: 37px;
+    border: 1px solid #aaa;
     -moz-box-shadow: 1px 1px 0 #c2c2c2;
     -webkit-box-shadow: 1px 1px 0 #c2c2c2;
     box-shadow: 1px 1px 0 #c2c2c2;
@@ -649,6 +651,13 @@ sup {
     float: right;
 }
 
+.comment .message {
+    font-size: 14px;
+    color: #818181;
+    font-weight: normal;
+    line-height: 18px;
+}
+
 #commentaireFormulaire label {
     cursor: pointer;
     display: block;
@@ -660,7 +669,7 @@ sup {
     width: 130px;
 }
 
-
+/* marche pas surement un truc a faire en js
 #commentaireFormulaire #message {
     width: 530px;
     height: 21px;
@@ -669,8 +678,12 @@ sup {
 #commentaireFormulaire #message:focus {
     width: 684px;
     height: 60px;
-}
+}*/
 
+#commentaireFormulaire #message {
+    width: 684px;
+    height: 60px;
+}
 
 #commentaireFormulaire p:hover label {
     color: #0459b7;
@@ -684,7 +697,7 @@ sup {
     content: ' >>';
 }
 
-
+/*à réimplémenter pour les navigateurs bouzeux*/
 #commentaireFormulaire input {
     float: right;
     background: #ddd;

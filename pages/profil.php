@@ -417,14 +417,14 @@ function setCommentaire() {
     $commentaire = new Commentaire($_POST['id_membre'], $_POST['message'], $_POST['timestamp'], $_POST['id_image']);
     submit($commentaire);
     $membre = loadMembre($_POST['id_membre']);
+    $time = time() - $_POST['timestamp'];
     echo '
         <li class="comment">
             <div class="avatar">
                 <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
             </div>
-            <div class="name">'.$membre->getPseudo().'</div>
-            <div class="date" title="Ajouter le '.date('H:i \o\n d M Y',$_POST['timestamp']).'">'.date('d M Y',$_POST['timestamp']).'</div>
-            <p>'.$_POST['message'].'</p>
+            <div class="name">'.$membre->getPseudo().' - <span class="message">'.stripcslashes($_POST['message']).'</span></div>
+            <div class="date" title="Posté il y a '.$time.' secondes">Posté il y a '.$time.' secondes</div>
         </li>';
 }
 
@@ -447,9 +447,8 @@ function commentaire($idImage) {
                     <div class="avatar">
                         <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
                     </div>
-                    <div class="name">'.$membre->getPseudo().'</div>
-                    <div class="date" title="Ajouté le '.$c->getTimeStamp().'">Posté il y a '.$c->getTimeStampFormat().'</div>
-                    <p>'.$c->getMessage().'</p>
+                    <div class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></div>
+                    <div class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</div>
                 </li>';
         }
     }
