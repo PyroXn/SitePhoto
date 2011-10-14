@@ -48,7 +48,10 @@ elseif ($_GET['p'] == "messagerie") { include_once 'pages/messagerie.php'; messa
 // AJAX
 elseif ($_GET['p'] == "loadAlbum") { include_once 'sql/albums.sql.php'; loadAlbum(); }
 elseif ($_GET['p'] == "vote") { include_once 'sql/image.sql.php'; vote(); }
+elseif ($_GET['p'] == "ajaxLoadComments") { include_once 'sql/commentaire.sql.php'; ajaxLoadComments(); }
 
+// Variables globales
+$_SESSION['nbParPage'] = '1';
 
 /**
  * Sert à afficher la page

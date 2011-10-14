@@ -427,12 +427,13 @@ function setCommentaire() {
             <div class="avatar">
                 <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
             </div>
-            <div class="name">'.$membre->getPseudo().' - <span class="message">'.stripcslashes($_POST['message']).'</span></div>
+            <div class="name">'.$membre->getPseudo().' - <span class="message">'.nl2br(stripcslashes($_POST['message'])).'</span></div>
             <div class="date" title="Posté il y a 1 secondes">Posté il y a 1 secondes</div>
         </li>';
 }
 
 function commentaire($idImage) {
+    include_once 'sql/commentaire.sql.php';
     $user = $_SESSION['user'];
     $formulaire = '<ol id="update" class="timeline">';
     
@@ -455,6 +456,7 @@ function commentaire($idImage) {
         }
     }
     $formulaire .= '</ol>';
+    $formulaire .= pagination($idImage);
     if(isOk()) {
         $formulaire .= '
             <div id="flash"></div>

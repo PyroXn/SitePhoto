@@ -224,6 +224,22 @@ $(function() {
         }
         return false;
     });
+    $('.pagination').click(function() {
+        var page = $(this).attr('name');
+        var id_image = $("#id_image").val();
+        
+        pa = 'page='+page+'&idImage='+id_image;
+        $.ajax ({
+            type: "POST",
+            data: pa,
+            url : "index.php?p=ajaxLoadComments",
+            success: function(html) {
+                $(".comment").remove();
+                $("ol#update").append(html);
+                $("ol#update li:first").fadeIn("slow");
+            }
+        })
+    });
     
     loadAlbum = function() {
         $.ajax ({
@@ -289,6 +305,7 @@ $(function() {
         }
         return false;
     });
+
 });
 
 function getXHR()
