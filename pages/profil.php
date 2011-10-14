@@ -83,13 +83,14 @@ function profil() {
         $contenu .= '</span>
                     </div>';
         $contenu .= '<p class="bulle_dialogue">' . $image->getDescription() . '</p>';
+        $contenu .= '</div><hr></hr>';
+        $contenu .= commentaire($image->getId());
         
     } else {
         $contenu .= '<h3>Aucune image!</h3>';
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
+        $contenu .= '</div><hr></hr>';
     }
-    $contenu .= '</div><hr></hr>';
-    $contenu .= commentaire($image->getId());
     $contenu .= mosaiqueProfil($membre->getId());
     display($title, $contenu);
 }
