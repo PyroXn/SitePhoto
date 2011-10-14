@@ -49,7 +49,7 @@ function ajaxLoadComments() {
                 <li class="comment">
                     <a href="index.php?p=profil&id=' . $membre->getId() . '"><img class="avatar" src="thumb.php?src=' . $membre->getAvatar() . '&x=37&y=50&f=0"></img></a>
                     <span class="name">' . $membre->getPseudo() . ' - <span class="message">' . $c->getMessage() . '</span></span>
-                    <span class="date" title="Ajouté le ' . $c->getTimeStampFormat() . '">Posté il y a ' . $c->getTimeStampFormat() . '</span> 
+                    <span class="date" title="Ajouté le ' . $c->getTimeStamp() . '">Posté il y a ' . $c->getTimeStampFormat() . '</span> 
                 </li>';
         }
         echo $contenu;
