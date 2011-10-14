@@ -264,6 +264,8 @@ $(function() {
             var id_image = $("#id_image").val();
             var timestamp = $("#timestamp").val();
             var message = $("#message").val(); 
+            var reg = new RegExp('[+]', 'gi');
+            message = message.replace(reg, "%2B");
             var dataString = 'id_membre='+ id_membre + '&id_image=' + id_image + '&timestamp=' + timestamp + '&message=' + message;
             $("#flash").show();
             $("#flash").fadeIn(400).html('Loading Comment...');
