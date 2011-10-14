@@ -554,7 +554,7 @@ hr {
     color: #e5f3ff;
     font-size: 14px;
     line-height: 1px;
-    margin-top: 25px;
+
 }
 #colonne3 img {
     float: left;
@@ -575,6 +575,10 @@ hr {
     font-size: 14px;
     line-height: 42px;
 
+}
+
+#colonne4 ol {
+    margin-top: 5px;
 }
 
 #colonne4 img {

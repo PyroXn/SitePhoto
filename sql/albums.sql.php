@@ -6,7 +6,7 @@
  */
 function getAlbums($idMembre) {
     $tabAlbums = array();
-    $sql = 'SELECT * FROM albums WHERE idMembres="'.$idMembre.'"';
+    $sql = 'SELECT * FROM albums WHERE idMembres="'.$idMembre.'" ORDER BY titre';
     $req = mysql_query($sql);
     
     if(mysql_num_rows($req) > 0) {
@@ -57,7 +57,7 @@ function addAlbum(Album $album) {
 function loadAlbum() {
     // Affichage des ...
     echo '<option value="">...</option>';
-    $sql = 'SELECT * FROM albums WHERE idMembres="'.$_SESSION['user']->getId().'"';
+    $sql = 'SELECT * FROM albums WHERE idMembres="'.$_SESSION['user']->getId().'" ORDER BY titre';
     $req = mysql_query($sql);
     while($data = mysql_fetch_assoc($req)) {
         $album = new Album($data['id'],$data['titre'],$data['idMembres']);
