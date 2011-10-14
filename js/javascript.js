@@ -282,6 +282,8 @@ $(function() {
                     $("ol#update li:last").fadeIn("slow");
                     $("#flash").hide();
                     $('#message').val('');
+                    $('#message').css('height',21);
+                    $('#message').css('width',530);
                 }
             });
         }

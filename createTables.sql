@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Serveur: localhost
--- Généré le : Vendredi 14 Octobre 2011 à 11:50
+-- Généré le : Vendredi 14 Octobre 2011 à 15:30
 -- Version du serveur: 5.0.27
 -- Version de PHP: 5.2.1
 -- 
@@ -22,17 +22,19 @@ CREATE TABLE `actions` (
   `actions` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 -- 
 -- Contenu de la table `actions`
 -- 
 
 INSERT INTO `actions` (`id`, `idMembre`, `actions`, `timestamp`) VALUES 
-(9, 19, '<font color="#06C">Flo</font> a modifié son avatar', '2011-10-12 20:30:39'),
-(8, 19, '<font color="#06C">Flo</font> a ajouté une photo à sa <a href="index.php?p=getGalerie&album=55">gallerie</a>', '2011-10-12 19:31:58'),
-(6, 19, '<font color="#06C">Flo</font> a ajouté une photo à sa <a href="index.php?p=getAlbum&id=19">gallerie</a>', '2011-10-12 18:25:07'),
-(7, 19, '<font color="#06C">Flo</font> a modifié son avatar', '2011-10-12 18:28:52');
+(1, 19, '<font color="#06C">Flo</font> a commenté la photo intitulé <a href="index.php?p=getPhoto&id=21">Meduses</a>', '2011-10-14 15:20:09'),
+(2, 19, '<font color="#06C">Flo</font> a modifié son avatar', '2011-10-14 15:20:31'),
+(3, 19, '<font color="#06C">Flo</font> a modifié son avatar', '2011-10-14 15:20:41'),
+(4, 19, '<font color="#06C">Flo</font> a commenté la photo intitulé <a href="index.php?p=getPhoto&id=21">Meduses</a>', '2011-10-14 15:20:54'),
+(5, 19, '<font color="#06C">Flo</font> a commenté la photo intitulé <a href="index.php?p=getPhoto&id=22">Phare</a>', '2011-10-14 15:26:11'),
+(6, 19, '<font color="#06C">Flo</font> a commenté la photo intitulé <a href="index.php?p=getPhoto&id=47">Une tortue en mer</a>', '2011-10-14 15:27:32');
 
 -- --------------------------------------------------------
 
@@ -79,17 +81,16 @@ CREATE TABLE `commentaire` (
   `idImage` int(10) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `fk_commentaires_membres1` (`idMembre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- 
 -- Contenu de la table `commentaire`
 -- 
 
 INSERT INTO `commentaire` (`id`, `message`, `timestamp`, `idMembre`, `idImage`) VALUES 
-(1, 'test', '2011-10-14 11:09:13', 19, 21),
-(2, 'test2', '2011-10-14 11:19:17', 19, 21),
-(3, 'test4', '2011-10-14 11:19:36', 19, 21),
-(4, 'test21', '2011-10-14 11:20:09', 19, 21);
+(1, 'Trop kikoo ta photo', '2011-10-14 15:20:54', 19, 21),
+(2, 'j''aime bien :)', '2011-10-14 15:26:11', 19, 22),
+(3, 'Pas mal du tout :)', '2011-10-14 15:27:32', 19, 47);
 
 -- --------------------------------------------------------
 
@@ -150,12 +151,7 @@ INSERT INTO `images` (`id`, `url`, `titre`, `description`, `view`, `score`, `idM
 (26, './pics/Flo/Nature morte/606SAM_2509.JPG', 'testtttttttt', 'testttttttttttttttttttttttt', 0, 0, 19, 0, 56),
 (30, './pics/Flo/Nature morte/SAM_2498.JPG', 'eeeeeeeeeeeeeeeeeeeeeeee', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 0, 0, 19, 0, 56),
 (32, './pics/Flo/defaut/SAM_2472.JPG', 'testtttttt', 'testtttttttttttttttttttttttttttt', 0, 0, 19, 0, 55),
-(33, './pics/Flo/n/SAM_2471.JPG', 'aaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', 0, 0, 19, 0, 57),
-(34, './pics/Flo/n/4759SAM_2471.JPG', 'aaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', 0, 0, 19, 0, 57),
-(35, './pics/Flo/n/SAM_2492.JPG', 'ttttttttttttttt', 'ttttttttttttttttttttttttttttttttt', 0, 0, 19, 0, 57),
-(44, './pics/Flo/plok/Autumn Leaves.jpg', 'test du logo sur image', 'test du logo sur image ++', 0, 0, 19, 0, 59),
-(46, './pics/Flo/Nature morte/Autumn Leaves.jpg', 'aaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaa', 0, 0, 19, 0, 56),
-(47, './pics/e-vasions/defaut/Green Sea Turtle.jpg', 'Une tortue en mer', 'Une tortue en pleine mer qui s''amuse à jouer à la corde à sauter', 2, 1, 20, 1, 68),
+(47, './pics/e-vasions/defaut/Green Sea Turtle.jpg', 'Une tortue en mer', 'Une tortue en pleine mer qui s''amuse à jouer à la corde à sauter', 3, 1, 20, 1, 68),
 (48, './pics/Flo/defaut/Dock.jpg', 'wwwwwwww', 'wwwwwwwwwwwwwwwwwwwwww', 0, 0, 19, 0, 55),
 (49, './pics/Flo/defaut/24386Dock.jpg', 'wwwwwwww', 'wwwwwwwwwwwwwwwwwwwwww', 0, 0, 19, 0, 55),
 (50, './pics/Flo/defaut/Garden.jpg', 'getGalerie&album=', 'getGalerie&album=55getGalerie&album=55', 0, 0, 19, 0, 55);
@@ -186,7 +182,7 @@ CREATE TABLE `membres` (
 INSERT INTO `membres` (`id`, `pseudo`, `password`, `mail`, `sexe`, `avatar`, `birthday`, `cle`, `lastVisit`) VALUES 
 (17, 'Pyro', 'ab4f63f9ac65152575886860dde480a1', 'pierre.charrasse@gmail.com', '1', './pics/Pyro/Crash-thumb.jpg', '0000-00-00', 'ec16edf4feebc11983b25119f9c62571', '2011-10-03 02:23:21'),
 (18, 'Bad', 'ab4f63f9ac65152575886860dde480a1', 'jerome.wautrin@gmail.com', '1', './pics/Bad/1155161879_027.jpg', '0000-00-00', '191cfc4ba378e7f961e754d3c1266cd4', '2011-10-03 02:09:11'),
-(19, 'Flo', '56910c52ed70539e3ce0391edeb6d339', 'Janson.florian@gmail.com', '1', './pics/Flo/6297Toco Toucan.jpg', '0000-00-00', '82f32da532ad14a8e6c3a97abded55aa', '2011-10-14 10:46:50'),
+(19, 'Flo', '56910c52ed70539e3ce0391edeb6d339', 'Janson.florian@gmail.com', '1', './pics/Flo/25144SAM_2509.JPG', '0000-00-00', '82f32da532ad14a8e6c3a97abded55aa', '2011-10-14 15:20:41'),
 (20, 'e-vasions', '8308d6914dd8fae92d3fa395f63dcb1f', 'e-vasions@hotmail.com', '2', './pics/e-vasions/SAM_2509.JPG', '0000-00-00', '664fc9158674259e8e8906ffbb5ae023', '2011-10-10 20:30:27'),
 (21, 'w@w.com', '56910c52ed70539e3ce0391edeb6d339', 'w@w.com', '1', './templates/images/Avatar_defaut.jpg', '2003-06-18', 'ed0f3cda79c014769320b4e3239ab9bd', '2011-10-12 22:25:10');
 
@@ -249,7 +245,7 @@ CREATE TABLE `vue` (
   `ip` char(25) character set utf8 NOT NULL,
   `idImage` int(10) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 -- 
 -- Contenu de la table `vue`
@@ -259,4 +255,4 @@ INSERT INTO `vue` (`id`, `date`, `ip`, `idImage`) VALUES
 (18, '08-10-2011', '127.0.0.1', 18),
 (21, '10-10-2011', '127.0.0.1', 20),
 (25, '14-10-2011', '127.0.0.1', 21),
-(24, '12-10-2011', '127.0.0.1', 47);
+(26, '14-10-2011', '127.0.0.1', 47);

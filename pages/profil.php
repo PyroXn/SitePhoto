@@ -414,17 +414,21 @@ function setCommentaire() {
     include_once 'sql/commentaire.sql.php';
     include_once 'class/commentaire.class.php';
     include_once 'sql/membre.sql.php';
+    include_once 'sql/actions.sql.php';
+    include_once 'sql/image.sql.php';
+    $image = loadImage($_POST['id_image']);
+    $action = $_SESSION['user']->getPseudoFormat() . ' a commenté la photo intitulé <a href=\"index.php?p=getPhoto&id='.$image->getId().'\">'.$image->getTitre().'</a>';
+    newAction($action, $_SESSION['user']->getId());
     $commentaire = new Commentaire($_POST['id_membre'], $_POST['message'], $_POST['timestamp'], $_POST['id_image']);
     submit($commentaire);
     $membre = loadMembre($_POST['id_membre']);
-    $time = time() - $_POST['timestamp'];
     echo '
         <li class="comment">
             <div class="avatar">
                 <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
             </div>
             <div class="name">'.$membre->getPseudo().' - <span class="message">'.stripcslashes($_POST['message']).'</span></div>
-            <div class="date" title="Posté il y a '.$time.' secondes">Posté il y a '.$time.' secondes</div>
+            <div class="date" title="Posté il y a '.$time.' secondes">Posté il y a 1 secondes</div>
         </li>';
 }
 

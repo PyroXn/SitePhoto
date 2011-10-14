@@ -94,7 +94,8 @@ function getPhoto() {
         accessForbidden();
     }
     
-    include('sql/membre.sql.php');
+    include_once 'sql/membre.sql.php';
+    include_once 'sql/commentaire.sql.php';
     
     $sql = 'SELECT * FROM images WHERE id="'.$_GET['id'].'"';
     $req = mysql_query($sql);
@@ -134,6 +135,7 @@ function getPhoto() {
     $contenu .= '<p class="bulle_dialogue">' . $objet->getDescription() . '</p>
                     <hr></hr>';
     $contenu .= '</div>';
+    $contenu .= commentaire($objet->getId());
     display($title,$contenu);
 }
 
