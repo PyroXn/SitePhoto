@@ -428,7 +428,7 @@ function setCommentaire() {
                 <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
             </div>
             <div class="name">'.$membre->getPseudo().' - <span class="message">'.stripcslashes($_POST['message']).'</span></div>
-            <div class="date" title="Posté il y a '.$time.' secondes">Posté il y a 1 secondes</div>
+            <div class="date" title="Posté il y a 1 secondes">Posté il y a 1 secondes</div>
         </li>';
 }
 
