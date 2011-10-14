@@ -456,7 +456,7 @@ function commentaire($idImage) {
     $formulaire .= '
         <div id="flash"></div>
         <div id="commentaireFormulaire">
-            <form id="formCommentaire" method="post" action="#">
+            <form id="formCommentaire" method="post" action="#" enctype="application/x-www-form-urlencoded">
                 <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
                 <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
                 <input type="hidden" name="timestamp" id="timestamp" value='.time().' />

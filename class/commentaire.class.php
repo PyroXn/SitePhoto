@@ -12,7 +12,7 @@ class Commentaire {
 
     function __construct($idMembre=null, $message=null, $timestamp=null, $idPhoto=null) {
         $this->idMembre = $idMembre;
-        $this->message = $message;
+        $this->message = stripcslashes(strip_tags(mysql_real_escape_string ($message)));
         $this->timestamp = $timestamp;
         $this->idPhoto = $idPhoto;
     }
