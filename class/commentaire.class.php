@@ -28,7 +28,7 @@ class Commentaire {
     }
 
     function getMessage() {
-        return $this->message;
+        return nl2br($this->message);
     }
 
     function getTimeStamp() {
