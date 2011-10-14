@@ -444,30 +444,30 @@ function commentaire($idImage) {
             $membre = loadMembre($c->getIdMembre());
             $formulaire .= '
                 <li class="comment">
-                    <div class="avatar">
-                        <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
-                    </div>
-                    <div class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></div>
-                    <div class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</div>
+                    <a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
+                    <span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span>
+                    <span class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</span> 
                 </li>';
         }
     }
     $formulaire .= '</ol>';
-    $formulaire .= '
-        <div id="flash"></div>
-        <div id="commentaireFormulaire">
-            <form id="formCommentaire" method="post" action="#" enctype="application/x-www-form-urlencoded">
-                <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
-                <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
-                <input type="hidden" name="timestamp" id="timestamp" value='.time().' />
-                <p>
-                    <label for="commentaires">Commentaire</label>
-                    <textarea name="message" id="message"></textarea>
-                    <input type="submit" id="submitCommentaire" value="Envoyer" />
-                </p>
-                
-            </form>
-        </div>';
+    if(isOk()) {
+        $formulaire .= '
+            <div id="flash"></div>
+            <div id="commentaireFormulaire">
+                <form id="formCommentaire" method="post" action="#" enctype="application/x-www-form-urlencoded">
+                    <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
+                    <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
+                    <input type="hidden" name="timestamp" id="timestamp" value='.time().' />
+                    <p>
+                        <label for="commentaires">Commentaire</label>
+                        <textarea name="message" id="message"></textarea>
+                        <input type="submit" id="submitCommentaire" value="Envoyer" />
+                    </p>
+
+                </form>
+            </div>';
+    }
     return $formulaire;
 }
 

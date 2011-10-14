@@ -255,7 +255,10 @@ $(function() {
     /* Le code qui suit est exécuté une fois que le DOM est chargé */
 
     /* cette variable empêche les posts intempestifs */
-    
+    $('#commentaireFormulaire #message').click(function() {
+        $('#commentaireFormulaire #message').css('height',60);
+        $('#commentaireFormulaire #message').css('width',684);
+    });
 
     /* On récupère les événements du bouton submit */
     $('#submitCommentaire').click(function() {

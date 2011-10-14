@@ -609,6 +609,7 @@ sup {
 
 /* MODULE DE COMMENTAIRE */
 .comment {
+    position: relative;
     background: #f7f7f7;
     background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
     background :-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
@@ -620,25 +621,23 @@ sup {
     -webkit-box-shadow: 0 0 15px #aaa;
     box-shadow: 0 0 15px #aaa;
     width: 800px;
-    min-height: 50px;
+    height: auto;
     margin: 3px 0 3px 160px;
-    padding: 10px;
+    padding: 7px;
+    overflow: hidden; /* Empêche le dépassement des flottants. */
 }
 
 .comment .avatar {
-    height: 50px;
-    width: 37px;
+    float: left;
     border: 1px solid #aaa;
     -moz-box-shadow: 1px 1px 0 #c2c2c2;
     -webkit-box-shadow: 1px 1px 0 #c2c2c2;
     box-shadow: 1px 1px 0 #c2c2c2;
-    float: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 
 .comment .name {
-    padding-bottom: 10px;
     font-size: 14px;
     color: #0459b7;
     font-weight: bold;
@@ -646,12 +645,14 @@ sup {
 
 .comment .date {
     font-size: 10px;
-    padding: 20px 10px 0 10px;
     color: #666;
-    float: right;
+    position: absolute;
+    bottom: 2px;;
+    right: 7px;
 }
 
 .comment .message {
+    text-align: justify;
     font-size: 14px;
     color: #818181;
     font-weight: normal;
@@ -669,20 +670,10 @@ sup {
     width: 130px;
 }
 
-/* marche pas surement un truc a faire en js
+/* marche pas surement un truc a faire en js */
 #commentaireFormulaire #message {
     width: 530px;
     height: 21px;
-}
-
-#commentaireFormulaire #message:focus {
-    width: 684px;
-    height: 60px;
-}*/
-
-#commentaireFormulaire #message {
-    width: 684px;
-    height: 60px;
 }
 
 #commentaireFormulaire p:hover label {
