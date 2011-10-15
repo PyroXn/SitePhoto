@@ -69,7 +69,7 @@ function display($title,$contenu) {
  */
 function accessForbidden() {
     $title = "Vous n'avez rien à faire ici !";
-    $contenu = "Il semblerait que vous vous soyez égarés ! Vous pouvez retourner à <a href='index.php'>l'accueil</a>.";
+    $contenu = "<h1>Vous étes perdu ?</h1> <p>Il semblerait que vous vous soyez égarés ! Vous pouvez retourner à <a href='index.php'>l'accueil</a>.</p>";
     display($title,$contenu);
     exit();
 }
@@ -152,5 +152,16 @@ function getFooterMembre() {
         $tabMembre[] = $membre;
     }
     return $tabMembre;
+}
+
+function getFooterComments() {
+    $tabComments = array();
+    $sql = 'SELECT * FROM commentaire ORDER BY id DESC LIMIT 3';
+    $req = mysql_query($sql);
+    while($data = mysql_fetch_assoc($req)) {
+        $comment = new Commentaire($data['idMembre'],$data['message'],$data['timestamp'],$data['idImage']);
+        $tabComments[] = $comment;
+    }
+    return $tabComments;
 }
 ?>
