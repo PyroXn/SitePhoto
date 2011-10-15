@@ -71,7 +71,22 @@ function pagination($idImage) {
     $file = basename($path);
     $contenu = '<div class="page">';
     for ($i = 1; $i <= $nbPage; $i++) {
-       $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a> ';
+        if(isset($_GET['page'])) {
+            if($i == $_GET['page']) {
+                $contenu .= '<span class="current"><a class="pagination" name="'.$i.'">' . $i . '</a></span> ';
+            }
+            else {
+                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a> ';
+            }
+        }
+        else {
+            if($i == 1) {
+                $contenu .= '<span class="current"><a class="pagination" name="'.$i.'">' . $i . '</a></span> ';
+            }
+            else {
+                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a> ';
+            }
+        }
     }
     $contenu .= '</div>';
     return $contenu;

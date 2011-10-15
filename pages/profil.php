@@ -190,7 +190,7 @@ function newPhoto() {
         $contenu .= 'Vous avez déjà une photo.';
     }
     $contenu .= '<label for="photo">Photo : </label>
-                <input type="file" name="photo" id="photo"><span class="error"></span>
+                <input type="file" name="photo" id="avatar"><span class="error"></span>
                 <input class="submit" type="submit" value="Partager ma Photo" id="submitPhoto">
                 </p>
                 </form>';

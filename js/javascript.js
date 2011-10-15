@@ -17,6 +17,16 @@ $(function() {
             $(this).next().show().html("");
         }
     });
+    $('#mailLog').blur(function() {
+        var email = $(this).val();
+        if (!ck_email.test(email) || (email == "") && (email == null)) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
+        }
+        else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    
     $('#mail2').blur(function() {
         var email = $('#mail').val();
         var email2 = $(this).val();
@@ -25,7 +35,10 @@ $(function() {
         } else if (ck_email.test(email2) && email == email2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
             $('#mail').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
-        } else {
+        } else if (!ck_email.test(email2) || email2 == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Le mail n'est pas valide");
+        }
+        else {
             $(this).next().show().html("");
         }
     });
@@ -47,6 +60,17 @@ $(function() {
             $(this).next().show().html("");
         }
     });
+    
+    $('#passwordLog').blur(function () {
+        var password = $(this).val();
+        if (password.length < 6 || password == "") {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
+        }
+        else {
+            $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
+        }
+    });
+    
     $('#password2').blur(function() {
         var password = $('#password').val();
         var password2 = $(this).val();
@@ -55,7 +79,10 @@ $(function() {
         } else if (password2.length >= 6 && password == password2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
             $('#password').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
-        } else {
+        } else if (password2.length < 6) {
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
+        }
+          else {
             $(this).next().show().html("");
         }
     });
@@ -149,6 +176,15 @@ $(function() {
         return false;
     });
     
+    $('#submitLog').click(function () {
+        var mail = $('#mailLog').val();
+        var password = $('#passwordLog').val();
+        if(ck_email.test(mail) && password.length >= 6) {
+            submit();
+        }
+        return false;
+    });
+    
     $('#titre').blur(function() {
         var titre = $(this).val();
         if (titre.length > 17 || titre == null || titre.length < 3) {
@@ -175,9 +211,10 @@ $(function() {
         var titre = $("#titre").val();
         var desc = $("#description").val();
         var album = $("#loadAlbum").val();
+        var photo = $("#avatar").val();
                     
         if(titre != "" && titre != null && desc != "" && desc != null
-            && album != "" && album != null) {
+            && album != "" && album != null && photo != "" && photo != null) {
             submit();
         }
         return false;

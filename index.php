@@ -51,7 +51,7 @@ elseif ($_GET['p'] == "vote") { include_once 'sql/image.sql.php'; vote(); }
 elseif ($_GET['p'] == "ajaxLoadComments") { include_once 'sql/commentaire.sql.php'; ajaxLoadComments(); }
 
 // Variables globales
-$_SESSION['nbParPage'] = '10';
+$_SESSION['nbParPage'] = '1';
 
 /**
  * Sert à afficher la page

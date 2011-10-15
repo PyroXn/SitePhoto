@@ -146,10 +146,10 @@ function connexion() {
     $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
                 <p>
                 <label for='mail'>E-mail</label>
-                <input type='text' name='mail' />
+                <input type='text' name='mail' id='mailLog' /><span class='error'></span>
                 <label for='password'>Mot de passe</label>
-                <input type='password' name='password' />
-                <input class='submit' type='submit' name='Submit' value='Connexion'>
+                <input type='password' name='password' id='passwordLog' /><span class='error'></span>
+                <input class='submit' type='submit' name='Submit' value='Connexion' id='submitLog'>
                 </p>
                 </form>";
     $content .= mosaique();
