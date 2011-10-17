@@ -434,7 +434,7 @@ function setCommentaire() {
 
 function commentaire($idImage) {
     include_once 'sql/commentaire.sql.php';
-    $user = $_SESSION['user'];
+    
     $formulaire = '<ol id="update" class="timeline">';
     
     /*
@@ -458,6 +458,7 @@ function commentaire($idImage) {
     $formulaire .= '</ol>';
     $formulaire .= pagination($idImage);
     if(isOk()) {
+        $user = $_SESSION['user'];
         $formulaire .= '
             <div id="flash"></div>
             <div id="commentaireFormulaire">

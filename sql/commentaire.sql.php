@@ -69,15 +69,18 @@ function pagination($idImage) {
     $nbPage = ceil($nbComment / $_SESSION['nbParPage']);
     $path = $_SERVER['PHP_SELF'];
     $file = basename($path);
-    $contenu = '<div class="page">';
-    for ($i = 1; $i <= $nbPage; $i++) {
-        if ($i == 1) {
-            $contenu .= '<a id="current" class="pagination" name="' . $i . '">' . $i . '</a>';
-        } else {
-            $contenu .= '<a class="pagination" name="' . $i . '">' . $i . '</a>';
+    $contenu = '';
+    if ($nbComment > 0) {
+        $contenu = '<div class="page">';
+        for ($i = 1; $i <= $nbPage; $i++) {
+            if ($i == 1) {
+                $contenu .= '<a id="current" class="pagination" name="' . $i . '">' . $i . '</a>';
+            } else {
+                $contenu .= '<a class="pagination" name="' . $i . '">' . $i . '</a>';
+            }
         }
+        $contenu .= '</div>';
     }
-    $contenu .= '</div>';
     return $contenu;
 }
 
