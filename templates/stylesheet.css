@@ -511,6 +511,7 @@ hr {
 
 #colonne1 img {
     margin-right: 15px;
+    margin-left: 15px;
 }
 
 #colonne2 {
@@ -532,6 +533,7 @@ hr {
     float: left;
     /*margin-left: -25px;*/
     margin-top: 5px;
+    margin-left: 40px;
     margin-right: 25px;
     border: 1px solid white;
 }
@@ -554,13 +556,17 @@ hr {
     color: #e5f3ff;
     font-size: 14px;
     line-height: 1px;
-
 }
 #colonne3 img {
     float: left;
     margin-top: -10px;
-    margin-left: -35px;
+    margin-left: 5px;
     margin-right: 10px;
+}
+
+#colonne3 a {
+    text-decoration: none;
+    color: white;
 }
 
 #colonne4 {
@@ -583,7 +589,7 @@ hr {
 
 #colonne4 img {
     float: left;
-    margin-left: 25px;
+    margin-left: 35px;
     border: 1px solid white;
 }
 
@@ -726,22 +732,21 @@ sup {
 .pagination {
     padding: 2px 5px 2px 5px;
     margin: 2px;
-    background-color: #3e3e3e;
+    background-color: #111;
     text-decoration: none;
     color: #fff;
     cursor: pointer;
 }
 
 .page a:hover {
-	background-color:#ec5210;
-	color: #fff;
+    background-color:#ec5210;
+    color: #fff;
 }
 
-.page span.current {
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
+.page #current {
     font-weight: bold;
-    background-color: #313131;
+    background-color: #5e5e5e;
     color: #fff;
+    cursor: auto;
 }
 

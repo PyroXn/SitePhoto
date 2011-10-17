@@ -1,4 +1,5 @@
 <?php
+include_once 'sql/membre.sql.php';
 $tabImage = array();
 $tabMembre = array();
 $tabComments = array();
@@ -50,7 +51,11 @@ $tabComments = getFooterComments();
                         $tabCom->setMessage($message);
                     }
                     $membre = loadMembre($tabCom->getIdMembre());
-                    echo '<li><img src="./templates/images/iconeBulleDialog.png" alt=""></img><h4><a href="index.php?p=profil&id='.$membre->getId().'" title="'.$membre->getPseudo().'">'.$membre->getPseudo().'</a></h4><a href="index.php?p=getPhoto&id='.$tabCom->getIdPhoto().'">'.$tabCom->getMessage().'</a></li>';
+                    echo '<li>
+                            <img src="./templates/images/iconeBulleDialog.png" alt=""></img>
+                            <h4><a href="index.php?p=profil&id='.$membre->getId().'" title="'.$membre->getPseudo().'">'.$membre->getPseudo().'</a></h4>
+                                <a href="index.php?p=getPhoto&id='.$tabCom->getIdPhoto().'">'.$tabCom->getMessage().'</a>
+                          </li>';
                 }
                 ?>   
             </ol>
