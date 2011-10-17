@@ -425,11 +425,9 @@ function setCommentaire() {
     $membre = loadMembre($_POST['id_membre']);
     echo '
         <li class="comment">
-            <div class="avatar">
-                <img src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img>
-            </div>
-            <div class="name">'.$membre->getPseudo().' - <span class="message">'.nl2br(stripcslashes($_POST['message'])).'</span></div>
-            <div class="date" title="Posté il y a 1 secondes">Posté il y a 1 secondes</div>
+            <a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
+            <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.nl2br(stripcslashes($_POST['message'])).'</span></span></div>
+            <span class="date" title="Posté il y a 1 secondes">Posté il y a 1 secondes</span>
         </li>';
 }
 
@@ -451,7 +449,7 @@ function commentaire($idImage) {
             $formulaire .= '
                 <li class="comment">
                     <a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
-                    <span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span>
+                    <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span></div>
                     <span class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</span> 
                 </li>';
         }

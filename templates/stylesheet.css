@@ -657,7 +657,7 @@ sup {
     font-size: 10px;
     color: #666;
     position: absolute;
-    bottom: 2px;;
+    bottom: -1px;;
     right: 7px;
 }
 
@@ -667,6 +667,11 @@ sup {
     color: #818181;
     font-weight: normal;
     line-height: 18px;
+}
+
+.comment .contenu_comment {
+    display: block;
+    margin-left: 47px;
 }
 
 #commentaireFormulaire label {
