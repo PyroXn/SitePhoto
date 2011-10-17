@@ -264,7 +264,8 @@ $(function() {
     $('.pagination').click(function() {
         var page = $(this).attr('name');
         var id_image = $("#id_image").val();
-        
+        $('a#current').removeAttr("id");
+        $(this).attr("id","current");
         pa = 'page='+page+'&idImage='+id_image;
         $.ajax ({
             type: "POST",
