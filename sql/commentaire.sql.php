@@ -73,18 +73,18 @@ function pagination($idImage) {
     for ($i = 1; $i <= $nbPage; $i++) {
         if(isset($_GET['page'])) {
             if($i == $_GET['page']) {
-                $contenu .= '<span class="current"><a class="pagination" name="'.$i.'">' . $i . '</a></span> ';
+                $contenu .= '<a id="current" class="pagination" name="'.$i.'">' . $i . '</a>';
             }
             else {
-                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a> ';
+                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a>';
             }
         }
         else {
             if($i == 1) {
-                $contenu .= '<span class="current"><a class="pagination" name="'.$i.'">' . $i . '</a></span> ';
+                $contenu .= '<a id="current" class="pagination" name="'.$i.'">' . $i . '</a>';
             }
             else {
-                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a> ';
+                $contenu .= '<a class="pagination" name="'.$i.'">' . $i . '</a>';
             }
         }
     }
