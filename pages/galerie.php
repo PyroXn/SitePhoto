@@ -117,7 +117,7 @@ function getPhoto() {
                     <img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img>';
     if(isMyPage($membre->getId())) {
         $contenu .= '<ul>
-                        <li><a title="ajouter une photo" href="index.php?p=deleteImage&id='.$objet->getId().'" id="deletePhoto">Supprimer la photo</a></li>
+                        <li><a title="supprimer votre photo" href="index.php?p=deleteImage&id='.$objet->getId().'" id="deletePhoto">Supprimer la photo</a></li>
                     </ul>';
     } else {
         $contenu .= '<ul>

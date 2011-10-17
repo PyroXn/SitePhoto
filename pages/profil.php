@@ -219,7 +219,8 @@ function newPhotoSuccess() {
         $image->setUrl($error);
     } else {
         $title = 'Pixels Arts - Erreur lors de l\'upload';
-        $contenu = '<h2>Erreur lors de l\'upload</h2>';
+        $contenu = menuLeft($_SESSION['user']);
+        $contenu .= '<h2>Erreur lors de l\'upload</h2>';
         $contenu .= '<p>Merci de bien vouloir vérifier que la photo répond aux différentes contraintes,à savoir :
                     <ul><li>- 3Mo</li><li>image</li></ul></p>';
         display($title, $contenu);
@@ -419,7 +420,7 @@ function setCommentaire() {
     include_once 'sql/image.sql.php';
     $image = loadImage($_POST['id_image']);
     $action = $_SESSION['user']->getPseudoFormat() . ' a commenté la photo intitulé <a href=\"index.php?p=getPhoto&id='.$image->getId().'\">'.$image->getTitre().'</a>';
-    newAction($action, $_SESSION['user']->getId());
+    newAction($action, $image->getIdMembre());
     $commentaire = new Commentaire($_POST['id_membre'], $_POST['message'], $_POST['timestamp'], $_POST['id_image']);
     submit($commentaire);
     $membre = loadMembre($_POST['id_membre']);

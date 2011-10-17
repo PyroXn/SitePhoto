@@ -128,6 +128,8 @@ function isMyImage($id) {
 
 function delImage($id) {
     $sql = 'DELETE FROM images WHERE id="'.$id.'"';
+    $sql2 = 'DELETE FROM commentaire WHERE idImage="'.$id.'"';
     $req = mysql_query($sql);
+    $req2 = mysql_query($sql2);
 }
 ?>
