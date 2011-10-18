@@ -434,6 +434,7 @@ function setCommentaire() {
 
 function commentaire($idImage) {
     include_once 'sql/commentaire.sql.php';
+    include_once 'sql/image.sql.php';
     
     $formulaire = '<ol id="update" class="timeline">';
     
@@ -441,18 +442,23 @@ function commentaire($idImage) {
      * On récupère les commentaires s'il y en a dans la BDD
      */
     $comments = getComments($idImage);
+    $image = loadImage($idImage);
+    
     if ($comments != null) {
         /*
          * Affichage des commentaires un par un
          */
         foreach($comments as $c){
             $membre = loadMembre($c->getIdMembre());
-            $formulaire .= '
-                <li class="comment">
-                    <a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
-                    <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span></div>
-                    <span class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</span> 
-                </li>';
+            if ($image->getIdMembre() == $c->getIdMembre()) {
+                $formulaire .= '<li class="comment" id="comment_myself">';
+            } else {
+                $formulaire .= '<li class="comment">';
+            }
+                $formulaire .= '<a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
+                <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span></div>
+                <span class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</span> 
+                    </li>';
         }
     }
     $formulaire .= '</ol>';

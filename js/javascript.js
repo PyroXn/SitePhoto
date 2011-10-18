@@ -332,8 +332,7 @@ $(function() {
                 data: dataString,
                 cache: false,
                 success: function(html){
-                    $("ol#update").append(html);
-                    $("ol#update li:last").fadeIn("slow");
+                    $(html).hide().insertBefore("ol").slideDown();
                     $("#flash").hide();
                     $('#message').val('');
                     $('#message').css('height',21);
