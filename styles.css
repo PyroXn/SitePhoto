@@ -8,7 +8,7 @@ body {
     font-family: arial, helvetica, sans-serif;
 }
 
-ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input {
+ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input, fieldset, hr, ol {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -16,9 +16,9 @@ ul, li, p, div, h1, h2, h3, blockquote, dl, dt, dd, table, tr, td, th, input {
 
 /*bidouille pour rétablir le flux après un float*/
 hr {
-     clear: both;
-     visibility: hidden;
- }
+    clear: both;
+    visibility: hidden;
+}
 
 /*----HEADER----*/
 #header {
@@ -127,6 +127,56 @@ hr {
     color: #f60;
 }
 
+#contenu fieldset {
+    margin-top: 10px;
+    margin-left: 160px;
+    width: 816px;
+    border:2px solid black;
+    
+    
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    padding-bottom: 10px;
+}
+/*#contenu fieldset {
+    border: 1px solid #CCA383;
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 160px;
+    width: 816px;
+    background: #FFE8EF;
+    padding: 3px
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+    padding-bottom: 10px;
+}*/
+
+#contenu fieldset p {
+    margin-left: 60px; 
+}
+
+#contenu fieldset img {
+    margin-left: 50px;
+    border: 2px solid black;
+}
+
+#contenu fieldset legend {
+    margin-left: 10px;
+    border-left: black 2px solid;
+    border-right: black 2px solid;
+    font-weight: bold;
+    color: black;
+    
+  }
+/*#contenu fieldset legend {
+    background: #CCA383;
+    padding: 6px;
+    font-weight: bold;
+    margin-left: 5px;
+}*/
+
 #contenu label {
     display: block;
     padding-bottom: 1px;
@@ -174,6 +224,59 @@ hr {
 
 #contenu .server_return {
     margin-top: 0px;
+}
+
+#galerie {
+    margin-left: 160px;
+    width: 820px;
+    position: relative;
+}
+
+#galerie a {
+    text-decoration: none;
+}
+
+#galerie .album {
+    margin-top: 5px;
+    margin-right: 5px;
+    border: 5px solid white;
+
+    /*marche pas sur les ancienne version windaube voir commentaire conditionnel*/
+    -moz-box-shadow: 1px 1px 12px #555;
+    -webkit-box-shadow: 1px 1px 12px #555;
+    z-index: 1;
+}
+
+#galerie .cadre_album, .titre_album {
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    margin-top: 10px;
+    margin-left: 5px;
+
+
+}
+
+#galerie .cadre_album {
+    width: 255px;
+    height: 155px;
+    background: #ddd;
+    opacity: 0.5;
+}
+
+#galerie .titre_album {
+    z-index: 3;
+    width: 255px;
+    text-align: center;
+    margin-top: 65px;
+    color: #222;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#galerie a:hover span {
+    visibility: visible;
 }
 
 /*----CARACTERISTIQUE DU PROFIL----*/
@@ -224,9 +327,9 @@ hr {
     color: white;
     font-style: italic;
     text-align: justify;
-    
+
     /*Paye ton dégradé compatible*/
-    
+
     /*chrome 2+, safari 4+*/
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#B8DB29), to(#5A8F00));
     /* Safari 5.1+, Chrome 10+ */  
@@ -243,7 +346,7 @@ hr {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#B8DB29', endColorstr='#5A8F00')";  
     /*pour les navigateur compatible css3*/
     background: linear-gradient(#B8DB29, #5A8F00); 
-    
+
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -260,7 +363,7 @@ hr {
     display: block;
     width: 0;
 }
- 
+
 #statistique {
     /*word-spacing: 198px;*/
     display: table;
@@ -304,7 +407,11 @@ hr {
     width: 488px; /*2 pixels disparu je sais pas pkoi ... devrait être 490px*/
     margin-top: 40px;
     margin-bottom: 15px;
+    vertical-align: top;
+}
 
+.colonne a {
+    text-decoration: none;
 }
 
 .colonne img {
@@ -329,14 +436,12 @@ hr {
     width: 408px; /*2 pixels disparu je sais pas pkoi ... devrait être 410px*/
     margin-top: 40px;
     margin-bottom: 15px;
-
 }
 
-.colonne_profil img {
+.colonne_profil img {   
     margin-top: 12px;
     margin-right: 12px;
     border: 4px solid white;
-
     /*marche pas sur les ancienne version windaube voir commentaire conditionnel*/
     -moz-box-shadow: 1px 1px 12px #555;
     -webkit-box-shadow: 1px 1px 12px #555;
@@ -405,13 +510,14 @@ hr {
 
 #colonne1 img {
     margin-right: 15px;
+    margin-left: 15px;
 }
 
 #colonne2 {
     float: left;
     width: 288px;
-    border-left: 1px dotted #efefef;
-    border-right: 1px dotted #efefef;
+    /*border-left: 1px dotted #efefef;
+    border-right: 1px dotted #efefef;*/
 }
 
 #colonne2 a {
@@ -426,6 +532,7 @@ hr {
     float: left;
     /*margin-left: -25px;*/
     margin-top: 5px;
+    margin-left: 55px;
     margin-right: 25px;
     border: 1px solid white;
 }
@@ -434,7 +541,7 @@ hr {
     float: left;
     width: 288px;
     height: 220px;
-    border-right: 1px dotted #efefef;
+    /*border-right: 1px dotted #efefef;*/
 }
 
 #colonne3 h4 {
@@ -448,13 +555,17 @@ hr {
     color: #e5f3ff;
     font-size: 14px;
     line-height: 1px;
-    margin-top: 25px;
 }
 #colonne3 img {
     float: left;
     margin-top: -10px;
-    margin-left: -35px;
+    margin-left: 35px;
     margin-right: 10px;
+}
+
+#colonne3 a {
+    text-decoration: none;
+    color: white;
 }
 
 #colonne4 {
@@ -471,9 +582,13 @@ hr {
 
 }
 
+#colonne4 ol {
+    margin-top: 5px;
+}
+
 #colonne4 img {
     float: left;
-    margin-left: 25px;
+    margin-left: 35px;
     border: 1px solid white;
 }
 
@@ -482,4 +597,201 @@ hr {
     text-align: center;
     color: #818181;
     font-size: 10px;
+}
+
+/*.lastActions .action_commentaire {
+    background-color: #e9acac;
+}
+.lastActions .action_ajoutPhoto {
+    background-color: #afe9ac;
+}
+.lastActions .action_modifAvatar {
+    background-color: #acd0e9;
+}*/
+
+.lastActions {
+background: #c6d8e4;
+color: #666;
+}
+.lastActions {
+border-top: 1px solid #dddfe7;
+border-left: 1px dotted #dddfe7;
+border-right: 1px dotted #dddfe7;
+padding: 10px 19px 10px 9px;
+outline: none;
+}
+.lastActions a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lastActions a.pseudo_homme {
+    color: #06C;
+}
+
+.lastActions a.pseudo_femme {
+    color: #F06;
+}
+
+.colonne_profil ul {
+    margin-top: 10px;
+}
+.lastActions sup {
+    color: #12C;;
+    font-size: 8px;
+    font-style: italic;
+}
+
+
+
+
+
+
+
+/* MODULE DE COMMENTAIRE */
+.comment {
+    position: relative;
+    background: #f7f7f7;
+    background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-box-shadow: 0 0 15px #aaa;
+    -webkit-box-shadow: 0 0 15px #aaa;
+    box-shadow: 0 0 15px #aaa;
+    width: 805px;
+    height: auto;
+    margin: 3px 0 3px 160px;
+    padding: 7px;
+    overflow: hidden; /* Empêche le dépassement des flottants. */
+}
+
+#comment_myself {
+/*    border: 1px solid green;*/
+/*    background: -moz-linear-gradient(90deg, #8ffea9, #fff);  Firefox 
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#8ffea9));  Webkit */
+}
+
+#comment_myself .name{
+    color: #fc3838;
+}
+
+.comment .avatar {
+    float: left;
+    border: 1px solid #aaa;
+    -moz-box-shadow: 1px 1px 0 #c2c2c2;
+    -webkit-box-shadow: 1px 1px 0 #c2c2c2;
+    box-shadow: 1px 1px 0 #c2c2c2;
+    margin-right: 10px;
+}
+
+
+.comment .name {
+    font-size: 14px;
+    color: #0459b7;
+    font-weight: bold;
+}
+
+.comment .date {
+    font-size: 10px;
+    color: #666;
+    position: absolute;
+    bottom: -1px;;
+    right: 7px;
+}
+
+.comment .message {
+    text-align: justify;
+    font-size: 14px;
+    color: #818181;
+    font-weight: normal;
+    line-height: 18px;
+}
+
+.comment .contenu_comment {
+    display: block;
+    margin-left: 47px;
+}
+
+#commentaireFormulaire label {
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 28px;
+    margin-bottom: 5px;
+    width: 130px;
+}
+
+/* marche pas surement un truc a faire en js */
+#commentaireFormulaire #message {
+    width: 530px;
+    height: 21px;
+}
+
+#commentaireFormulaire p:hover label {
+    color: #0459b7;
+}
+
+#commentaireFormulaire p label:after {
+    content: ' ?';
+}
+
+#commentaireFormulaire p:hover label:after {
+    content: ' >>';
+}
+
+/*à réimplémenter pour les navigateurs bouzeux*/
+#commentaireFormulaire input {
+    float: right;
+    background: #ddd;
+    background: -moz-linear-gradient(90deg, #0459b7, #08adff); /* Firefox */
+    background: -webkit-gradient(linear, left top, left bottom, from(#08adff), to(#0459b7)); /* Webkit */
+    border: 1px solid #093c75;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0px 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 1px #333;
+    text-transform: uppercase;
+    width: 150px;
+    height: 27px;
+}
+
+.page {
+    text-align: right;
+    font-size: 11px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.pagination {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    background-color: #111;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.page a:hover {
+    background-color:#ec5210;
+    color: #fff;
+}
+
+.page #current {
+    font-weight: bold;
+    background-color: #5e5e5e;
+    color: #fff;
+    cursor: auto;
 }
