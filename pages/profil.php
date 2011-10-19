@@ -43,7 +43,7 @@ function profil() {
     $title = 'Pixels Arts - ' . $membre->getPseudo() . '';
     $contenu = menuLeft($membre);
     $contenu .= '<h1>
-                    Profil de '.$membre->getPseudoFormat().'
+                    Profil de '.$membre->getPseudo().'
                 </h1>
                 <div id="presentation">
                     <span id="caracteristique_gauche">
@@ -242,10 +242,12 @@ function newPhotoSuccess() {
         if ($idConcour != 0) {
             membreParticipe($idConcour);
         }
-        $actions = $_SESSION['user']->getPseudoFormat() . ' a ajouté une photo à sa <a href=\"index.php?p=getGalerie&album='.$image->getIdAlbum().'\">gallerie</a>';
+        $album = getThisAlbum($image->getIdAlbum());
+        $actions = $_SESSION['user']->getPseudoFormat() . ' a ajouté une photo dans son album <a href=\"index.php?p=getGalerie&album='.$image->getIdAlbum().'\">'.$album->getTitre().'</a>';
         newAction($actions, $_SESSION['user']->getId());
         $title = 'Pixels Arts - Photo envoyé avec succès.';
-        $contenu = '<h1>Photo envoyé avec succès.</h1>';
+        $contenu = menuLeft($_SESSION['user']);
+        $contenu .= '<h1>Photo envoyé avec succès.</h1>';
         $contenu .= '<p>Votre Photo a été envoyé avec succès</p>';
         $contenu .= mosaique();
         display($title, $contenu);

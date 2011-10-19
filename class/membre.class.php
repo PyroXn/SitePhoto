@@ -36,9 +36,9 @@ class Membre {
     
     function getPseudoFormat() {
         if($this->sexe == 1) {
-            return '<font color=\"#06C\">'.$this->getPseudo().'</font>';
+            return '<img src=\"thumb.php?src='.$this->getAvatar().'&x=30&y=30&f=0\"></img><a class=\"pseudo_homme\" href=\"index.php?p=profil&id='.$this->getId().'\">'.$this->getPseudo().'</a>';
         } else {
-            return '<font color=\"#F06\">'.$this->getPseudo().'</font>';
+            return '<img src=\"thumb.php?src='.$this->getAvatar().'&x=30&y=30&f=0\"></img><a class=\"pseudo_femme\" href=\"index.php?p=profil&id='.$this->getId().'\">'.$this->getPseudo().'</a>';
         }
     }
     

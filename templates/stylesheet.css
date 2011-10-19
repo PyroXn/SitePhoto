@@ -601,15 +601,38 @@ hr {
 }
 
 .lastActions {
-    height: 18px;
+background: #c6d8e4;
+color: #666;
 }
+.lastActions {
+border-top: 1px solid #dddfe7;
+border-left: 1px dotted #dddfe7;
+border-right: 1px dotted #dddfe7;
+padding: 10px 19px 10px 9px;
+outline: none;
+}
+.lastActions a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.lastActions a.pseudo_homme {
+    color: #06C;
+}
+
+.lastActions a.pseudo_femme {
+    color: #F06;
+}
+
 .colonne_profil ul {
     margin-top: 10px;
 }
-sup {
-    color: #818181;
+.lastActions sup {
+    color: #12C;;
     font-size: 8px;
+    font-style: italic;
 }
+
 
 
 
