@@ -660,6 +660,10 @@ outline: none;
     overflow: hidden; /* Empêche le dépassement des flottants. */
 }
 
+#comment_myself .name{
+    color: #fc3838;
+}
+
 .comment .avatar {
     float: left;
     border: 1px solid #aaa;
