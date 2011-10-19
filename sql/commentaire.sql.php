@@ -48,7 +48,7 @@ function ajaxLoadComments() {
             $contenu .= '
                 <li class="comment">
                     <a href="index.php?p=profil&id=' . $membre->getId() . '"><img class="avatar" src="thumb.php?src=' . $membre->getAvatar() . '&x=37&y=50&f=0"></img></a>
-                    <div class="contenu_comment"><span class="name">' . $membre->getPseudo() . ' - <span class="message">' . $c->getMessage() . '</span></span></div>
+                    <div class="contenu_comment"><span class="name">' . $membre->getPseudoFormat() . ' - <span class="message">' . $c->getMessage() . '</span></span></div>
                     <span class="date" title="Ajouté le ' . $c->getTimeStamp() . '">Posté il y a ' . $c->getTimeStampFormat() . '</span> 
                 </li>';
         }
