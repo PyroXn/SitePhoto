@@ -89,8 +89,8 @@ function inscriptionSuccess() {
         $users->setAvatar('./templates/images/Avatar_defaut.jpg');
         //sendMail($users);
         register($users);
-        @mkdir ("./pics/".$users->getPseudo()."",0777);
-        @mkdir ("./pics/".$users->getPseudo()."/defaut", 0777);
+        @mkdir ("./pics/".$users->getPseudo()."",0755);
+        @mkdir ("./pics/".$users->getPseudo()."/defaut", 0755);
 
     } elseif (isPseudoExist($users)) {
         $title = 'Inscription impossible';
