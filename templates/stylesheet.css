@@ -127,7 +127,7 @@ hr {
     color: #f60;
 }
 
-#contenu fieldset {
+/*#contenu fieldset {
     margin-top: 10px;
     margin-left: 160px;
     width: 816px;
@@ -138,8 +138,8 @@ hr {
     -webkit-border-radius:8px;
     border-radius:8px;
     padding-bottom: 10px;
-}
-/*#contenu fieldset {
+}*/
+#contenu fieldset {
     border: 1px solid #CCA383;
     width: 50%;
     margin-top: 10px;
@@ -151,7 +151,7 @@ hr {
     -webkit-border-radius:8px;
     border-radius:8px;
     padding-bottom: 10px;
-}*/
+}
 
 #contenu fieldset p {
     margin-left: 60px; 
@@ -159,23 +159,23 @@ hr {
 
 #contenu fieldset img {
     margin-left: 50px;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
 }
 
-#contenu fieldset legend {
+/*#contenu fieldset legend {
     margin-left: 10px;
     border-left: black 2px solid;
     border-right: black 2px solid;
     font-weight: bold;
     color: black;
     
-  }
-/*#contenu fieldset legend {
+  }*/
+#contenu fieldset legend {
     background: #CCA383;
     padding: 6px;
     font-weight: bold;
     margin-left: 5px;
-}*/
+}
 
 #contenu label {
     display: block;
@@ -436,6 +436,7 @@ hr {
     width: 408px; /*2 pixels disparu je sais pas pkoi ... devrait être 410px*/
     margin-top: 40px;
     margin-bottom: 15px;
+
 }
 
 .colonne_profil img {   
@@ -621,7 +622,7 @@ sup {
     position: relative;
     background: #f7f7f7;
     background: -moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
+    background :-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
     border: 1px solid #aaa;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -634,16 +635,6 @@ sup {
     margin: 3px 0 3px 160px;
     padding: 7px;
     overflow: hidden; /* Empêche le dépassement des flottants. */
-}
-
-#comment_myself {
-/*    border: 1px solid green;*/
-/*    background: -moz-linear-gradient(90deg, #8ffea9, #fff);  Firefox 
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#8ffea9));  Webkit */
-}
-
-#comment_myself .name{
-    color: #fc3838;
 }
 
 .comment .avatar {
