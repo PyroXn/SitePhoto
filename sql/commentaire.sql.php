@@ -13,7 +13,7 @@ function getComments($idImage) {
     $nbComments = getNbComments($idImage);
     $firstComment = ($p - 1) * $_SESSION['nbParPage'];
     $comments = array();
-    $sql = 'SELECT * FROM commentaire WHERE idImage="' . $idImage . '" ORDER BY id ASC LIMIT ' . $firstComment . ', ' . $_SESSION['nbParPage'];
+    $sql = 'SELECT * FROM commentaire WHERE idImage="' . $idImage . '" ORDER BY id DESC LIMIT ' . $firstComment . ', ' . $_SESSION['nbParPage'];
     $req = mysql_query($sql);
     if (mysql_num_rows($req) > 0) {
         while ($data = mysql_fetch_assoc($req)) {
@@ -34,7 +34,7 @@ function ajaxLoadComments() {
     $nbComments = getNbComments($_POST['idImage']);
     $firstComment = ($p - 1) * $_SESSION['nbParPage'];
     $comments = array();
-    $sql = 'SELECT * FROM commentaire WHERE idImage="' . $_POST['idImage'] . '" ORDER BY id ASC LIMIT ' . $firstComment . ', ' . $_SESSION['nbParPage'];
+    $sql = 'SELECT * FROM commentaire WHERE idImage="' . $_POST['idImage'] . '" ORDER BY id DESC LIMIT ' . $firstComment . ', ' . $_SESSION['nbParPage'];
     $req = mysql_query($sql);
     if (mysql_num_rows($req) > 0) {
         while ($data = mysql_fetch_assoc($req)) {
@@ -69,15 +69,18 @@ function pagination($idImage) {
     $nbPage = ceil($nbComment / $_SESSION['nbParPage']);
     $path = $_SERVER['PHP_SELF'];
     $file = basename($path);
-    $contenu = '<div class="page">';
-    for ($i = 1; $i <= $nbPage; $i++) {
-        if ($i == 1) {
-            $contenu .= '<a id="current" class="pagination" name="' . $i . '">' . $i . '</a>';
-        } else {
-            $contenu .= '<a class="pagination" name="' . $i . '">' . $i . '</a>';
+    $contenu = '';
+    if ($nbComment > 0) {
+        $contenu = '<div class="page">';
+        for ($i = 1; $i <= $nbPage; $i++) {
+            if ($i == 1) {
+                $contenu .= '<a id="current" class="pagination" name="' . $i . '">' . $i . '</a>';
+            } else {
+                $contenu .= '<a class="pagination" name="' . $i . '">' . $i . '</a>';
+            }
         }
+        $contenu .= '</div>';
     }
-    $contenu .= '</div>';
     return $contenu;
 }
 
