@@ -128,7 +128,7 @@ function getPhoto() {
     }
     $contenu .= '</div>';
     
-    $contenu .= '<h1>Photo prise par '.$membre->getPseudoFormat().'</h1>';
+    $contenu .= '<h1>Photo prise par '.$membre->getPseudo().'</h1>';
     $contenu .= '<div id="img_profil">';
     $contenu .= '<h3>'.$objet->getTitre().'</h3>';
     $contenu .= '<img src="'.$objet->getUrl().'" title="'.$objet->getTitre().'"></img>';
