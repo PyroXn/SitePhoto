@@ -13,4 +13,35 @@ function newMessage() {
         return 'Messagerie';
     }
 }
+
+
+function getMessagesRecus($idDestinataire) {
+    $sql = 'SELECT * FROM messagerie WHERE destinataire="'.$idDestinataire.'" ORDER BY id DESC';
+    $req = mysql_query($sql);
+    $messagesRecus = array();
+    if (mysql_num_rows($req) > 0) {
+        while ($data = mysql_fetch_assoc($req)) {
+            $messageRecus = new Messagerie($data['expediteur'], $data['destinataire'], $data['sujet'], $data['message'], $data['timestamp'], $data['etat']);
+            $messagesRecus[] = $messageRecus;
+        }
+        return $messagesRecus;
+    } else {
+        return null;
+    }
+}
+
+function getMessagesEnvoyes($idExpediteur) {
+    $sql = 'SELECT * FROM messagerie WHERE expediteur="'.$idExpediteur.'" ORDER BY id DESC';
+    $req = mysql_query($sql);
+    $messagesEnvoyes = array();
+    if (mysql_num_rows($req) > 0) {
+        while ($data = mysql_fetch_assoc($req)) {
+            $messageEnvoyes = new Messagerie($data['expediteur'], $data['destinataire'], $data['sujet'], $data['message'], $data['timestamp']);
+            $messagesEnvoyes[] = $messageEnvoyes;
+        }
+        return $messagesEnvoyes;
+    } else {
+        return null;
+    }
+}
 ?>
