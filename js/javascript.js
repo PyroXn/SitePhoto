@@ -47,7 +47,7 @@ $(function() {
         var password = $(this).val();
         var password2 =  $('#password2').val();
         if (password.length < 6 && (password != "" || password == null)) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Minimun 6 caractères");
         } else if (password.length >= 6 && password == password2) {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
             $('#password2').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
@@ -64,7 +64,7 @@ $(function() {
     $('#passwordLog').blur(function () {
         var password = $(this).val();
         if (password.length < 6 || password == "") {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Minimun 6 caractères");
         }
         else {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
@@ -80,7 +80,7 @@ $(function() {
             $(this).next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
             $('#password').next().show().html("<img src='templates/images/check-vert.png' class='noBorder'>");
         } else if (password2.length < 6) {
-            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Votre mot de passe doit contenir au minimun 6 caractères");
+            $(this).next().show().html("<img src='templates/images/check-rouge.png' class='noBorder'> Minimun 6 caractères");
         }
           else {
             $(this).next().show().html("");

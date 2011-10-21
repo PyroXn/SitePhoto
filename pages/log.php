@@ -3,45 +3,37 @@
 // Fichier regroupant les pages inscription, connexion, oublie mot de passe...
 
 function inscription() {
-    // TODO : Améliorer mise en page
+    // TODO : placeholder à remplir
     $title = "Inscrivez-vous et devenez photographe !";
     $content = "<h1>Inscrivez vous - Partagez vos galleries !</h1>";
-    $content .= "<form method='post' action='index.php?p=inscriptionSuccess'>";
+    $content .= "<form id='formulaire_type' method='post' action='index.php?p=inscriptionSuccess'>";
     $content .= "<p>
-        <label for='pseudo'>Pseudo </label>
-        <input type='text' id='pseudo' name='pseudo'>
+        <label for='pseudo'>Pseudo: </label>
+        <input type='text' id='pseudo' name='pseudo' placeholder='Pseudo > 3 caractères'>
         <span class='error'></span>
         
-        <label for='mail'>E-mail </label>
+        <label for='mail'>E-mail: </label>
         <input type='text' id='mail' name='mail'>
         <span class='error'></span>
         
-        <label for='mail2'> Confirmer e-mail </label>
+        <label for='mail2'>Confirmer e-mail: </label>
         <input type='text' id='mail2' name='mail2'>
         <span class='error'></span>
         
-        <label for='password'>Mot de passe </label>
+        <label for='password'>Mot de passe: </label>
         <input type='password' id='password' name='password'>
         <span class='error'></span>
-        <label for='password2'>Confirmer mot de passe </label>
+        <label for='password2'>Confirmer mot de passe: </label>
         <input type='password' id='password2' name='password2'>
-        <span class='error'></span>
-                                    
-        <label for='sexe'>Je suis </label>
-        <select id='sexe' name='sexe'>
-            <option value=''>Sexe</option>
-            <option value='2'>Femme</option>
-            <option value='1'>Homme</option>
-        </select>
-        <span class='error'></span>
+        <span class='error'></span></p>
         
-        <label for='birthday'>Date de naissance </label> 
+        <p class='paragraphe_sans_marge'><label for='birthday'>Date de naissance: </label> 
         <select id='birthday' name='birthday'>
         <option value=''>Jour</option>";
     for ($i = 01; $i <= 31; $i++) {
         $content .= "<option value=$i>$i</option>";
     }
-    $content .= "</select> ";
+    $content .= "</select>";
     
     $content .= "<select id='birthmonth' name='birthmonth'>
              <option value=''>Mois</option>
@@ -57,17 +49,24 @@ function inscription() {
              <option value='10'>Octobre</option>
              <option value='11'>Novembre</option>
              <option value='12'>Decembre</option>";
-    $content .= "</select> ";
+    $content .= "</select>";
     
     $content .= "<select id='birthyear' name='birthyear'>
              <option value=''>Année</option>";
     for ($i = Date("Y"); $i >= 1931; $i--) {
         $content .= "<option value=$i>$i</option>";
     }
-    $content .= "</select><span class='error'></span>";
-    
-    $content .= "<input  type='submit' value='Inscription' id='submit' class='submit' onSubmit='checkInscription()'/>";
-    $content .= "</p></form>";
+    $content .= "</select><span class='error'></span></p>
+                 <p class='paragraphe_sans_marge'><label for='sexe'>Je suis: </label>
+                    <select id='sexe' name='sexe'>
+                        <option value=''>Sexe</option>
+                        <option value='2'>Femme</option>
+                        <option value='1'>Homme</option>
+                    </select>
+                    <span class='error'></span>
+                 </p>";
+    $content .= "<p class='paragraphe_sans_marge'><input  type='submit' value='Inscription' id='submit' class='submit' onSubmit='checkInscription()'/></p>";
+    $content .= "</form>";
     $content .= mosaique();
     display($title, $content);
 }
@@ -89,8 +88,8 @@ function inscriptionSuccess() {
         $users->setAvatar('./templates/images/Avatar_defaut.jpg');
         //sendMail($users);
         register($users);
-        @mkdir ("./pics/".$users->getPseudo()."",0755);
-        @mkdir ("./pics/".$users->getPseudo()."/defaut", 0755);
+        @mkdir ("./pics/".$users->getPseudo()."",0777);
+        @mkdir ("./pics/".$users->getPseudo()."/defaut", 0777);
 
     } elseif (isPseudoExist($users)) {
         $title = 'Inscription impossible';
@@ -143,11 +142,11 @@ function connexion() {
     // TODO : Améliorer mise en page
     $title = "Connectez-vous à votre espace perso !";
     $content = "<h1>Connexion</h1>";
-    $content .= "<form method='POST' action='index.php?p=connexionSuccess'>
+    $content .= "<form id='formulaire_type' method='POST' action='index.php?p=connexionSuccess'>
                 <p>
-                <label for='mail'>E-mail</label>
+                <label for='mail'>E-mail: </label>
                 <input type='text' name='mail' id='mailLog' /><span class='error'></span>
-                <label for='password'>Mot de passe</label>
+                <label for='password'>Mot de passe: </label>
                 <input type='password' name='password' id='passwordLog' /><span class='error'></span>
                 <input class='submit' type='submit' name='Submit' value='Connexion' id='submitLog'>
                 </p>
