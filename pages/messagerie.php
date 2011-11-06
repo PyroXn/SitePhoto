@@ -8,15 +8,9 @@ function messagerie() {
     $title = 'Pixels Arts - Messagerie : Accueil';
     $contenu = menuLeft($_SESSION['user']);
     $contenu .= '<h1>Messagerie</h1>';
-<<<<<<< HEAD
-<<<<<<< HEAD
     $contenu .= '<a href="">Nouveaux messages</a>';
     $contenu .= '<a>Reçus</a>';
     $contenu .= '<a>Envoyès</a>';
-    
-    
-=======
->>>>>>> parent of 4988c2f... pyro
     
     $user = $_SESSION['user'];
     $messagesRecus = getMessagesRecus($user->getId());
@@ -32,11 +26,8 @@ function messagerie() {
     $contenu .= '</ul>';
     
     
-<<<<<<< HEAD
-=======
     $contenu .= mosaique();
     display($title,$contenu);
->>>>>>> parent of 3d93c2d... messagerie
     
     /*MESSAGE ENVOYES*/
     $messagesEnvoyes = getMessagesEnvoyes($user->getId());
@@ -74,9 +65,6 @@ function messagerie() {
             </fieldset>
 	</form>';
     
-    
-=======
->>>>>>> parent of 4988c2f... pyro
     $contenu .= mosaique();
     display($title,$contenu);
     
