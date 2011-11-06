@@ -9,6 +9,7 @@ function messagerie() {
     $title = 'Pixels Arts - Messagerie : Accueil';
     $contenu = menuLeft($user);
     $contenu .= '<h1>Messagerie</h1>';
+<<<<<<< HEAD
     $contenu .= '<a href="">Nouveaux messages</a>';
     $contenu .= '<a>Reçus</a>';
     $contenu .= '<a>Envoyès</a>';
@@ -31,6 +32,10 @@ function messagerie() {
     $contenu .= '</ul>';
     
     
+=======
+    $contenu .= mosaique();
+    display($title,$contenu);
+>>>>>>> parent of 3d93c2d... messagerie
     
     /*MESSAGE ENVOYES*/
     $messagesEnvoyes = getMessagesEnvoyes($user->getId());
