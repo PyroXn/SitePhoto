@@ -5,33 +5,34 @@ function messagerie() {
         accessForbidden();
     }
     include_once 'pages/profil.php';
-    $user = $_SESSION['user'];
     $title = 'Pixels Arts - Messagerie : Accueil';
-    $contenu = menuLeft($user);
+    $contenu = menuLeft($_SESSION['user']);
     $contenu .= '<h1>Messagerie</h1>';
+<<<<<<< HEAD
 <<<<<<< HEAD
     $contenu .= '<a href="">Nouveaux messages</a>';
     $contenu .= '<a>Reçus</a>';
     $contenu .= '<a>Envoyès</a>';
     
     
+=======
+>>>>>>> parent of 4988c2f... pyro
     
-    /*MESSAGE RECUS (AFFICHER PAR DEFAUT)*/
+    $user = $_SESSION['user'];
     $messagesRecus = getMessagesRecus($user->getId());
     $contenu .= '<ul>';
     if ($messagesRecus != null) {
         foreach($messagesRecus as $messageRecus){
-            if ($messageRecus->getEtat() == 1) {
-                $contenu .= '<li class="new_message">';
-            } else {
-                $contenu .= '<li class="message">';
-            }
-            $contenu .= $messageRecus->getExpediteur()->getPseudoFormat().' '.$messageRecus->getSujet().' '.$messageRecus->getTimestamp().'</li>';
-        }
+            $contenu .= '
+                <li class="message">
+                    '.$user->getPseudoFormat().'
+                </li>';
+        }   
     }
     $contenu .= '</ul>';
     
     
+<<<<<<< HEAD
 =======
     $contenu .= mosaique();
     display($title,$contenu);
@@ -74,7 +75,11 @@ function messagerie() {
 	</form>';
     
     
+=======
+>>>>>>> parent of 4988c2f... pyro
     $contenu .= mosaique();
     display($title,$contenu);
+    
+    
 }
 ?>
