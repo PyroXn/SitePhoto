@@ -1,7 +1,7 @@
 <?php
 
 function registerImage(Image $img) {
-    $sql = 'INSERT INTO images(url,titre,description,idMembres,idAlbum,Idconcours) VALUES ("' . $img->getUrl() . '", "' . $img->getTitre() . '", "' . $img->getDescription() . '","' . $img->getIdMembre() . '","' . $img->getIdAlbum() . '","' . $img->getIdConcour() . '")';
+    $sql = 'INSERT INTO images(url,titre,description,idMembres,idAlbum,Idconcours,etat) VALUES ("' . $img->getUrl() . '", "' . $img->getTitre() . '", "' . $img->getDescription() . '","' . $img->getIdMembre() . '","' . $img->getIdAlbum() . '","' . $img->getIdConcour() . '","' . $img->getEtat() . '")';
     $req = mysql_query($sql);
 }
 
@@ -18,6 +18,7 @@ function loadImage($id) {
     $image->setScore($data['score']);
     $image->setView($data['view']);
     $image->setTitre($data['titre']);
+    $image->setEtat($data['etat']);
     return $image;
 }
 
@@ -67,6 +68,7 @@ function getLastImage($idMembre) {
         $image->setIdMembre($data['idMembres']);
         $image->setScore($data['score']);
         $image->setView($data['view']);
+        $image->setEtat($data['etat']);
         $tabImage[] = $image;
     }
     return $tabImage;
@@ -131,5 +133,31 @@ function delImage($id) {
     $sql2 = 'DELETE FROM commentaire WHERE idImage="'.$id.'"';
     $req = mysql_query($sql);
     $req2 = mysql_query($sql2);
+}
+
+function getNbImage() {
+    $sql = 'SELECT * from images';
+    $req = mysql_query($sql);
+    return mysql_num_rows($req);
+}
+
+function getImageAValider() {
+    $tabImage = array();
+    $sql = 'SELECT * FROM images WHERE etat=1';
+    $req = mysql_query($sql);
+    while ($data = mysql_fetch_assoc($req)) {
+        $image = new Image($data['url']);
+        $image->setDescription($data['description']);
+        $image->setTitre($data['titre']);
+        $image->setId($data['id']);
+        $image->setIdAlbum($data['idAlbum']);
+        $image->setIdConcour($data['idConcours']);
+        $image->setIdMembre($data['idMembres']);
+        $image->setScore($data['score']);
+        $image->setView($data['view']);
+        $image->setEtat($data['etat']);
+        $tabImage[] = $image;       
+    }
+    return $tabImage;
 }
 ?>

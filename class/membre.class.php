@@ -11,6 +11,7 @@ class Membre {
     private $birthday;
     private $cle;
     private $lastVisit;
+    private $admin;
 
     /*   CONSTRUCTOR    */
 
@@ -90,6 +91,10 @@ class Membre {
         return date("d/m/Y", strtotime($this->lastVisit));
     }
 
+    function getAdmin() {
+        return $this->admin;
+    }
+    
     /*   SETTER    */
 
     function setPseudo($pseudo) {
@@ -131,7 +136,11 @@ class Membre {
     function setLastVisit($timestamp) {
         $this->lastVisit = $timestamp;
     }
-
+    
+    function setAdmin($admin) {
+        $this->admin = $admin;
+    }
+    
     /*   METHODES    */
 }
 

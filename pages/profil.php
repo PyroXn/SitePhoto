@@ -1,10 +1,11 @@
 <?php
+
 /**
  *
  * @return Bool Retourne vrai si utilisateur est sur son profil
  */
 function isMyPage($id) {
-    if(isset($_SESSION['user'])) {
+    if (isset($_SESSION['user'])) {
         return $_SESSION['user']->getId() == $id;
     }
     return false;
@@ -39,53 +40,57 @@ function profil() {
 
     $concours = lastConcour();
     $membre = loadMembre($_GET['id']);
-    
+
     $title = 'Pixels Arts - ' . $membre->getPseudo() . '';
     $contenu = menuLeft($membre);
     $contenu .= '<h1>
-                    Profil de '.$membre->getPseudo().'
+                    Profil de ' . $membre->getPseudo() . '
                 </h1>
                 <div id="presentation">
                     <span id="caracteristique_gauche">
-                        <span class="type">Sexe: </span><span  class="data">'.$membre->getSexeFormat().'</span>
+                        <span class="type">Sexe: </span><span  class="data">' . $membre->getSexeFormat() . '</span>
                     </span>
-                    <span class="type">Date de naissance: </span><span class="data">'.$membre->getBirthdayFormat().'</span>
+                    <span class="type">Date de naissance: </span><span class="data">' . $membre->getBirthdayFormat() . '</span>
                     <span id="caracteristique_droite">
-                        <span class="type">Dernière visite: </span><span class="data">'.$membre->getLastVisit().'</span>
+                        <span class="type">Dernière visite: </span><span class="data">' . $membre->getLastVisit() . '</span>
                     </span>
                 </div>
                 <div id="img_profil">';
-    if (havePhotoConcours($concours->getId(),$membre->getId()) == 1) {
-        $image = imageConcour($concours->getId(),$membre->getId());
-        view($image);
-        $contenu .= '<h3>' . $image->getTitre() . '</h3>';
-        $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
-        $contenu .= '<div id="statistique">
+    if (havePhotoConcours($concours->getId(), $membre->getId()) == 1) {
+        $image = imageConcour($concours->getId(), $membre->getId());
+        if ($image->getEtat() == 1) {
+            $contenu .= '<h3>Votre image est en cour de validation !</h3>';
+            $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Votre image est en cour de validation !"></img>';
+            $contenu .= '</div><hr></hr>';
+        } else {
+            view($image);
+            $contenu .= '<h3>' . $image->getTitre() . '</h3>';
+            $contenu .= '<img src="' . $image->getUrl() . '" title="' . $image->getTitre() . '" alt="' . $image->getTitre() . '"></img>';
+            $contenu .= '<div id="statistique">
                         <span class="statistique_cellule">
-                            <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">'.$image->getView().'</span>
+                            <img src="./templates/images/oeil.png" title="nombres de vues" alt="nombres de vues"></img><span class="res_stat">' . $image->getView() . '</span>
                         </span>                            
                         <span class="statistique_cellule">
-                            <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">'.$image->getScore().'</span>
+                            <img src="./templates/images/classement.png" title="nombres de points" alt="nombres de points"></img><span class="res_stat">' . $image->getScore() . '</span>
                         </span>
                         <span class="statistique_cellule">
-                            <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">'.getClassement($image->getId(), $concours->getId()).'</span>
+                            <img src="./templates/images/podium4.png" title="classement" alt="classement"></img><span class="res_stat">' . getClassement($image->getId(), $concours->getId()) . '</span>
                         </span>
                         <span id="vote">';
-        if(!isOk() || @alreadyVoted($_SESSION['user']->getId(),$image->getId()) || isMyPage($_GET['id'])) {
-            $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
+            if (!isOk() || @alreadyVoted($_SESSION['user']->getId(), $image->getId()) || isMyPage($_GET['id'])) {
+                $contenu .= '<img src="./templates/images/positif2.png" id="positif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>
                          <img src="./templates/images/negatif2.png" id="negatif" title="Merci d\'avoir voté." alt="Merci d\'avoir voté."></img>';
-        }
-        else {
-            $contenu .= '<img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id='.$image->getId().'\')"></img>
-                         <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id='.$image->getId().'\')"></img>';
-        }
+            } else {
+                $contenu .= '<img src="./templates/images/positif.png" id="positif" title="vote positif" alt="vote positif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=1&id=' . $image->getId() . '\')"></img>
+                         <img src="./templates/images/negatif.png" id="negatif" title="vote négatif" alt="vote négatif" onclick="req_xhrVote(\'index.php?p=vote\',\'vote=0&id=' . $image->getId() . '\')"></img>';
+            }
 
-        $contenu .= '</span>
+            $contenu .= '</span>
                     </div>';
-        $contenu .= '<p class="bulle_dialogue">' . $image->getDescription() . '</p>';
-        $contenu .= '</div><hr></hr>';
-        $contenu .= commentaire($image->getId());
-        
+            $contenu .= '<p class="bulle_dialogue">' . $image->getDescription() . '</p>';
+            $contenu .= '</div><hr></hr>';
+            $contenu .= commentaire($image->getId());
+        }
     } else {
         $contenu .= '<h3>Aucune image!</h3>';
         $contenu .= '<img src="./templates/images/photo_defaut.jpg" alt="Aucune photo pour ce concours"></img>';
@@ -98,7 +103,7 @@ function profil() {
 function mosaiqueProfil($id) {
     include_once 'sql/image.sql.php';
     include_once 'sql/actions.sql.php';
-    
+
     // On recupère les 6 dernières images
     $listImage = array();
     $listImage = getLastImage($id);
@@ -107,8 +112,8 @@ function mosaiqueProfil($id) {
                     <h2>
                         <a href="#" alt="Dernières photos">Dernières photos galeries</a>
                     </h2>';
-    foreach($listImage as $list) {
-        $contenu .= '<a title="'.$list->getTitre().'" name="'.$list->getId().'" class="zoombox zgallery3" href="'.$list->getUrl().'"><img src="thumb.php?src='.$list->getUrl().'&x=110&y=69&f=0"></img></a>';
+    foreach ($listImage as $list) {
+        $contenu .= '<a title="' . $list->getTitre() . '" name="' . $list->getId() . '" class="zoombox zgallery3" href="' . $list->getUrl() . '"><img src="thumb.php?src=' . $list->getUrl() . '&x=110&y=69&f=0"></img></a>';
     }
 
     // TODO : Pierre : Prevoir mise en page des dernières actions
@@ -119,28 +124,29 @@ function mosaiqueProfil($id) {
                     </h2>
                     <ul>';
     $tabActions = getLastAction($id);
-    foreach($tabActions as $tab) {
-        $contenu .= '<li class="lastActions">'.$tab->getActions().' <sup>'.$tab->intervalleTime().'</sup></li>';
+    foreach ($tabActions as $tab) {
+        $contenu .= '<li class="lastActions">' . $tab->getActions() . ' <sup>' . $tab->intervalleTime() . '</sup></li>';
     }
     $contenu .= '  </ul>
                 </div>';
     return $contenu;
 }
+
 function menuLeft($membre) {
     include_once 'sql/messagerie.sql.php';
     $contenu = '<div id="menu_gauche">
-                    <a href="index.php?p=profil&id='.$membre->getId().'" alt="Mon profil"><img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img></a>';
-    if(isMyPage($membre->getId())) {
+                    <a href="index.php?p=profil&id=' . $membre->getId() . '" alt="Mon profil"><img class="photo_article" src="' . $membre->getAvatar() . '" alt="' . $membre->getPseudo() . '"></img></a>';
+    if (isMyPage($membre->getId())) {
         $contenu .= '<ul>
                         <li><a title="ajouter une photo" href="index.php?p=newPhoto">Ajouter une photo</a></li>
-                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id=' . $membre->getId() . '">Galerie</a></li>
                         <li><a title="modifier profil" href="index.php?p=changeProfil">Modifier mon profil</a></li>
-                        <li><a title="messagerie" href="index.php?p=messagerie">'.newMessage().'</a></li>
+                        <li><a title="messagerie" href="index.php?p=messagerie">' . newMessage() . '</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>';
     } else {
         $contenu .= '<ul>
-                        <li><a title="galerie" href="index.php?p=getAlbum&id='.$membre->getId().'">Galerie</a></li>
+                        <li><a title="galerie" href="index.php?p=getAlbum&id=' . $membre->getId() . '">Galerie</a></li>
                         <li><a title="messagerie" href="#">Contacter</a></li>
                         <li><a title="statistiques" href="#">Statistiques</a></li>
                     </ul>';
@@ -175,13 +181,13 @@ function newPhoto() {
     $contenu .= '<select name="album" id="loadAlbum">
                     <option value="">...</option>';
     $tabAlbums = getAlbums($_SESSION['user']->getId());
-    foreach($tabAlbums as $tabA) {
-        $contenu .= '<option value="'.$tabA->getId().'">'.$tabA->getTitre().'<img src="templates/images/check-rouge.png"></img></option>';
+    foreach ($tabAlbums as $tabA) {
+        $contenu .= '<option value="' . $tabA->getId() . '">' . $tabA->getTitre() . '<img src="templates/images/check-rouge.png"></img></option>';
     }
     $contenu .= '</select> <span class="error"></span> - <a href="#" class="createAlbum" id="formAlbum">Ajouter un album</a><span id="ajoutAlbum"></span>';
     $contenu .= '<label for="concours">Concours</label>';
     $concours = lastConcour();
-    if (havePhotoConcours($concours->getId(),$_SESSION['user']->getId()) == 0) {
+    if (havePhotoConcours($concours->getId(), $_SESSION['user']->getId()) == 0) {
         $contenu .= '<select name="concours">
                      <option value="0">Aucun</option>
                      <option value="' . $concours->getId() . '">' . $concours->getTitre() . '</option>
@@ -203,8 +209,11 @@ function newPhotoSuccess() {
         accessForbidden();
     }
     $idConcour = @$_POST['concours'];
+    $etat = 1; // Image qui devra être moderé
+
     if (!isset($_POST['concours'])) {
         $idConcour = 0;
+        $etat = 0;
     }
     include('sql/image.sql.php');
     include('sql/albums.sql.php');
@@ -238,12 +247,13 @@ function newPhotoSuccess() {
         $image->setIdAlbum($_POST['album']);
         $image->setIdMembre($_SESSION['user']->getId());
         $image->setIdConcour($idConcour);
+        $image->setEtat($etat);
         registerImage($image);
         if ($idConcour != 0) {
             membreParticipe($idConcour);
         }
         $album = getThisAlbum($image->getIdAlbum());
-        $actions = $_SESSION['user']->getPseudoFormat() . ' a ajouté une photo dans son album <a href=\"index.php?p=getGalerie&album='.$image->getIdAlbum().'\">'.$album->getTitre().'</a>';
+        $actions = $_SESSION['user']->getPseudoFormat() . ' a ajouté une photo dans son album <a href=\"index.php?p=getGalerie&album=' . $image->getIdAlbum() . '\">' . $album->getTitre() . '</a>';
         newAction($actions, $_SESSION['user']->getId());
         $title = 'Pixels Arts - Photo envoyé avec succès.';
         $contenu = menuLeft($_SESSION['user']);
@@ -257,10 +267,10 @@ function newPhotoSuccess() {
 }
 
 function newAlbum() {
-    if(!isOk()) {
+    if (!isOk()) {
         accessForbidden();
     }
-    
+
     $title = 'Pixels Arts - Ajouter un nouvel album';
     $contenu .= '<h2>Ajouter un album</h2>';
     $contenu .= '<form method="POST" action="index.php?p=newAlbumSuccess">
@@ -269,22 +279,22 @@ function newAlbum() {
                 <input type="text" name="titre">
                 <input type="submit" value="Valider">
                 </p></form>';
-    display($title,$contenu);
+    display($title, $contenu);
 }
 
 function newAlbumSuccess() {
-    if(!isOk()) {
+    if (!isOk()) {
         accessForbidden();
     }
     include('sql/albums.sql.php');
-    
-    $album = new Album(null,$_POST['titre'],$_SESSION['user']->getId());
+
+    $album = new Album(null, $_POST['titre'], $_SESSION['user']->getId());
     addAlbum($album);
-    @mkdir('./pics/'.$_SESSION['user']->getPseudo().'/'.$album->getTitre().'');    
+    @mkdir('./pics/' . $_SESSION['user']->getPseudo() . '/' . $album->getTitre() . '');
 }
 
 function changeProfil() {
-    if(!isOk()) {
+    if (!isOk()) {
         accessForbidden();
     }
     $title = 'Pixels Arts - Modifier mon profil';
@@ -294,7 +304,7 @@ function changeProfil() {
                     <legend>Modifier l\'avatar</legend>
                     <form method="POST" action="index.php?p=setAvatar" enctype="multipart/form-data">
                         <p>
-                        <img src="'.$_SESSION['user']->getAvatar().'" title="'.$_SESSION['user']->getPseudo().'"></img>
+                        <img src="' . $_SESSION['user']->getAvatar() . '" title="' . $_SESSION['user']->getPseudo() . '"></img>
                         <label for="avatar">Avatar</label>
                         <input type="file" name="photo" id="avatar"><span class="error"></span>
                         <input  type="submit" value="Modifier l\'avatar" id="submitAvatar" class="submit"/>
@@ -329,7 +339,7 @@ function changeProfil() {
                    </p>
                     </form>
                </fieldset>';
-    display($title,$contenu);
+    display($title, $contenu);
 }
 
 function setAvatar() {
@@ -337,7 +347,7 @@ function setAvatar() {
     include_once 'sql/membre.sql.php';
     include_once 'sql/image.sql.php';
     include_once 'sql/actions.sql.php';
-    
+
     if (!isset($_FILES['photo']) || !isOk()) {
         accessForbidden();
     }
@@ -349,7 +359,7 @@ function setAvatar() {
     }
     if (is_dir($dest)) {
         if ($image->getRatio() == 0) {
-            $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 128, 128,173));
+            $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 128, 128, 173));
         } else {
             $image->setUrl(resizeImage::resize($image->getUrl(), $dest, $_FILES['photo']['name'], 0, 173, 128, 173));
         }
@@ -360,16 +370,14 @@ function setAvatar() {
         // On ajoute l'action
         $actions = $_SESSION['user']->getPseudoFormat() . ' a modifié son avatar';
         newAction($actions, $_SESSION['user']->getId());
-        
+
         $title = 'Pixels Arts - Modifier mon profil';
         $contenu = menuLeft($_SESSION['user']);
         $contenu .= '<h1>Modifier mon profil</h1>
                     <p>Avatar modifié avec succès.</p><hr></hr>';
         $contenu .= mosaiqueProfil($_SESSION['user']->getId());
     }
-    display($title,$contenu);
-    
-    
+    display($title, $contenu);
 }
 
 function setMail() {
@@ -380,23 +388,21 @@ function setMail() {
     $user = loadMembre($_SESSION['user']->getId());
     $user->setMail($_POST['mail']);
     $title = 'Pixels Arts - Modifier mon profil';
-    $contenu = menuLeft($_SESSION['user']);     
-    if(!isMailExist($user)) {
+    $contenu = menuLeft($_SESSION['user']);
+    if (!isMailExist($user)) {
         updateMail($user->getMail());
         $contenu .= '<h1>Modifier mon profil</h1>
                      <p>Votre adresse e-mail a été modifié avec succès.</p><hr></hr>';
-    }
-    else {
+    } else {
         $contenu .= '<h1>Modifier mon profil</h1>
                      <p>L\'adresse e-mail choisit éxiste déjà.</p><hr></hr>';
     }
     $contenu .= mosaiqueProfil($_SESSION['user']->getId());
-    display($title,$contenu);
-    
+    display($title, $contenu);
 }
 
 function setPassword() {
-    if(!isOk()) {
+    if (!isOk()) {
         accessForbidden();
     }
     include_once 'sql/membre.sql.php';
@@ -408,7 +414,7 @@ function setPassword() {
     $contenu .= '<h1>Modifier mon profil</h1>
                  <p>Votre mot de passe a bien été changé.</p><hr></hr>';
     $contenu .= mosaiqueProfil($_SESSION['user']->getId());
-    display($title,$contenu);
+    display($title, $contenu);
 }
 
 function setCommentaire() {
@@ -421,15 +427,15 @@ function setCommentaire() {
     include_once 'sql/actions.sql.php';
     include_once 'sql/image.sql.php';
     $image = loadImage($_POST['id_image']);
-    $action = $_SESSION['user']->getPseudoFormat() . ' a commenté la photo intitulé <a href=\"index.php?p=getPhoto&id='.$image->getId().'\">'.$image->getTitre().'</a>';
+    $action = $_SESSION['user']->getPseudoFormat() . ' a commenté la photo intitulé <a href=\"index.php?p=getPhoto&id=' . $image->getId() . '\">' . $image->getTitre() . '</a>';
     newAction($action, $image->getIdMembre());
     $commentaire = new Commentaire($_POST['id_membre'], $_POST['message'], $_POST['timestamp'], $_POST['id_image']);
     submit($commentaire);
     $membre = loadMembre($_POST['id_membre']);
     echo '
         <li class="comment" id="comment_myself">
-            <a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
-            <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.nl2br(stripcslashes($_POST['message'])).'</span></span></div>
+            <a href="index.php?p=profil&id=' . $membre->getId() . '"><img class="avatar" src="thumb.php?src=' . $membre->getAvatar() . '&x=37&y=50&f=0"></img></a>
+            <div class="contenu_comment"><span class="name">' . $membre->getPseudo() . ' - <span class="message">' . nl2br(stripcslashes($_POST['message'])) . '</span></span></div>
             <span class="date" title="Posté il y a 1 secondes">Posté il y a 1 secondes</span>
         </li>';
 }
@@ -437,10 +443,10 @@ function setCommentaire() {
 function commentaire($idImage) {
     include_once 'sql/commentaire.sql.php';
     include_once 'sql/image.sql.php';
-    
+
     $image = loadImage($idImage);
     $formulaire = '<ol id="update" class="timeline">';
-    
+
     /*
      * On récupère les commentaires s'il y en a dans la BDD
      */
@@ -449,30 +455,30 @@ function commentaire($idImage) {
         /*
          * Affichage des commentaires un par un
          */
-        foreach($comments as $c){
+        foreach ($comments as $c) {
             $membre = loadMembre($c->getIdMembre());
             if ($image->getIdMembre() == $c->getIdMembre()) {
                 $formulaire .= '<li class="comment" id="comment_myself">';
             } else {
                 $formulaire .= '<li class="comment">';
             }
-                $formulaire .= '<a href="index.php?p=profil&id='.$membre->getId().'"><img class="avatar" src="thumb.php?src='.$membre->getAvatar().'&x=37&y=50&f=0"></img></a>
-                <div class="contenu_comment"><span class="name">'.$membre->getPseudo().' - <span class="message">'.$c->getMessage().'</span></span></div>
-                <span class="date" title="Ajouté le '.$c->getTimeStampFormat().'">Posté il y a '.$c->getTimeStampFormat().'</span> 
+            $formulaire .= '<a href="index.php?p=profil&id=' . $membre->getId() . '"><img class="avatar" src="thumb.php?src=' . $membre->getAvatar() . '&x=37&y=50&f=0"></img></a>
+                <div class="contenu_comment"><span class="name">' . $membre->getPseudo() . ' - <span class="message">' . $c->getMessage() . '</span></span></div>
+                <span class="date" title="Ajouté le ' . $c->getTimeStampFormat() . '">Posté il y a ' . $c->getTimeStampFormat() . '</span> 
                     </li>';
         }
     }
     $formulaire .= '</ol>';
     $formulaire .= pagination($idImage);
-    if(isOk()) {
+    if (isOk()) {
         $user = $_SESSION['user'];
         $formulaire .= '
             <div id="flash"></div>
             <div id="commentaireFormulaire">
                 <form id="formCommentaire" method="post" action="#" enctype="application/x-www-form-urlencoded">
-                    <input type="hidden" name="id_membre" id="id_membre" value='.$user->getId().' />
-                    <input type="hidden" name="id_image" id="id_image" value='.$idImage.' />
-                    <input type="hidden" name="timestamp" id="timestamp" value='.time().' />
+                    <input type="hidden" name="id_membre" id="id_membre" value=' . $user->getId() . ' />
+                    <input type="hidden" name="id_image" id="id_image" value=' . $idImage . ' />
+                    <input type="hidden" name="timestamp" id="timestamp" value=' . time() . ' />
                     <p>
                         <label for="commentaires">Commentaire</label>
                         <textarea name="message" id="message"></textarea>

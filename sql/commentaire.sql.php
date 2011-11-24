@@ -92,4 +92,9 @@ function submit(Commentaire $commentaire) {
     $req = mysql_query($sql);
 }
 
+function getNbComment() {
+    $sql = 'SELECT * FROM commentaire';
+    $req = mysql_query($sql);
+    return mysql_num_rows($req);
+}
 ?>

@@ -50,6 +50,13 @@ elseif ($_GET['p'] == "loadAlbum") { include_once 'sql/albums.sql.php'; loadAlbu
 elseif ($_GET['p'] == "vote") { include_once 'sql/image.sql.php'; vote(); }
 elseif ($_GET['p'] == "ajaxLoadComments") { include_once 'sql/commentaire.sql.php'; ajaxLoadComments(); }
 
+// ADMIN
+elseif ($_GET['p'] == "admin") { include_once 'pages/admin.php'; admin(); }
+elseif ($_GET['p'] == "viewMembre") { include_once 'pages/admin.php'; viewMembre(); }
+elseif ($_GET['p'] == "editMembre") { include_once 'pages/admin.php'; editMembre(); }
+elseif ($_GET['p'] == "updateMembre") { include_once 'pages/admin.php'; updateMembre(); }
+elseif ($_GET['p'] == "imageAValider") { include_once 'pages/admin.php'; imageAValider(); }
+
 // Variables globales
 $_SESSION['nbParPage'] = '5';
 

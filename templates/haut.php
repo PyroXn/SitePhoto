@@ -47,6 +47,10 @@
                         <li <?php if($_GET['p'] == "contact") { echo 'id="current"'; } ?>><a title="contact" accesskey="2" href="#"><span>Contact</span></a></li>
                         <li <?php if($_GET['p'] == "profil") { echo 'id="current"'; } ?>><a title="mon profil" accesskey="3" href="index.php?p=profil&id=<?php echo $_SESSION['user']->getId(); ?>"><span>Mon profil</span></a></li>
                         <li <?php if($_GET['p'] == "deconnexion") { echo 'id="current"'; } ?>><a title="deconnexion" accesskey="4" href="index.php?p=deconnexion"><span>Deconnexion</span></a></li>
+                        <?php
+                            if($_SESSION['user']->getAdmin() == 1) { ?>
+                                <li <?php if($_GET["p"] == "admin") { echo 'id="current"'; } ?>><a title="administration" accesskey="5" href="index.php?p=admin"><span>Admin</span></a></li>
+                           <?php } ?>
                     </ul>
                     <?php
                 } else {

@@ -46,6 +46,7 @@ function getMembre(Membre $membre) {
     $membre->setCle($data['cle']);
     $membre->setId($data['id']);
     $membre->setLastVisit($data['lastVisit']);
+    $membre->setAdmin($data['admin']);
     return $membre;
 }
 
@@ -61,7 +62,7 @@ function register(Membre $membre) {
  * Permet de modifier l'users
  */
 function update(Membre $membre) {
-    $sql = "UPDATE membres SET mail='" . $membre->getMail() . "', password='" . $membre->getPassword() . "', pseudo='" . $membre->getPseudo() . "',sexe='" . $membre->getSexe() . "', avatar='" . $membre->getAvatar() . "'";
+    $sql = "UPDATE membres SET mail='" . $membre->getMail() . "', password='" . $membre->getPassword() . "', pseudo='" . $membre->getPseudo() . "',sexe='" . $membre->getSexe() . "', avatar='" . $membre->getAvatar() . "', admin='".$membre->getAdmin()."' WHERE id='".$membre->getId()."'";
     $req = mysql_query($sql);
 }
 
@@ -82,6 +83,7 @@ function loadMembre($id) {
     $membre->setId($data['id']);
     $membre->setLastVisit($data['lastVisit']);
     $membre->setSexe($data['sexe']);
+    $membre->setAdmin($data['admin']);
     return $membre;
 }
 
@@ -106,5 +108,37 @@ function updatePassword($password) {
 function updateMail($mail) {
     $sql = 'UPDATE membres SET mail="'.$mail.'" WHERE id="'.$_SESSION['user']->getId().'"';
     $req = mysql_query($sql);
+}
+
+function getNbMembre() {
+    $sql = 'SELECT * FROM membres';
+    $req = mysql_query($sql);
+    return mysql_num_rows($req);
+}
+
+function getTabMembre() {
+    $tabMembre = array();
+    $sql = 'SELECT * FROM membres ORDER BY pseudo';
+    $req = mysql_query($sql);
+    while ($data = mysql_fetch_assoc($req)) {
+        $membre = new Membre($data['mail'],$data['password']);
+        $membre->setPseudo($data['pseudo']);
+        $membre->setAvatar($data['avatar']);
+        $membre->setBirthday($data['birthday']);
+        $membre->setCle($data['cle']);
+        $membre->setId($data['id']);
+        $membre->setLastVisit($data['lastVisit']);
+        $membre->setSexe($data['sexe']);
+        $membre->setAdmin($data['admin']);
+        $tabMembre[] = $membre;
+    }
+    return $tabMembre;
+}
+
+function getIdPseudo($pseudo) {
+    $sql = 'SELECT * FROM membres WHERE pseudo="'.$pseudo.'"';
+    $req = mysql_query($sql);
+    $data = mysql_fetch_assoc($req);
+    return $data['id'];
 }
 ?>

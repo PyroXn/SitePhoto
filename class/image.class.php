@@ -11,6 +11,7 @@ class Image {
     private $idMembre;
     private $idAlbum;
     private $idConcour;
+    private $etat;
 
     /*   CONSTRUCTOR    */
 
@@ -74,6 +75,11 @@ class Image {
     function getScore() {
         return $this->score;
     }
+    
+    function getEtat() {
+        return $this->etat;
+    }
+    
     /**
      *
      * @return int Retourne 0 si photo paysage
@@ -123,7 +129,11 @@ class Image {
     function setScore($score) {
         $this->score = $score;
     }
-   
+    
+    function setEtat($etat) {
+        $this->etat = $etat;
+    }
+    
     /*    METHODES    */
 
     /**
