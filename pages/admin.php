@@ -159,10 +159,10 @@ function imageAValider() {
                         <span class="statistique_cellule">
                         </span>                            
                         <span class="statistique_cellule">
-                            <img src="./templates/images/positif.png" title="nombres de points" alt="nombres de points"></img>
+                            <img src="./templates/images/positif.png" title="Valider" alt="Valider"></img>
                         </span>
                         <span class="statistique_cellule">
-                            <img src="./templates/images/negatif.png" title="classement" alt="classement"></img>
+                            <img src="./templates/images/negatif.png" title="Refuser" alt="Refuser"></img>
                         </span>
                     </div>
                 </div>';

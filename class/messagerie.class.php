@@ -82,6 +82,9 @@ class Messagerie {
         $this->etat = $etat;
     }
 
+    public function getLittleMessage() {
+        return substr($this->message, 10);
+    }
         
     /**
      * Permet de sécuriser le message

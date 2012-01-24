@@ -8,6 +8,7 @@ include('class/image.class.php');
 include('class/resizeImage.class.php');
 include('class/albums.class.php');
 include('class/actions.class.php');
+include('class/messagerie.class.php');
 
 session_start();
 
@@ -44,6 +45,7 @@ elseif ($_GET['p'] == "getPhoto") { include('pages/galerie.php'); getPhoto(); }
 elseif ($_GET['p'] == "deleteImage") { include_once 'pages/galerie.php'; deleteImage(); }
 
 elseif ($_GET['p'] == "messagerie") { include_once 'pages/messagerie.php'; messagerie(); }
+elseif ($_GET['p'] == "nouveauMessage") { include_once 'pages/messagerie.php'; nouveauMessage(); }
 
 // AJAX
 elseif ($_GET['p'] == "loadAlbum") { include_once 'sql/albums.sql.php'; loadAlbum(); }

@@ -127,7 +127,7 @@ hr {
     color: #f60;
 }
 
-/*#contenu fieldset {
+#contenu fieldset {
     margin-top: 10px;
     margin-left: 160px;
     width: 816px;
@@ -138,8 +138,8 @@ hr {
     -webkit-border-radius:8px;
     border-radius:8px;
     padding-bottom: 10px;
-}*/
-#contenu fieldset {
+}
+/*#contenu fieldset {
     border: 1px solid #CCA383;
     width: 50%;
     margin-top: 10px;
@@ -151,7 +151,7 @@ hr {
     -webkit-border-radius:8px;
     border-radius:8px;
     padding-bottom: 10px;
-}
+}*/
 
 #contenu fieldset p {
     margin-left: 60px; 
@@ -162,20 +162,20 @@ hr {
     /*border: 2px solid black;*/
 }
 
-/*#contenu fieldset legend {
+#contenu fieldset legend {
     margin-left: 10px;
     border-left: black 2px solid;
     border-right: black 2px solid;
     font-weight: bold;
     color: black;
     
-  }*/
-#contenu fieldset legend {
+  }
+/*#contenu fieldset legend {
     background: #CCA383;
     padding: 6px;
     font-weight: bold;
     margin-left: 5px;
-}
+}*/
 
 #contenu label {
     display: block;
@@ -219,7 +219,7 @@ hr {
 
 /*bidouille centrer la croix par rapport au texte*/
 #contenu .error img {
-    vertical-align: -3px;;
+    vertical-align: -3px;
 }
 
 #contenu .server_return {
@@ -784,5 +784,23 @@ outline: none;
     background-color: #5e5e5e;
     color: #fff;
     cursor: auto;
+}
+
+
+/* MESSAGERIE */
+.messagerie {
+    height: 30px;
+    width: 820px;
+    background-color: #818181;
+    margin-left: 160px;
+    margin-top: 1px;
+}
+
+.messagerie:hover {
+    background-color: #C6C0AC;
+}
+
+.objetMessagerie {
+    text-decoration: underline;
 }
 

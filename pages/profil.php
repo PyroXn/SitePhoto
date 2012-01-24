@@ -193,7 +193,7 @@ function newPhoto() {
                      <option value="' . $concours->getId() . '">' . $concours->getTitre() . '</option>
                      </select>';
     } else {
-        $contenu .= 'Vous avez déjà une photo.';
+        $contenu .= 'Vous avez déjà une photo pour le concours de ce mois ci..';
     }
     $contenu .= '<label for="photo">Photo : </label>
                 <input type="file" name="photo" id="avatar"><span class="error"></span>

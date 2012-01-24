@@ -66,8 +66,9 @@ $tabComments = getFooterComments();
             </h2>
             <ol>
 <?php
-for ($i = 0; $i <= 2; $i++) {
-    echo '<li><a title="' . $tabMembre[$i]->getPseudo() . '" href="index.php?p=profil&id=' . $tabMembre[$i]->getId() . '"><img src="thumb.php?src=' . $tabMembre[$i]->getAvatar() . '&x=30&y=34&f=0" alt="' . $tabMembre[$i]->getPseudo() . '"></img>' . $tabMembre[$i]->getPseudo() . '</a></li>';
+foreach ($tabMembre as $tabM) {
+    echo '<li><a title="' . $tabM->getPseudo() . '" href="index.php?p=profil&id=' . $tabM->getId() . '"><img src="thumb.php?src=' . $tabM->getAvatar() . '&x=30&y=34&f=0" alt="' . $tabM->getPseudo() . '"></img>' . $tabM->getPseudo() . '</a></li>';
+
 }
 ?>
             </ol>
