@@ -23,17 +23,19 @@ function messagerie() {
 
     $user = $_SESSION['user'];
     $messagesRecus = getMessagesRecus($user->getId());
-    $contenu .= '<ul>';
-    foreach ($messagesRecus as $messageRecus) {
-        $membre = loadMembre($messageRecus->getExpediteur());
-        $contenu .= '<li class="messagerie">
+    if ($messagesRecus != null) {
+        $contenu .= '<ul>';
+        foreach ($messagesRecus as $messageRecus) {
+            $membre = loadMembre($messageRecus->getExpediteur());
+            $contenu .= '<li class="messagerie">
                                     <img src="thumb.php?src=' . $membre->getAvatar() . '&x=50&y=31&f=0" alt="' . $membre->getPseudo() . '"></img>
                                    <span class="objetMessagerie"> ' . $messageRecus->getSujet() . '</span>
                                    <span class="messagerie">' . substr($messageRecus->getMessage(), 0, 30) . '</span>
                                    <span class="dateMessage">' . $messageRecus->getTimestamp() . '</span>
                                </li>';
+        }
+        $contenu .= '</ul>';
     }
-    $contenu .= '</ul>';
     $contenu .= mosaique();
     display($title, $contenu);
 }
