@@ -69,8 +69,9 @@
                     <?php
                 }
                 ?>
+                <div id="alpha"></div>
             </div>
-            <div id="alpha"></div>
+            
         </div>
         <div id="global">
             <div id="contenu">

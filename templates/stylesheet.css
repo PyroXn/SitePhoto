@@ -805,10 +805,10 @@ outline: none;
 }
 
 #alpha {
+    position: absolute;
     background-image: url(./images/tampon2.png);
     width: 150px;
     height: 150px;
-    margin-left: 380px;
-    margin-top: 40px;
+    top: 20px;
 }
 
