@@ -34,6 +34,7 @@
   </div>
 <![endif]-->
         <div id="header">
+            
             <div id="menu_header">
                 <?php
                 if (@$_SESSION['user']) {
@@ -69,6 +70,7 @@
                 }
                 ?>
             </div>
+            <div id="alpha"></div>
         </div>
         <div id="global">
             <div id="contenu">

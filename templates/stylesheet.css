@@ -804,3 +804,11 @@ outline: none;
     text-decoration: underline;
 }
 
+#alpha {
+    background-image: url(./images/tampon2.png);
+    width: 150px;
+    height: 150px;
+    margin-left: 380px;
+    margin-top: 40px;
+}
+
